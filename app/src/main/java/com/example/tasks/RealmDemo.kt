@@ -18,6 +18,8 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_realm_demo)
 
+        Realm.init(this)
+
         realm = Realm.getDefaultInstance()
 
         btn_insert_data.setOnClickListener(this)
