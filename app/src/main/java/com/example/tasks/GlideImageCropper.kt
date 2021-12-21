@@ -14,9 +14,9 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_glide_image_cropper.*
 
-class GlideImageCropper : AppCompatActivity() {
+private const val REQUEST_CODE = 42
 
-    private val REQUEST_CODE = 42
+class GlideImageCropper : AppCompatActivity() {
 
     private val tag: String = "AppDebug"
 
