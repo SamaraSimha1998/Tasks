@@ -55,4 +55,6 @@
     <string name="touch_to_change_image">Touch to change image</string>
     <string name="crop_and_glide">Crop and Glide</string>
     <string name="capture_image">Capture Image</string>
+    <string name="glide_crop">Glide crop</string>
+    <string name="pick_image_to_view">Pick Image to View</string>
 </resources>
