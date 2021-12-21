@@ -49,4 +49,8 @@
     <string name="logo">logo</string>
     <string name="this_is_message">This is message</string>
     <string name="thanks_for_installing_our_application_this_is_an_api_notification">Thanks for installing our application.This is an Api notification</string>
+    <string name="pick_image">Pick Image</string>
+    <string name="cropped_image">cropped image</string>
+    <string name="image_view">image view</string>
+    <string name="touch_to_change_image">Touch to change image</string>
 </resources>
