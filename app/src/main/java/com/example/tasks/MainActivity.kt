@@ -34,5 +34,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, JobScheduler::class.java)
             startActivity(intent)
         }
+
+        btn_glide.setOnClickListener {
+            val intent = Intent(this@MainActivity, GlideImageCropper::class.java)
+            startActivity(intent)
+        }
     }
 }

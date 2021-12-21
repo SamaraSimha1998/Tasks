@@ -66,6 +66,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    //noinspection GradleDependency
+    implementation "androidx.exifinterface:exifinterface:1.3.3"
+
     // Cropping Image Api...
     def android_image_cropper_version = "2.8.+"
     api "com.theartofdev.edmodo:android-image-cropper:$android_image_cropper_version"

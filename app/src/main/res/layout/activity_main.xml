@@ -42,6 +42,14 @@
             android:layout_gravity="center"
             android:text="@string/job_scheduler" />
 
+        <Button
+            android:id="@+id/btn_glide"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/crop_and_glide" />
+
     </LinearLayout>
 
 </ScrollView>
