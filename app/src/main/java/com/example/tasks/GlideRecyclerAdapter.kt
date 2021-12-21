@@ -1,7 +1,6 @@
 package com.example.tasks
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PointF
 import android.view.LayoutInflater
@@ -66,7 +65,7 @@ class GlideRecyclerAdapter(
                 Glide.with(context)
                     .load(R.drawable.check)
                     .apply(overrideOf(266.px, 252.px))
-                    .apply(bitmapTransform(MultiTransformation<Bitmap>(CenterCrop(),
+                    .apply(bitmapTransform(MultiTransformation(CenterCrop(),
                         MaskTransformation(R.drawable.mask_starfish)
                     )))
                     .into(holder.image)
@@ -75,7 +74,7 @@ class GlideRecyclerAdapter(
                 Glide.with(context)
                     .load(R.drawable.check)
                     .apply(overrideOf(300.px, 200.px))
-                    .apply(bitmapTransform(MultiTransformation<Bitmap>(CenterCrop(),
+                    .apply(bitmapTransform(MultiTransformation(CenterCrop(),
                         MaskTransformation(R.drawable.mask_chat_right))))
                     .into(holder.image)
             }
@@ -102,7 +101,7 @@ class GlideRecyclerAdapter(
 
             Type.CropCircle -> Glide.with(context)
                 .load(R.drawable.demo)
-                .apply(bitmapTransform(CropCircleTransformation()))
+                .apply(bitmapTransform(CropCircleWithBorderTransformation()))
                 .into(holder.image)
 
             Type.CropCircleWithBorder -> Glide.with(context)
