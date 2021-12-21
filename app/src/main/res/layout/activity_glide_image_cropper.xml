@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".GlideImageCropper">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/image_preview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_view"
-        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/update_textview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,9 +23,10 @@
         android:id="@+id/update_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="396dp"
+        android:layout_marginBottom="20dp"
         android:background="#a5a5a5"
         android:gravity="center"
+        android:layout_margin="8dp"
         android:padding="5dp"
         android:text="@string/pick_image_to_view"
         android:textColor="#fff"
@@ -34,8 +35,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_capture"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/btn_capture"
@@ -44,7 +44,8 @@
         android:layout_margin="8dp"
         android:text="@string/capture_image"
         app:layout_constraintBottom_toTopOf="@+id/btn_glide_crop"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_glide_crop"
@@ -53,6 +54,7 @@
         android:layout_margin="8dp"
         android:text="@string/glide_crop"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

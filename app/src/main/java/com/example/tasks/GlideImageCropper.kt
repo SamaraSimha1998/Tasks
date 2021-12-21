@@ -1,12 +1,14 @@
 package com.example.tasks
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -14,17 +16,23 @@ import kotlinx.android.synthetic.main.activity_glide_image_cropper.*
 
 class GlideImageCropper : AppCompatActivity() {
 
-    private val TAG: String = "AppDebug"
+    private val REQUEST_CODE = 42
 
-    private val GALLERY_REQUEST_CODE = 1234
+    private val tag: String = "AppDebug"
 
+    @SuppressLint("QueryPermissionsNeeded")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_glide_image_cropper)
 
         btn_capture.setOnClickListener {
-            val intent = Intent("android.media.action.IMAGE_CAPTURE")
-            startActivity(intent)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            if (intent.resolveActivity(this.packageManager) != null){
+                startActivityForResult(intent, REQUEST_CODE)
+            }else{
+                Toast.makeText(this, "Unable to open camera",Toast.LENGTH_SHORT).show()
+            }
         }
 
         btn_glide_crop.setOnClickListener {
@@ -42,14 +50,13 @@ class GlideImageCropper : AppCompatActivity() {
 
         when (requestCode) {
 
-            GALLERY_REQUEST_CODE -> {
+            REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.data?.let { uri ->
                         launchImageCrop(uri)
                     }
-                }
-                else{
-                    Log.e(TAG, "Image selection error: Couldn't select that image from memory." )
+                } else {
+                    Log.e(tag, "Image selection error: Couldn't select that image from memory.")
                 }
             }
 
@@ -57,21 +64,20 @@ class GlideImageCropper : AppCompatActivity() {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     setImage(result.uri)
-                }
-                else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Log.e(TAG, "Crop error: ${result.getError()}" )
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    Log.e(tag, "Crop error: ${result.error}")
                 }
             }
         }
     }
 
-    private fun setImage(uri: Uri){
+    private fun setImage(uri: Uri) {
         Glide.with(this)
             .load(uri)
-            .into(image)
+            .into(image_preview)
     }
 
-    private fun launchImageCrop(uri: Uri){
+    private fun launchImageCrop(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)
             .setAspectRatio(1920, 1080)
@@ -84,7 +90,8 @@ class GlideImageCropper : AppCompatActivity() {
         intent.type = "image/*"
         val mimeTypes = arrayOf("image/jpeg", "image/png", "image/jpg")
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        startActivityForResult(intent, REQUEST_CODE)
+
     }
 }
