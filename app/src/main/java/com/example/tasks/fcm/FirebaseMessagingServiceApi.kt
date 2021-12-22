@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.fcm
 
 import android.annotation.SuppressLint
 import android.app.NotificationManager
@@ -7,6 +7,8 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.tasks.MainActivity
+import com.example.tasks.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.json.JSONException
