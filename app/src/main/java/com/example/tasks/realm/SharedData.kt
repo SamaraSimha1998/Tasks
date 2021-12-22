@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.realm
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.R
 
 //data will be stored and shown when we reopen application
 

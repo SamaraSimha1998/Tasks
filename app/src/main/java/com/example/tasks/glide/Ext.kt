@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.glide
 
 import android.content.res.Resources
 

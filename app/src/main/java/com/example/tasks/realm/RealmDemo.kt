@@ -1,10 +1,11 @@
-package com.example.tasks
+package com.example.tasks.realm
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.R
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_realm_demo.*
 import kotlinx.android.synthetic.main.realm_data_input.*

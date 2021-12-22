@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.jobscheduler
 
 import android.app.Activity
 import android.app.job.JobInfo
@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
+import com.example.tasks.R
 
 
 class JobScheduler : Activity() {

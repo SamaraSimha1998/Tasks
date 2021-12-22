@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.realm
 
 import io.realm.RealmObject
 

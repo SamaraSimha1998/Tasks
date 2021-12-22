@@ -19,19 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks">
         <activity
-            android:name=".GlideCrop"
+            android:name=".glide.GlideCrop"
             android:exported="false" />
         <activity
-            android:name=".GlideImageCropper"
+            android:name=".glide.GlideImageCropper"
             android:exported="false" />
         <activity
-            android:name=".SomeActivity"
+            android:name=".fcm.SomeActivity"
             android:exported="false" />
         <activity
-            android:name=".JobScheduler"
+            android:name=".jobscheduler.JobScheduler"
             android:exported="false" />
         <activity
-            android:name=".WebApiRetrofit"
+            android:name=".webretrofit.WebApiRetrofit"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -43,25 +43,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SharedData"
+            android:name=".realm.SharedData"
             android:exported="true" />
         <activity
-            android:name=".RealmDemo"
+            android:name=".realm.RealmDemo"
             android:exported="true" />
 
         <service
-            android:name=".ExampleJobService"
+            android:name=".jobscheduler.ExampleJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             tools:ignore="Instantiatable" />
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".FirebaseMessagingServiceApi"
+            android:name=".fcm.FirebaseMessagingServiceApi"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.webretrofit
 
 import retrofit2.Call
 import retrofit2.Retrofit

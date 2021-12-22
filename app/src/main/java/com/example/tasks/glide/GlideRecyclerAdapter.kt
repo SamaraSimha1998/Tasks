@@ -1,4 +1,4 @@
-package com.example.tasks
+package com.example.tasks.glide
 
 import android.content.Context
 import android.graphics.Color
@@ -14,6 +14,7 @@ import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.bumptech.glide.request.RequestOptions.overrideOf
+import com.example.tasks.R
 import jp.wasabeef.glide.transformations.*
 import jp.wasabeef.glide.transformations.gpu.*
 import jp.wasabeef.glide.transformations.internal.Utils
@@ -193,7 +194,7 @@ class GlideRecyclerAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var image: ImageView = itemView.findViewById(R.id.image)
+        var image: ImageView = itemView.findViewById(com.example.tasks.R.id.image)
         var title: TextView = itemView.findViewById(R.id.title)
     }
 }

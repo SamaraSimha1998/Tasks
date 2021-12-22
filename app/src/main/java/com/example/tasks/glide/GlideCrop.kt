@@ -1,9 +1,10 @@
-package com.example.tasks
+package com.example.tasks.glide
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tasks.R
 
 class GlideCrop : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
