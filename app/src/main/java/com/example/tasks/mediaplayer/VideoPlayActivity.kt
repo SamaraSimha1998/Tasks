@@ -39,7 +39,7 @@ class VideoPlayActivity : AppCompatActivity() {
     }
 
     private fun setVideo() {
-        videoView = findViewById<View>(R.id.videoview) as VideoView
+        videoView = findViewById<View>(R.id.videoView) as VideoView
         prev = findViewById<View>(R.id.prev) as ImageView
         next = findViewById<View>(R.id.next) as ImageView
         pause = findViewById<View>(R.id.pause) as ImageView
