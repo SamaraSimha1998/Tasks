@@ -35,9 +35,7 @@ class VideoListActivity : AppCompatActivity() {
         recyclerView!!.itemAnimator = DefaultItemAnimator()
         videoArrayList = ArrayList<VideoModel>()
         videos
-    }//looping through all rows and adding to list
-
-    //get video files from storage
+    }
     private val videos: Unit
         @SuppressLint("Range", "Recycle")
         get() {
@@ -45,7 +43,6 @@ class VideoListActivity : AppCompatActivity() {
             val uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
             val cursor = contentResolver.query(uri, null, null, null, null)
 
-            //looping through all rows and adding to list
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     val title =
@@ -86,7 +83,6 @@ class VideoListActivity : AppCompatActivity() {
         return videoTime
     }
 
-    //runtime storage permission
     private fun checkPermission(): Boolean {
         val readExternalPermission =
             ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)

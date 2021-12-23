@@ -68,7 +68,6 @@ class VideoPlayActivity : AppCompatActivity() {
         hideLayout()
     }
 
-    // play video file
     private fun playVideo(pos: Int) {
         try {
             videoView!!.setVideoURI(videoArrayList?.get(pos)?.videoUri)
@@ -80,13 +79,10 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
-    // display video progress
     private fun setVideoProgress() {
-        //get the video duration
         currentPos = videoView!!.currentPosition.toDouble()
         totalDuration = videoView!!.duration.toDouble()
 
-        //display video duration
         total!!.text = timeConversion(totalDuration.toLong())
         current!!.text = timeConversion(currentPos.toLong())
         seekBar!!.max = totalDuration.toInt()
@@ -105,7 +101,6 @@ class VideoPlayActivity : AppCompatActivity() {
         }
         handler.postDelayed(runnable, 1000)
 
-        //seekbar change listener
         seekBar!!.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {}
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -116,7 +111,6 @@ class VideoPlayActivity : AppCompatActivity() {
         })
     }
 
-    //play previous video
     private fun prevVideo() {
         prev!!.setOnClickListener {
             if (videoIndex > 0) {
@@ -129,7 +123,6 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
-    //play next video
     private fun nextVideo() {
         next!!.setOnClickListener {
             if (videoIndex < (videoArrayList?.size ?: -1)) {
@@ -142,7 +135,6 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
-    //pause video
     private fun setPause() {
         pause!!.setOnClickListener {
             if (videoView!!.isPlaying) {
@@ -155,7 +147,6 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
-    //time conversion
     fun timeConversion(value: Long): String {
         val songTime: String
         val dur = value.toInt()
@@ -170,7 +161,6 @@ class VideoPlayActivity : AppCompatActivity() {
         return songTime
     }
 
-    // hide progress when the video is playing
     private fun hideLayout() {
         val runnable = Runnable {
             showProgress!!.visibility = View.GONE
@@ -190,7 +180,6 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
-    // runtime storage permission
     private fun checkPermission(): Boolean {
         val readExternalPermission =
             ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
