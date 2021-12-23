@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.jobscheduler.JobScheduler
+import com.example.tasks.mediaplayer.VideoListActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
 import com.example.tasks.webretrofit.WebApiRetrofit
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_glide.setOnClickListener {
             val intent = Intent(this@MainActivity, GlideImageCropper::class.java)
+            startActivity(intent)
+        }
+
+        btn_media_player.setOnClickListener {
+            val intent = Intent(this@MainActivity, VideoListActivity::class.java)
             startActivity(intent)
         }
     }

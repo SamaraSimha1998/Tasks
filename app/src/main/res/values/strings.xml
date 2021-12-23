@@ -57,4 +57,11 @@
     <string name="capture_image">Capture Image</string>
     <string name="glide_crop">Glide crop</string>
     <string name="pick_image_to_view">Pick Image to View</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="play_icon">play icon</string>
+    <string name="media_player">Media player</string>
+    <string name="preview">preview</string>
+    <string name="pause">pause</string>
+    <string name="next">next</string>
+    <string name="_00_00">00:00</string>
 </resources>

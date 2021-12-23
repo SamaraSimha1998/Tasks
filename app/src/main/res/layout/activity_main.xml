@@ -50,6 +50,14 @@
             android:layout_gravity="center"
             android:text="@string/crop_and_glide" />
 
+        <Button
+            android:id="@+id/btn_media_player"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/media_player" />
+
     </LinearLayout>
 
 </ScrollView>
