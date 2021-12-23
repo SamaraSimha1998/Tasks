@@ -16,16 +16,16 @@ import android.widget.VideoView
 
 
 
-class VideoAdapter(var context: Context, var videoArrayList: ArrayList<VideoModel>) :
-    RecyclerView.Adapter<VideoAdapter.viewHolder>() {
+class VideoAdapter(var context: Context, private var videoArrayList: ArrayList<VideoModel>) :
+    RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
     var onItemClickListener: Any? = null
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): viewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view: View = LayoutInflater.from(context).inflate(com.example.tasks.R.layout.activity_video_list, viewGroup, false)
-        return viewHolder(view)
+        return ViewHolder(view)
     }
 
 
-    override fun onBindViewHolder(holder: viewHolder, i: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         holder.title.text = videoArrayList[i].videoTitle
         holder.duration.text = videoArrayList[i].videoDuration
     }
@@ -34,7 +34,7 @@ class VideoAdapter(var context: Context, var videoArrayList: ArrayList<VideoMode
         return videoArrayList.size
     }
 
-    inner class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById<View>(com.example.tasks.R.id.title) as TextView
         var duration: TextView = itemView.findViewById<View>(com.example.tasks.R.id.duration) as TextView
 
