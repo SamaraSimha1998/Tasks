@@ -56,13 +56,8 @@ class VideoAdapter(var context: Context, private var videoArrayList: ArrayList<V
 
 private fun Any?.onItemClick(pos: Int, v: View?) {
 
-    // Here we can implement code to play the video
 //    TODO("Not yet implemented")
     val videoView = (com.example.tasks.R.id.videoView) as VideoView
-//Use a media controller so that you can scroll the video contents
-//and also to pause, start the video.
-//Use a media controller so that you can scroll the video contents
-//and also to pause, start the video.
     val mediaController = MediaController(this as Context?)
     mediaController.setAnchorView(videoView)
     videoView.setMediaController(mediaController)
