@@ -3,6 +3,7 @@ package com.example.tasks
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.contacts.ContactsActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
@@ -48,6 +49,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_media_player.setOnClickListener {
             val intent = Intent(this@MainActivity, VideoListActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_contacts_viewer.setOnClickListener {
+            val intent = Intent(this@MainActivity, ContactsActivity::class.java)
             startActivity(intent)
         }
     }

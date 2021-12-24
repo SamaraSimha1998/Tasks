@@ -11,6 +11,7 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="false"
@@ -19,7 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks">
-
+        <activity
+            android:name=".contacts.ContactsActivity"
+            android:exported="false" />
         <activity
             android:name=".glide.GlideCrop"
             android:exported="false" />
@@ -50,11 +53,9 @@
         <activity
             android:name=".realm.RealmDemo"
             android:exported="false" />
-
         <activity
             android:name=".mediaplayer.VideoPlayActivity"
             android:exported="false" />
-
         <activity
             android:name=".mediaplayer.VideoListActivity"
             android:exported="false" />
