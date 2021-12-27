@@ -59,12 +59,12 @@
             android:text="@string/media_player" />
 
         <Button
-            android:id="@+id/btn_contacts_viewer"
+            android:id="@+id/btn_sms"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/contact_viewer" />
+            android:text="@string/sms_contacts" />
 
     </LinearLayout>
 
