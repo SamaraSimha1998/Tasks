@@ -10,7 +10,7 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
@@ -21,6 +21,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks">
+        <activity
+            android:name=".profile.ProfileLogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.ProfileViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.ProfileSaveActivity"
+            android:exported="false" />
         <activity
             android:name=".contacts.SendMessageActivity"
             android:exported="false" />
@@ -66,8 +75,7 @@
         <activity
             android:name="com.onegravity.contactpicker.core.ContactPickerActivity"
             android:enabled="true"
-            android:exported="false" >
-
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />

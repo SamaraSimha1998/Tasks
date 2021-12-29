@@ -3,11 +3,12 @@ package com.example.tasks
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.contacts.ContactsActivity
 import com.example.tasks.contacts.SendMessageActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
+import com.example.tasks.profile.ProfileLogActivity
+import com.example.tasks.profile.ProfileSaveActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
 import com.example.tasks.webretrofit.WebApiRetrofit
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_sms.setOnClickListener {
             val intent = Intent(this@MainActivity, SendMessageActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_profile.setOnClickListener {
+            val intent = Intent(this@MainActivity, ProfileLogActivity::class.java)
             startActivity(intent)
         }
     }
