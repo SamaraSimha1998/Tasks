@@ -50,6 +50,7 @@ open class ProfileLogActivity : AppCompatActivity() {
                     val dob = it.child("dob").value.toString()
                     val phone = it.child("phone").value.toString()
                     val email = it.child("email").value.toString()
+                    val image = it.child("image").value.toString()
 
                     val intent = Intent(this@ProfileLogActivity, ProfileViewActivity::class.java)
                     intent.putExtra("firstName",firstName)
@@ -58,6 +59,7 @@ open class ProfileLogActivity : AppCompatActivity() {
                     intent.putExtra("dob",dob)
                     intent.putExtra("phone",phone)
                     intent.putExtra("email",email)
+                    intent.putExtra("image",image)
                     startActivity(intent)
 
                 }

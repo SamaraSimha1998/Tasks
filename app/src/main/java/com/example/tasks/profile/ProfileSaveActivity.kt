@@ -6,21 +6,24 @@ import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_profile_save.*
+import java.io.ByteArrayOutputStream
 import java.util.*
+
 
 class ProfileSaveActivity : AppCompatActivity() {
 
+    private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
-    private lateinit var imageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,41 +73,18 @@ class ProfileSaveActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestImageCapture && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
             profile_image_view.setImageBitmap(imageBitmap)
-//            uploadImage(imageBitmap)
+            val byte : ByteArray = byteArrayOutputStream.toByteArray()
+            baseImage = Base64.getEncoder().encodeToString(byte)
         }
     }
-//
-//    private fun uploadImage(bitmap: Bitmap){
-//
-//        progress_bar_pic.visibility = View.VISIBLE
-//        val baos = ByteArrayOutputStream()
-//        val storageRef = FirebaseDatabase.getInstance()
-//            .reference
-//            .child("pics/${FirebaseDatabase.getInstance().currentUser?.uid}")
-//        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
-//        val image = baos.toByteArray()
-//        val upload = storageRef.putBytes(image)
-//
-//        upload.addOnCompleteListener{
-//            progress_bar_pic.visibility = View.INVISIBLE
-//            if(T.isSuccessful){
-//                storageRef.downloadUrl.addOnCompleteListener {
-//                    urlTask.result?.Let{
-//                        imageUri = it
-//                    }
-//                }
-//            }else {
-//                uploadTask.exception?.let{
-//                    activity?.toast(it.message!!)
-//                }
-//            }
-//        }
-//    }
 
     private fun addProfile(){
         val firstName =  first_name_edit_text.text.toString()
@@ -118,11 +98,13 @@ class ProfileSaveActivity : AppCompatActivity() {
         val dob = dob_edit_text.text.toString()
         val phone = phone_edit_text.text.toString()
         val email = email_edit_text.text.toString()
+        val image = baseImage
 
         database = FirebaseDatabase.getInstance().getReference("Profiles")
 
-        val profile = Profile(firstName, lastName, gender, dob, phone, email)
+        val profile = Profile(firstName, lastName, gender, dob, phone, email, image)
         val userEmail = email.replace(".",",")
+
         try {
             database.child(userEmail).setValue(profile)
             val intent = Intent(this, ProfileLogActivity::class.java)
