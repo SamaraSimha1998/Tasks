@@ -12,18 +12,20 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_profile_save.*
 import java.io.ByteArrayOutputStream
 import java.util.*
+import android.graphics.BitmapFactory
+import com.example.tasks.R
 
 
 class ProfileSaveActivity : AppCompatActivity() {
 
     private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
+    private var emailId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,7 @@ class ProfileSaveActivity : AppCompatActivity() {
 
         profile_image_view.setOnClickListener { takePictureIntent() }
 
-        btn_save_profile.setOnClickListener { addProfile() }
+        btn_save_profile.setOnClickListener { checkRequirements() }
     }
 
     private val datePickerId = 2
@@ -76,13 +78,20 @@ class ProfileSaveActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == requestImageCapture && resultCode == RESULT_OK) {
+        baseImage = if (requestCode == requestImageCapture && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
             profile_image_view.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
-            baseImage = Base64.getEncoder().encodeToString(byte)
+            Base64.getEncoder().encodeToString(byte)
+        }else {
+            val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+            profile_image_view.setImageBitmap(imageBitmap)
+            val byte : ByteArray = byteArrayOutputStream.toByteArray()
+            Base64.getEncoder().encodeToString(byte)
         }
     }
 
@@ -112,6 +121,17 @@ class ProfileSaveActivity : AppCompatActivity() {
             Toast.makeText(this,"Saved Successfully!",Toast.LENGTH_SHORT).show()
         }catch (e:Exception) {
             Toast.makeText(this,"Failed to save!!",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ProfileLogActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun checkRequirements(){
+        emailId = email_edit_text.text.toString()
+        if( emailId == ""){
+            Toast.makeText(this,"please enter email id",Toast.LENGTH_SHORT).show()
+        }else {
+            addProfile()
         }
     }
 }

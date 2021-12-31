@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".profile.ProfileUpdateActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="8dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/progress_bar_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/profile_update_image_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/profile_image"
+            android:src="@mipmap/ic_launcher"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <EditText
+            android:id="@+id/first_name_update_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/first_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/last_name_update_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/last_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gender"
+            android:layout_margin="8dp"
+            android:textSize="18sp"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_male"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:text="@string/female" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="9"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="20sp"
+                android:text="@string/date_of_birth"/>
+
+            <EditText
+                android:id="@+id/dob_update_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:autofillHints="no"
+                android:inputType="date"
+                android:minHeight="48dp"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/calender_update_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_calendar"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/calender" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_phone"
+                android:contentDescription="@string/phone_no" />
+
+            <EditText
+                android:id="@+id/phone_update_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/phone_no"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:maxLength="10"
+                android:autofillHints="no"
+                tools:ignore="TextFields" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_update_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/update" />
+
+    </LinearLayout>
+</ScrollView>
