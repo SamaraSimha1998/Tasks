@@ -8,7 +8,6 @@ import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
 import com.example.tasks.profile.ProfileLogActivity
-import com.example.tasks.profile.ProfileSaveActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
 import com.example.tasks.webretrofit.WebApiRetrofit
