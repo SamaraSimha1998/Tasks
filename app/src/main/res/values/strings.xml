@@ -27,7 +27,7 @@
     <string name="update_data">Update Data</string>
     <string name="delete_data">Delete Data</string>
     <string name="user_id">user id</string>
-    <string name="user_name">user name</string>
+    <string name="user_name">User name</string>
     <string name="user_email">user email</string>
     <string name="web_api_retrofit">web api retrofit</string>
     <string name="schedule_job">Schedule Job</string>
@@ -97,4 +97,10 @@
     <string name="login_failed">"Login failed"</string>
     <string name="edit">edit</string>
     <string name="update">update</string>
+    <string name="capture_data">capture data</string>
+    <string name="display_data">display data</string>
+    <string name="profile_data_cards">Profile Data Cards</string>
+    <string name="candidate_name">Candidate Name</string>
+    <string name="candidate_phone">Candidate phone</string>
+    <string name="candidate_email">Candidate Email</string>
 </resources>
