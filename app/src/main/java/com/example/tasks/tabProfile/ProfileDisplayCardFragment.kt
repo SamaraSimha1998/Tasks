@@ -51,9 +51,9 @@ class ProfileDisplayCardFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (childDataSnapshot in dataSnapshot.children) {
                     if (childDataSnapshot.child("Model").value != null) {
-                        val ingredients: ArrayList<String?> = ArrayList()
+                        val data: ArrayList<String?> = ArrayList()
                         for (ing in childDataSnapshot.child("Model").children) {
-                            ingredients.add(ing.child("Model").getValue(Model::class.java).toString())
+                            data.add(ing.child("Model").getValue(Model::class.java).toString())
                         }
                     }
                 }
