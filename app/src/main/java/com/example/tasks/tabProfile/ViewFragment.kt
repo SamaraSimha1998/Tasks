@@ -20,17 +20,17 @@ import java.util.*
 class ViewFragment : Fragment {
     private var mParam1: String? = null
     private var mParam2: String? = null
-    var name: String? = null
+    var firstName: String? = null
     private var image: String? = null
-    var email: String? = null
+    var lastName: String? = null
     var phone: String? = null
     private lateinit var baseImage : String
 
     constructor() {}
-    constructor(name: String?, image: String?, email: String?, phone: String?) {
-        this.name = name
+    constructor(firstName: String?, image: String?, lastName: String?, phone: String?) {
+        this.firstName = firstName
         this.image = image
-        this.email = email
+        this.lastName = lastName
         this.phone = phone
     }
 
@@ -49,12 +49,12 @@ class ViewFragment : Fragment {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_descfragment, container, false)
         val imageHolder = view.findViewById<ImageView>(R.id.image_holder)
-        val nameHolder = view.findViewById<TextView>(R.id.name_holder)
+        val firstNameHolder = view.findViewById<TextView>(R.id.first_name_holder)
         val phoneHolder = view.findViewById<TextView>(R.id.phone_holder)
-        val emailHolder = view.findViewById<TextView>(R.id.email_holder)
-        nameHolder.text = name
+        val lastNameHolder = view.findViewById<TextView>(R.id.last_name_holder)
+        firstNameHolder.text = firstName
         phoneHolder.text = phone
-        emailHolder.text = email
+        lastNameHolder.text = lastName
         baseImage = image.toString()
         Glide.with(requireContext()).load(base64ToBitmap(baseImage)).into(imageHolder)
         return view

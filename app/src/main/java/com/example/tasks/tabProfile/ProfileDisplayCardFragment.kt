@@ -45,7 +45,6 @@ class ProfileDisplayCardFragment : Fragment() {
         recview!!.adapter = adapter
 
         database = FirebaseDatabase.getInstance().reference.child("Model")
-        database.keepSynced(true)
 
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
