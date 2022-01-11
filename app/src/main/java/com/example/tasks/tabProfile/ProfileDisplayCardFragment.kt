@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profile_display_card.view.*
+import java.io.File
+import java.io.IOException
 
 
 class ProfileDisplayCardFragment : Fragment() {
@@ -36,6 +40,7 @@ class ProfileDisplayCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_profile_display_card, container, false)
+        view.btn_save_to_text_file.setOnClickListener { download() }
         recview = view.findViewById<View>(R.id.profile_card_recycler_view) as RecyclerView
         recview!!.layoutManager = LinearLayoutManager(context)
         val options: FirebaseRecyclerOptions<Model> = FirebaseRecyclerOptions.Builder<Model>()
@@ -86,6 +91,23 @@ class ProfileDisplayCardFragment : Fragment() {
         adapter?.stopListening()
     }
 
+    private fun download(){
+        try {
+            val storage = FirebaseDatabase.getInstance()
+            val storageRef = storage.getReferenceFromUrl("https://tasks-1b864-default-rtdb.firebaseio.com/")
+                .child("Model")
+            val localFile: File = File.createTempFile("file", "txt")
+            storageRef.setValue(localFile.absoluteFile)
+                .addOnSuccessListener {
+                    Toast.makeText(activity,"File Downloaded",Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener(OnFailureListener {
+                    Toast.makeText(activity,"File Not Downloaded",Toast.LENGTH_SHORT).show()
+                })
+        } catch (e: IOException) {
+        }
+    }
+
     companion object {
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
@@ -101,5 +123,4 @@ class ProfileDisplayCardFragment : Fragment() {
 }
 
 private fun <T> Array<T>.filter(predicate: String?) {
-
 }

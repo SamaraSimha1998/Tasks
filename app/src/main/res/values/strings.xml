@@ -103,4 +103,5 @@
     <string name="candidate_name">Candidate Name</string>
     <string name="candidate_phone">Candidate phone</string>
     <string name="candidate_email">Candidate Email</string>
+    <string name="save_to_text_file">Save to text file</string>
 </resources>
