@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class ViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, fragmentLifecycle) {
     override fun getItemCount(): Int {
-        return 2
+        return 3
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -18,6 +18,9 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Life
             }
             1 -> {
                 ProfileDisplayCardFragment()
+            }
+            2 -> {
+                ContactsFragment()
             }
             else -> {
                 Fragment()

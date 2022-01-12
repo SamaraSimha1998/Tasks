@@ -22,6 +22,9 @@ class TabProfileActivity : AppCompatActivity() {
                 1 -> {
                     tab.text = "display data"
                 }
+                2 -> {
+                    tab.text = "contacts"
+                }
             }
         }.attach()
     }
