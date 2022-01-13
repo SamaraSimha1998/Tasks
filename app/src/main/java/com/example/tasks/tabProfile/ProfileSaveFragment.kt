@@ -3,7 +3,9 @@ package com.example.tasks.tabProfile
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -30,6 +32,7 @@ class ProfileSaveFragment : Fragment() {
     private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
     private var emailId: String = ""
+    private val sharedPrefFile = "profileSharedPreference"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
@@ -56,6 +59,10 @@ class ProfileSaveFragment : Fragment() {
     }
 
     private fun addProfile(){
+
+        val sharedPreferences: SharedPreferences? = activity?.getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
+
         val firstName =  tab_first_name_edit_text.text.toString()
         val lastName = tab_last_name_edit_text.text.toString()
 
@@ -68,6 +75,16 @@ class ProfileSaveFragment : Fragment() {
         val phone = tab_phone_edit_text.text.toString()
         val email = tab_email_edit_text.text.toString()
         val image = baseImage
+
+        val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
+        editor?.putString("firstName",firstName)
+        editor?.putString("lastName",lastName)
+        editor?.putString("gender",gender)
+        editor?.putString("dob",dob)
+        editor?.putString("phone",phone)
+        editor?.putString("email",email)
+        editor?.putString("image",image)
+        editor?.apply()
 
         database = FirebaseDatabase.getInstance().getReference("Model")
 
