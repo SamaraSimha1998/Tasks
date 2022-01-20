@@ -11,6 +11,14 @@
         tools:context=".MainActivity">
 
         <Button
+            android:id="@+id/btn_image_compressor"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/image_compressor" />
+
+        <Button
             android:id="@+id/btn_tab_view_profile"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
