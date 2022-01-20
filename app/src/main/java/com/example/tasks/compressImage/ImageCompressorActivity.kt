@@ -27,7 +27,7 @@ class ImageCompressorActivity : AppCompatActivity() {
     private lateinit var filepath: String
     private lateinit var originalImage: File
     private lateinit var compressedImage: File
-    private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/myCompressor")
+    private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
