@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.ExifInterface
+import androidx.exifinterface.media.ExifInterface
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -20,8 +20,9 @@ internal object ImageUtil {
         destinationPath: String?
     ): File {
         var fileOutputStream: FileOutputStream? = null
-        val file = File(destinationPath).parentFile
-        if (!file.exists()) {
+        val file = File(destinationPath!!).parentFile
+        if (!file!!.exists()
+        ) {
             file.mkdirs()
         }
         try {
@@ -56,16 +57,19 @@ internal object ImageUtil {
         var scaledBitmap = BitmapFactory.decodeFile(imageFile.absolutePath, options)
 
         //check the rotation of the image and display it properly
-        val exif: ExifInterface
-        exif = ExifInterface(imageFile.absolutePath)
+        val exif = ExifInterface(imageFile.absolutePath)
         val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0)
         val matrix = Matrix()
-        if (orientation == 6) {
-            matrix.postRotate(90f)
-        } else if (orientation == 3) {
-            matrix.postRotate(180f)
-        } else if (orientation == 8) {
-            matrix.postRotate(270f)
+        when (orientation) {
+            6 -> {
+                matrix.postRotate(90f)
+            }
+            3 -> {
+                matrix.postRotate(180f)
+            }
+            8 -> {
+                matrix.postRotate(270f)
+            }
         }
         scaledBitmap = Bitmap.createBitmap(
             scaledBitmap,
