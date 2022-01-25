@@ -14,6 +14,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
+import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_image_compressor.*
 import java.io.File
 import java.io.FileNotFoundException
@@ -60,7 +61,7 @@ class ImageCompressorActivity : AppCompatActivity() {
             val height = 800
 
             try {
-                compressedImage = id.zelory.compressor.Compressor(this)
+                compressedImage = Compressor(this)
                     .setMaxWidth(width)
                     .setMaxHeight(height)
                     .setQuality(quality)
