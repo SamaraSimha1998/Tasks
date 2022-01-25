@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks">
         <activity
+            android:name=".multiThreading.MultiThreading"
+            android:exported="false" />
+        <activity
             android:name=".compressImage.ImageCompressorActivity"
             android:exported="false" />
         <activity

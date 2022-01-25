@@ -111,4 +111,6 @@
     <string name="select_image">Select image</string>
     <string name="compress_image">Compress image</string>
     <string name="size">size</string>
+    <string name="start">Start</string>
+    <string name="multi_threading_sample">Multi threading sample</string>
 </resources>

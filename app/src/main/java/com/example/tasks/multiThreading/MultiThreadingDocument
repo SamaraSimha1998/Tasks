@@ -1,0 +1,79 @@
+Multi Threading :
+    This multi threading process is used to run different asynchronous tasks on background on
+different threads while main thread is running in the foreground. Making use of threads on Android
+can help you boost your app’s performance.
+
+Main thread -> When the user launches our app, Android creates a new Linux process along with an
+execution thread. This is Main Thread, also known as the UI thread,
+This is responsible for everything that happens onscreen.
+
+The main thread has a very simple design, its only job is to take and execute blocks of work from a
+thread-safe work queue until app is terminated. The framework generates some of these blocks of work
+from a variety of places. These places include callbacks associated with lifecycle information,
+user events such as input, or events coming from other apps and processes.
+In addition, app can explicitly enqueue blocks on their own, without using the framework.
+
+Nearly any block of code our app executes is tied to an event callback, such as input,
+layout inflation, or draw. When something triggers an event, the thread where the event happened
+pushes the event out of itself, and into the main thread’s message queue.
+The main thread can then service the event.
+
+While an animation or screen update is occurring, the system tries to execute a block of work
+(which is responsible for drawing the screen) every 16ms or so, in order to render smoothly at
+60 frames per second. For the system to reach this goal, the UI/View hierarchy must update on the
+main thread. However, when the main thread’s messaging queue contains tasks that are either too
+numerous or too long for the main thread to complete the update fast enough, the app should move
+this work to a worker thread. If the main thread cannot finish executing blocks of work within 16ms,
+the user may observe glitching, lagging, or a lack of UI responsiveness to input. If the main thread
+blocks for approximately five seconds, the system displays the Application Not Responding(ANR) dialog,
+allowing the user to close the app directly.
+
+Moving numerous or long tasks from the main thread, so that they don’t interfere with smooth
+rendering and fast responsiveness to user input, is the biggest reason for us to adopt threading in
+our app.
+
+By design, Android View objects are not thread-safe. An app is expected to create, use, and destroy
+UI objects, all on the main thread. If we try to modify or even reference a UI object in a thread
+other than the main thread, the result can be exceptions, silent failures, crashes, and other
+undefined misbehavior.
+
+Issues with references fall into two distinct categories: explicit references and implicit references.
+
+Explicit references ->Many tasks on non-main threads have the end goal of updating UI objects.
+However, if one of these threads accesses an object in the view hierarchy, application instability
+can result: If a worker thread changes the properties of that object at the same time that any other
+thread is referencing the object, the results are undefined.
+
+For example, consider an app that holds a direct reference to an UI object on a worker thread.
+The object on the worker thread may contain a reference to a View but before the work completes the
+View is removed from the view hierarchy. When these two actions happen simultaneously, the reference
+keeps the View object in memory and sets properties on it. However, the user never sees this object,
+and the app deletes the object once the reference to it is gone.
+
+In another example, View objects contain references to the activity that owns them. If that activity
+is destroyed but that remains a threaded block of work that references it directly or indirectly.
+The garbage collector will not collect the activity until that block of work finishes executing.
+
+This scenario can cause a problem in situations where threaded work may be in flight while some
+activity lifecycle event, such as a screen rotation, occurs. The system won’t be able to perform
+garbage collection until the in-flight work completes. As a result, there may be two Activity objects
+in memory until garbage collection can take place.
+
+With scenarios like these, we suggest that your app not include explicit references to UI objects in
+threaded work tasks. Avoiding such references helps you avoid these types of memory leaks, while also
+steering clear of threading contention.
+
+In all cases, our app should only update UI objects on the main thread. This means that we should
+craft a negotiation policy that allows multiple threads to communicate work back to the main thread,
+which tasks the top most activity or fragment with the work of updating the actual UI object.
+
+Implicit references ->The code declares the threading object async task as a non-static inner class
+of some activity (or an inner class in Kotlin). This declaration creates an implicit reference to
+the enclosing Activity instance. As a result, the object contains a reference to the activity until
+the threaded work completes, causing a delay in the destruction of the referenced activity.
+This delay in turn puts more pressure on memory.A direct solution to this problem would be to define
+your overloaded class instances either as static classes or in their own files, thus removing the
+implicit reference.Another solution would be to always cancel and clean up background tasks in the
+appropriate Activity lifecycle callback such as onDestroy. This approach can be tedious and error
+prone however. As a general rule we should not put complex non-UI logic directly in activities.
+In addition, AsyncTask is now deprecated and it is not recommended for use in new code.

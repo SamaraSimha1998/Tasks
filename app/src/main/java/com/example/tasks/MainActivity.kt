@@ -8,6 +8,7 @@ import com.example.tasks.contacts.SendMessageActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
+import com.example.tasks.multiThreading.MultiThreading
 import com.example.tasks.profile.ProfileLogActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
@@ -72,6 +73,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_image_compressor.setOnClickListener {
             val intent = Intent(this@MainActivity, ImageCompressorActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_multi_threading.setOnClickListener {
+            val intent = Intent(this@MainActivity, MultiThreading::class.java)
             startActivity(intent)
         }
     }
