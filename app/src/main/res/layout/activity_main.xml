@@ -11,6 +11,14 @@
         tools:context=".MainActivity">
 
         <Button
+            android:id="@+id/btn_multi_threading"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/multi_threading_sample" />
+
+        <Button
             android:id="@+id/btn_image_compressor"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
