@@ -113,4 +113,5 @@
     <string name="size">size</string>
     <string name="start">Start</string>
     <string name="multi_threading_sample">Multi threading sample</string>
+    <string name="native_image_compressor">Native Image Compressor</string>
 </resources>

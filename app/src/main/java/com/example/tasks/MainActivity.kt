@@ -3,9 +3,10 @@ package com.example.tasks
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.compressImage.ImageCompressorActivity
+import com.example.tasks.nativeImageCompressor.NativeImageCompressorActivity
 import com.example.tasks.contacts.SendMessageActivity
 import com.example.tasks.glide.GlideImageCropper
+import com.example.tasks.imageCompressor.ImageCompressorActivity
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
 import com.example.tasks.multiThreading.MultiThreading
@@ -68,6 +69,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_tab_view_profile.setOnClickListener {
             val intent = Intent(this@MainActivity, TabProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_native_image_compressor.setOnClickListener {
+            val intent = Intent(this@MainActivity, NativeImageCompressorActivity::class.java)
             startActivity(intent)
         }
 

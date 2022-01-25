@@ -22,10 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks">
         <activity
+            android:name=".imageCompressor.ImageCompressorActivity"
+            android:exported="false" />
+        <activity
             android:name=".multiThreading.MultiThreading"
             android:exported="false" />
         <activity
-            android:name=".compressImage.ImageCompressorActivity"
+            android:name=".nativeImageCompressor.NativeImageCompressorActivity"
             android:exported="false" />
         <activity
             android:name=".tabProfile.TabProfileActivity"

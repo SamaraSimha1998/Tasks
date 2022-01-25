@@ -1,4 +1,4 @@
-package com.example.tasks.compressImage
+package com.example.tasks.nativeImageCompressor
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,14 +14,13 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import id.zelory.compressor.Compressor
-import kotlinx.android.synthetic.main.activity_image_compressor.*
+import kotlinx.android.synthetic.main.activity_native_image_compressor.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream
 
-class ImageCompressorActivity : AppCompatActivity() {
+class NativeImageCompressorActivity : AppCompatActivity() {
 
     private val pickImage = 100
     private lateinit var filepath: String
@@ -32,7 +31,7 @@ class ImageCompressorActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_compressor)
+        setContentView(R.layout.activity_native_image_compressor)
 
         filepath = path.absolutePath
 
