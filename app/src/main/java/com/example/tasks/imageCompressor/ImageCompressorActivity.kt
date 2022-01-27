@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -12,6 +13,7 @@ import android.text.format.Formatter
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import id.zelory.compressor.Compressor
@@ -28,6 +30,7 @@ class ImageCompressorActivity : AppCompatActivity() {
     private lateinit var compressedImage: File
     private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
 
+    @RequiresApi(Build.VERSION_CODES.ECLAIR)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
