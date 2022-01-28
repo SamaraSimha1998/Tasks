@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide
 import com.example.tasks.R
 import java.util.*
 
-
 class ViewFragment : Fragment {
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -56,6 +55,7 @@ class ViewFragment : Fragment {
         phoneHolder.text = phone
         lastNameHolder.text = lastName
         baseImage = image.toString()
+        // Crops selected image to particular shape using Glide
         Glide.with(requireContext()).load(base64ToBitmap(baseImage)).into(imageHolder)
         return view
     }
@@ -79,6 +79,7 @@ class ViewFragment : Fragment {
         }
     }
 
+    // To convert image to bitmap value
     @RequiresApi(Build.VERSION_CODES.O)
     private fun base64ToBitmap(b64: String): Bitmap? {
         val imageAsBytes: ByteArray = Base64.getDecoder().decode(b64)

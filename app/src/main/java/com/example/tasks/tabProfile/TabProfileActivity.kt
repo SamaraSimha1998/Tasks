@@ -14,6 +14,7 @@ class TabProfileActivity : AppCompatActivity() {
 
         profile_view_pager.adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
 
+        // Makes title and position to every tab as below
         TabLayoutMediator(profile_tab_layout, profile_view_pager){ tab,position ->
             when (position) {
                 0 -> {

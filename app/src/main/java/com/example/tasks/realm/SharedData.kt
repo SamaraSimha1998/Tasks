@@ -47,7 +47,7 @@ class SharedData : AppCompatActivity() {
 
             val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
             val mainKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
-
+            // Creates a file to save encrypted data
             val fileToRead = "encryptedData.txt"
             val encryptedFile = EncryptedFile.Builder(
                 File(sharedPrefFile, fileToRead),
@@ -80,6 +80,7 @@ class SharedData : AppCompatActivity() {
             }
         }
 
+        // This will clears saved realm data from data file
         clear.setOnClickListener{
             val editor = sharedPreferences.edit()
             editor.clear()

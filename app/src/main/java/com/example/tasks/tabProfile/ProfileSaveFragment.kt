@@ -92,6 +92,7 @@ class ProfileSaveFragment : Fragment() {
         val userEmail = email.replace(".",",")
 
         try {
+            // Adds new profile data to firebase database
             database.child(userEmail).setValue(profile)
             Toast.makeText(activity,"Saved Successfully!",Toast.LENGTH_SHORT).show()
             tab_profile_image_view.setImageDrawable(null)
@@ -151,6 +152,7 @@ class ProfileSaveFragment : Fragment() {
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
+            // Loads given image as default
             val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)

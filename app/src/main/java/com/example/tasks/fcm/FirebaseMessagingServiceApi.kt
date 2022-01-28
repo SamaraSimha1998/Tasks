@@ -70,6 +70,8 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
     private fun sendNotification(title: String, message: String, click_action: String) {
         val intent: Intent
         when (click_action) {
+
+            // from message, Navigates to required activity
             "SOMEACTIVITY" -> {
                 intent = Intent(this, SomeActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -87,6 +89,8 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
             this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT
         )
+
+        // Uses default notification sound for message
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
             .setSmallIcon(R.drawable.aapoon_logo)

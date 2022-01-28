@@ -13,6 +13,8 @@ class GlideCrop : AppCompatActivity() {
 
         findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(context)
+
+            // Connects to adapter to load image into different guide cropping shapes
             adapter = GlideRecyclerAdapter(context, mutableListOf(
                 GlideRecyclerAdapter.Type.Mask,
                 GlideRecyclerAdapter.Type.NinePatchMask,

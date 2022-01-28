@@ -39,6 +39,7 @@ class NativeImageCompressorActivity : AppCompatActivity() {
             path.mkdirs()
         }
 
+        // Reads value from seekbar
         seekQuality.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
                 seekQuality.max = 100
@@ -61,6 +62,7 @@ class NativeImageCompressorActivity : AppCompatActivity() {
             val height = 800
 
             try {
+                // Starts compressing selected image
                 compressedImage = Compressor(this)
                     .setMaxWidth(width)
                     .setMaxHeight(height)
@@ -81,6 +83,7 @@ class NativeImageCompressorActivity : AppCompatActivity() {
         }
     }
 
+    // Opens gallery and picks selected image
     private fun openGallery(){
         val gallery = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(gallery, pickImage)

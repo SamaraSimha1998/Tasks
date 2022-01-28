@@ -52,6 +52,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
         showDialog(datePickerId)
     }
 
+    // Creates calender dialog box
     override fun onCreateDialog(id: Int): Dialog? {
         val c: Calendar = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -64,6 +65,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
         return null
     }
 
+    // Selects date from calender
     private val pickerListener =
         DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
             dob_update_edit_text.setText(
@@ -73,6 +75,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
             )
         }
 
+    // Opens camera to take picture
     private fun takePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {
@@ -81,6 +84,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
         }
     }
 
+    // Processes taken picture into bitmap
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -124,6 +128,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
             "email" to email,
             "image" to image)
 
+        // Updates data by verifying email from database
         try {
             database.child(userEmail).updateChildren(profile)
             val intent = Intent(this, ProfileLogActivity::class.java)

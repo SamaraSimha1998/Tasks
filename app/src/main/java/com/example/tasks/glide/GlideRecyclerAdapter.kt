@@ -61,6 +61,7 @@ class GlideRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        // Default glide shapes getting image Uri from storage
         when (dataSet[position]) {
             Type.Mask -> {
                 Glide.with(context)
@@ -193,6 +194,7 @@ class GlideRecyclerAdapter(
         holder.title.text = dataSet[position].name
     }
 
+    // Holds the view in view holder for recycler view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(com.example.tasks.R.id.image)
         var title: TextView = itemView.findViewById(R.id.title)

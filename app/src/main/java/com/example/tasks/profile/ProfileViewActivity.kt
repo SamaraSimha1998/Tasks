@@ -39,6 +39,7 @@ class ProfileViewActivity : AppCompatActivity() {
         Toast.makeText(this, "Fetched Successfully!", Toast.LENGTH_SHORT).show()
     }
 
+    // Creates menu option
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)

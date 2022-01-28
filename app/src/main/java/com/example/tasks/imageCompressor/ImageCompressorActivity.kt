@@ -28,6 +28,7 @@ class ImageCompressorActivity : AppCompatActivity() {
     private lateinit var filepath: String
     private lateinit var originalImage: File
     private lateinit var compressedImage: File
+    // This will save the processed images into given folder
     private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
 
     @RequiresApi(Build.VERSION_CODES.ECLAIR)
@@ -42,6 +43,7 @@ class ImageCompressorActivity : AppCompatActivity() {
             path.mkdirs()
         }
 
+        // Reads seek bar value
         seek_quality_value.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
                 seek_quality_value.max = 100
@@ -60,10 +62,13 @@ class ImageCompressorActivity : AppCompatActivity() {
 
         btn_compress_image.setOnClickListener {
             val quality = seek_quality_value.progress
+            // can change image width * height from here
             val width = 480
             val height = 800
 
             try {
+
+                // Triggers image compressor from here
                 compressedImage = Compressor(this)
                     .setMaxWidth(width)
                     .setMaxHeight(height)
@@ -73,6 +78,7 @@ class ImageCompressorActivity : AppCompatActivity() {
                     .compressToFile(originalImage)
 
                 val finalFile = File(filepath, originalImage.name)
+                // calls bitmap factory to decode image file
                 val finalBitmap: Bitmap = BitmapFactory.decodeFile(finalFile.absolutePath)
                 compressed_image.setImageBitmap(finalBitmap)
                 compressed_size_text.text =
@@ -85,10 +91,12 @@ class ImageCompressorActivity : AppCompatActivity() {
     }
 
     private fun openGallery(){
+        // Opens gallery for selecting image
         val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(gallery, pickImage)
     }
 
+    // Processes selected image
     @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

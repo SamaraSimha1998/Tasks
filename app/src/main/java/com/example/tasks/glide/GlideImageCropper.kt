@@ -27,6 +27,7 @@ class GlideImageCropper : AppCompatActivity() {
         setContentView(R.layout.activity_glide_image_cropper)
 
         btn_capture.setOnClickListener {
+            // Permission to open camera to capture image
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
             if (intent.resolveActivity(this.packageManager) != null){

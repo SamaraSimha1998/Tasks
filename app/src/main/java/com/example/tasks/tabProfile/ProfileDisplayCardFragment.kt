@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_profile_display_card.view.*
 import java.io.File
 import java.io.FileWriter
 
-
 class ProfileDisplayCardFragment : Fragment() {
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -138,6 +137,7 @@ class ProfileDisplayCardFragment : Fragment() {
         })
         **/
 
+        // Creates data snapshot from Model data class
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (childDataSnapshot in dataSnapshot.children) {
@@ -154,6 +154,7 @@ class ProfileDisplayCardFragment : Fragment() {
         })
 
         try {
+            // Creates a file in external storage to save data
             val fileName="localData.txt"
             val addData = FileWriter(File("sdcard/${fileName}"))
             addData.write(database.toString())
@@ -166,6 +167,7 @@ class ProfileDisplayCardFragment : Fragment() {
     }
 
 
+    // Retrieves text file from storage and loads to share file to another applications
     private fun share() {
         val file = File(Environment.getExternalStorageDirectory(), "localData.txt")
         val intent = Intent(Intent.ACTION_SEND)

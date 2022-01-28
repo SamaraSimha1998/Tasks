@@ -44,6 +44,7 @@ class ContactsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_contacts, container, false)
+        // Third party library to read contacts and send messages
         Dexter.withContext(activity)
             .withPermissions(
                 Manifest.permission.SEND_SMS,
@@ -74,6 +75,7 @@ class ContactsFragment : Fragment() {
         return view
     }
 
+    // Read contacts from storage and add contacts to the recycler view
     private fun addContacts() {
         try {
             val intent = Intent(activity, ContactPickerActivity::class.java)
@@ -114,6 +116,7 @@ class ContactsFragment : Fragment() {
     }
  **/
 
+    // Sends message to given contacts
     private fun myMessage() {
         val myNumber: String = fragment_contacts_edit_text.text.toString().trim()
         val myMsg: String = fragment_message_edit_text.text.toString().trim()

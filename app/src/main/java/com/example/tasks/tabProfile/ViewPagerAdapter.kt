@@ -11,6 +11,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Life
         return 3
     }
 
+    // Adapter for Tabs
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {

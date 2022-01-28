@@ -65,6 +65,7 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
             edt_name.setText(dataModel.name)
             edt_email.setText(dataModel.email)
 
+            // Copies inserted data to data model
             realm!!.executeTransaction { realm -> realm.copyToRealm(dataModel) }
 
             clearFields()
@@ -81,9 +82,11 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
         try {
 
+            // Reads all data from data model
             val dataModels: List<RealmDataModel> =
                 realm!!.where(RealmDataModel::class.java).findAll()
 
+            // Sets data of particular id to view
             for (i in dataModels.indices) {
                 edt_id?.setText("" + dataModels[i].id)
                 edt_name?.setText(dataModels[i].name)
@@ -100,7 +103,6 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
     private fun updateData() {
 
         try {
-
             val id: Long = edt_id.text.toString().toLong()
             val dataModel = realm!!.where(RealmDataModel::class.java).equalTo("id", id).findFirst()
 

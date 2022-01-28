@@ -32,6 +32,7 @@ class SendMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.example.tasks.R.layout.activity_send_message)
 
+        // Third party library (Dexter) for contacts
         Dexter.withContext(this)
             .withPermissions(
                 Manifest.permission.SEND_SMS,
@@ -63,6 +64,8 @@ class SendMessageActivity : AppCompatActivity() {
 
     private fun addContacts() {
         try {
+
+            // This intent will calls required values from contacts from mobile
             val intent = Intent(this, ContactPickerActivity::class.java)
                 .putExtra(
                     ContactPickerActivity.EXTRA_CONTACT_BADGE_TYPE,

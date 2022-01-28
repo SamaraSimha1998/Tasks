@@ -27,6 +27,7 @@ class MultiThreading : AppCompatActivity() {
             {
                 btn_start.text = "Stop"
 
+                // This way we run different threads
                 Thread {
                     while (bool) {
 

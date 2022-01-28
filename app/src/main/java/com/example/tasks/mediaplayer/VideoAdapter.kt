@@ -9,12 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.ArrayList
 import android.net.Uri
 import android.widget.MediaController
-
 import android.widget.VideoView
-
-
-
-
 
 class VideoAdapter(var context: Context, private var videoArrayList: ArrayList<VideoModel>) :
     RecyclerView.Adapter<VideoAdapter.viewHolder>() {

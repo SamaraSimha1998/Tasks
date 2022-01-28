@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.RadioButton
 import com.example.tasks.R
 
-
 class JobScheduler : Activity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

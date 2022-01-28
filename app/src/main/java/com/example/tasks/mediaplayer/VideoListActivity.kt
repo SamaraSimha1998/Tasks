@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
 import java.util.*
 
-
 class VideoListActivity : AppCompatActivity() {
     private var recyclerView: RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +27,7 @@ class VideoListActivity : AppCompatActivity() {
         }
     }
 
+    // Feeds videos to recycler list
     private fun videoList() {
         recyclerView = findViewById<View>(R.id.recycler_view) as RecyclerView
         recyclerView!!.layoutManager =
@@ -36,6 +36,8 @@ class VideoListActivity : AppCompatActivity() {
         videoArrayList = ArrayList<VideoModel>()
         videos
     }
+
+    // Reads video data with required fields like time, resolution
     private val videos: Unit
         @SuppressLint("Range", "Recycle")
         get() {
@@ -68,7 +70,7 @@ class VideoListActivity : AppCompatActivity() {
             })
         }
 
-    //time conversion
+    //Converts time into required format for video view
     private fun timeConversion(value: Long): String {
         val videoTime: String
         val dur = value.toInt()
@@ -83,6 +85,7 @@ class VideoListActivity : AppCompatActivity() {
         return videoTime
     }
 
+    // Access for External storage to read data
     private fun checkPermission(): Boolean {
         val readExternalPermission =
             ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -95,6 +98,7 @@ class VideoListActivity : AppCompatActivity() {
         return true
     }
 
+    // Checks weather permission granted or not
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

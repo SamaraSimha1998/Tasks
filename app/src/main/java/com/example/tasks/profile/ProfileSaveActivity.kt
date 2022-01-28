@@ -47,6 +47,7 @@ class ProfileSaveActivity : AppCompatActivity() {
         showDialog(datePickerId)
     }
 
+    // Creates calender dialog box
     override fun onCreateDialog(id: Int): Dialog? {
         val c: Calendar = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -59,6 +60,7 @@ class ProfileSaveActivity : AppCompatActivity() {
         return null
     }
 
+    // Picks date from calender
     private val pickerListener = OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
             dob_edit_text.setText(
                 StringBuilder().append(selectedDay)
@@ -67,6 +69,7 @@ class ProfileSaveActivity : AppCompatActivity() {
             )
     }
 
+    // Opens camera to take picture
     private fun takePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {
@@ -75,6 +78,7 @@ class ProfileSaveActivity : AppCompatActivity() {
         }
     }
 
+    // Processes the taken picture into bitmap
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

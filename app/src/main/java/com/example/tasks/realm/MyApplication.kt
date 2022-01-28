@@ -8,6 +8,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        // creates a version for file
         val config = RealmConfiguration.Builder()
             .name("test.realm")
             .schemaVersion(1)

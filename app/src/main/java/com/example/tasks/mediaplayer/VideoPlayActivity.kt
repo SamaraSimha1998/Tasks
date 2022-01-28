@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat
 import com.example.tasks.R
 import com.example.tasks.mediaplayer.VideoListActivity.Companion.videoArrayList
 
-
 class VideoPlayActivity : AppCompatActivity() {
     var videoView: VideoView? = null
     private var prev: ImageView? = null
@@ -38,6 +37,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
+    // Sets selected video to UI of play activity
     private fun setVideo() {
         videoView = findViewById<View>(R.id.videoView) as VideoView
         prev = findViewById<View>(R.id.prev) as ImageView
@@ -68,6 +68,7 @@ class VideoPlayActivity : AppCompatActivity() {
         hideLayout()
     }
 
+    // plays selected video
     private fun playVideo(pos: Int) {
         try {
             videoView!!.setVideoURI(videoArrayList?.get(pos)?.videoUri)
@@ -79,6 +80,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
+    // Shows current progress of video
     private fun setVideoProgress() {
         currentPos = videoView!!.currentPosition.toDouble()
         totalDuration = videoView!!.duration.toDouble()
@@ -101,6 +103,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
         handler.postDelayed(runnable, 1000)
 
+        // Seekbar runs position of video
         seekBar!!.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {}
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -111,6 +114,7 @@ class VideoPlayActivity : AppCompatActivity() {
         })
     }
 
+    // Gets to previous video from current video
     private fun prevVideo() {
         prev!!.setOnClickListener {
             if (videoIndex > 0) {
@@ -123,6 +127,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
+    // Gets to next video from current video
     private fun nextVideo() {
         next!!.setOnClickListener {
             if (videoIndex < (videoArrayList?.size ?: -1)) {
@@ -135,6 +140,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
+    // Play & Pause options are operated from this function
     private fun setPause() {
         pause!!.setOnClickListener {
             if (videoView!!.isPlaying) {
@@ -161,6 +167,7 @@ class VideoPlayActivity : AppCompatActivity() {
         return songTime
     }
 
+    // Hides the options layout on screen after start playing video
     private fun hideLayout() {
         val runnable = Runnable {
             showProgress!!.visibility = View.GONE
@@ -180,6 +187,7 @@ class VideoPlayActivity : AppCompatActivity() {
         }
     }
 
+    // Access to External storage to read data
     private fun checkPermission(): Boolean {
         val readExternalPermission =
             ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -192,6 +200,7 @@ class VideoPlayActivity : AppCompatActivity() {
         return true
     }
 
+    // Reads video files from External storage after giving access
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

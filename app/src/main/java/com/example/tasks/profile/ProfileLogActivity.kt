@@ -2,15 +2,13 @@ package com.example.tasks.profile
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile_log.*
-import kotlinx.android.synthetic.main.activity_profile_view.*
 
 open class ProfileLogActivity : AppCompatActivity() {
 
@@ -37,6 +35,7 @@ open class ProfileLogActivity : AppCompatActivity() {
         }
     }
 
+    // Reads data from firebase database
     @SuppressLint("SetTextI18n")
     private fun readData(emailId: String) {
         database = FirebaseDatabase.getInstance().getReference("Profiles")

@@ -28,6 +28,7 @@ class ContactsActivity : AppCompatActivity() {
     private fun loadContacts() {
         val builder: StringBuilder
 
+        // Asks permission to access contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
                 Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),
@@ -41,6 +42,8 @@ class ContactsActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Checks weather permission granted or not
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 loadContacts()
@@ -57,6 +60,7 @@ class ContactsActivity : AppCompatActivity() {
         val cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null,
             null)
 
+        // Reads all contacts one by one
         if (cursor != null) {
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
