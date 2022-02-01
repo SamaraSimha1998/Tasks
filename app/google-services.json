@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "521749751111",
+    "firebase_url": "https://tasks-1b864-default-rtdb.firebaseio.com",
     "project_id": "tasks-1b864",
     "storage_bucket": "tasks-1b864.appspot.com"
   },

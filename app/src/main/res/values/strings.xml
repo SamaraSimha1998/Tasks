@@ -5,7 +5,7 @@
     <string name="image">image</string>
     <string name="start_rxjava_stream">Start RxJava stream</string>
     <string name="enter_name">Enter Name</string>
-    <string name="name">name</string>
+    <string name="name">Name</string>
     <string name="your_id">Your Id</string>
     <string name="your_name">Your Name</string>
     <string name="save">Save</string>
@@ -29,9 +29,8 @@
     <string name="user_id">user id</string>
     <string name="user_name">User name</string>
     <string name="user_email">user email</string>
-    <string name="web_api_retrofit">web api retrofit</string>
+    <string name="web_api_retrofit">Web api retrofit</string>
     <string name="schedule_job">Schedule Job</string>
-    <string name="cancle_job">Cancle Job</string>
     <string name="cancel_job">Cancel job</string>
     <string name="job_scheduler">Job Scheduler</string>
     <string name="constraints">Constraints</string>
@@ -114,4 +113,10 @@
     <string name="start">Start</string>
     <string name="multi_threading_sample">Multi threading sample</string>
     <string name="native_image_compressor">Native Image Compressor</string>
+    <string name="log_in">log in</string>
+    <string name="sign_up">sign up</string>
+    <string name="chat_box">Chat box</string>
+    <string name="log_out">Log out</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="this_is_sent_message">This is sent message</string>
 </resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chatBox.ChatBoxActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_box_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/chat_linear_layout"/>
+
+    <LinearLayout
+        android:id="@+id/chat_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:weightSum="100"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/chat_message_box"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:paddingStart="10dp"
+            android:hint="@string/type_a_message"
+            android:layout_weight="85"
+            android:autofillHints="no"
+            android:inputType="text"
+            android:background="@drawable/message_box_background"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/send_image_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_send"
+            android:layout_weight="15"
+            android:contentDescription="@string/send" />
+
+    </LinearLayout>
+</RelativeLayout>

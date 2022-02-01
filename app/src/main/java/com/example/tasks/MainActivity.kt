@@ -3,13 +3,14 @@ package com.example.tasks
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.nativeImageCompressor.NativeImageCompressorActivity
+import com.example.tasks.chatBox.LoginActivity
 import com.example.tasks.contacts.SendMessageActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.imageCompressor.ImageCompressorActivity
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
 import com.example.tasks.multiThreading.MultiThreading
+import com.example.tasks.nativeImageCompressor.NativeImageCompressorActivity
 import com.example.tasks.profile.ProfileLogActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
@@ -17,7 +18,6 @@ import com.example.tasks.tabProfile.TabProfileActivity
 import com.example.tasks.webretrofit.WebApiRetrofit
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_web_api_retrofit.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -84,6 +84,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_multi_threading.setOnClickListener {
             val intent = Intent(this@MainActivity, MultiThreading::class.java)
+            startActivity(intent)
+        }
+
+        btn_chat_box.setOnClickListener {
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }
