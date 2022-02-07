@@ -3,25 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/login_background"
     tools:context=".chatBox.LoginActivity">
     
-    <ImageView
-        android:id="@+id/chat_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/aapoon_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:contentDescription="@string/logo" />
+<!--    <ImageView-->
+<!--        android:id="@+id/chat_logo"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:src="@drawable/aapoon_logo"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="70dp"-->
+<!--        android:contentDescription="@string/logo" />-->
 
     <EditText
         android:id="@+id/log_box_email_edit_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/chat_logo"
         android:layout_marginTop="10dp"
         android:paddingStart="14dp"
         android:hint="@string/email"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:background="@drawable/edit_text_background"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
@@ -40,6 +43,8 @@
         android:background="@drawable/edit_text_background"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:autofillHints="no"
         android:inputType="textPassword"
         tools:ignore="RtlSymmetry" />
