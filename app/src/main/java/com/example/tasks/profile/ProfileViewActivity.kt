@@ -11,14 +11,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_profile_view.*
 import java.util.*
 
 class ProfileViewActivity : AppCompatActivity() {
 
     private lateinit var baseImage : String
-    private lateinit var database: DatabaseReference
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +59,7 @@ class ProfileViewActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // converts bitmap image to normal image
     @RequiresApi(Build.VERSION_CODES.O)
     private fun base64ToBitmap(b64: String): Bitmap? {
         val imageAsBytes: ByteArray = Base64.getDecoder().decode(b64)

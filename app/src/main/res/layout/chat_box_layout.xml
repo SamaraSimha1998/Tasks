@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/chat_box_name_text_view"
+    <LinearLayout
+        android:id="@+id/profile_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="@string/user_name"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:layout_marginStart="10dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="5dp"/>
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/chat_profile_image_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@color/black"
+            android:contentDescription="@string/profile" />
+
+        <TextView
+            android:id="@+id/chat_box_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/user_name"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginStart="10dp"
+            android:layout_margin="8dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
 
     <View
-        android:layout_below="@+id/chat_box_name_text_view"
+        android:layout_below="@+id/profile_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
