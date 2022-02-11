@@ -1,57 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".contacts.SendMessageActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="140dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:layout_gravity="center"
+        tools:context=".contacts.SendMessageActivity">
 
-        <EditText
-            android:id="@+id/message_edit_text"
-            android:inputType="text"
-            android:hint="@string/type_your_message_here"
-            tools:ignore="LabelFor"
-            style="@style/style_edit_text"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/contacts_edit_text" android:inputType="textPhonetic"
-            android:hint="@string/add_contact_s"
-            tools:ignore="LabelFor"
-            style="@style/style_edit_text"
-            android:autofillHints="no" />
-
-        <Button
-            android:id="@+id/btn_add_contacts"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/add_contacts" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-        <Button
-            android:id="@+id/btn_send_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/send" />
+            <EditText
+                android:id="@+id/message_edit_text"
+                android:inputType="text"
+                android:hint="@string/type_your_message_here"
+                tools:ignore="LabelFor"
+                style="@style/style_edit_text"
+                android:importantForAutofill="no" />
 
-        <Button
-            android:id="@+id/btn_contacts_viewer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/contact_viewer" />
+            <EditText
+                android:id="@+id/contacts_edit_text" android:inputType="textPhonetic"
+                android:hint="@string/add_contact_s"
+                tools:ignore="LabelFor"
+                style="@style/style_edit_text"
+                android:autofillHints="no" />
 
-    </LinearLayout>
-</RelativeLayout>
+            <Button
+                android:id="@+id/btn_add_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/add_contacts" />
+
+            <Button
+                android:id="@+id/btn_send_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/send" />
+
+            <Button
+                android:id="@+id/btn_contacts_viewer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/contact_viewer" />
+
+            <Button
+                android:id="@+id/btn_create_new_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/create_new_contact" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

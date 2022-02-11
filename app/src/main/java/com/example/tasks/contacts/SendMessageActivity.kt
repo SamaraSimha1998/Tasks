@@ -27,6 +27,9 @@ import kotlinx.android.synthetic.main.activity_send_message.*
 const val REQUEST_CONTACT = 2000
 
 class SendMessageActivity : AppCompatActivity() {
+
+    private val pickContactRequest = 1
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +62,10 @@ class SendMessageActivity : AppCompatActivity() {
 
         btn_add_contacts.setOnClickListener {
             addContacts()
+        }
+
+        btn_create_new_contact.setOnClickListener {
+            createContact()
         }
     }
 
@@ -134,4 +141,11 @@ class SendMessageActivity : AppCompatActivity() {
         }
     }
 
+    private fun createContact() {
+        val i = Intent (Intent.ACTION_INSERT);
+        i.type = ContactsContract.Contacts.CONTENT_TYPE;
+        if (Integer.valueOf(Build.VERSION.SDK) > 14)
+            i.putExtra("finishActivityOnSaveCompleted", true); // Fix for 4.0.3 +
+        startActivityForResult(i, pickContactRequest);
+    }
 }
