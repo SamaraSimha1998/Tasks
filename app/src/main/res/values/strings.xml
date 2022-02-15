@@ -120,4 +120,23 @@
     <string name="type_a_message">Type a message</string>
     <string name="this_is_sent_message">This is sent message</string>
     <string name="create_new_contact">create new contact</string>
+    <string name="menu">menu</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="exit">exit</string>
 </resources>

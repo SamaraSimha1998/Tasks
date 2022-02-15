@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import kotlinx.android.synthetic.main.activity_profile_view.*
@@ -17,7 +18,6 @@ import java.util.*
 class ProfileViewActivity : AppCompatActivity() {
 
     private lateinit var baseImage : String
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class ProfileViewActivity : AppCompatActivity() {
     // Creates menu option
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.edit_menu_item, menu)
         return true
     }
 
