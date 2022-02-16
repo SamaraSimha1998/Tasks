@@ -18,7 +18,7 @@ class WebApiRetrofit : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: RecyclerAdapter
-    private var tag = "WebApiRetrofit"
+//    private var tag = "WebApiRetrofit"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,15 +102,15 @@ class WebApiRetrofit : AppCompatActivity() {
             }
 
             override fun onNext(s: String) {
-                Log.d(tag, "onNext: $s")
+//                Log.d(tag, "onNext: $s")
             }
 
             override fun onError(e: Throwable) {
-                Log.e(tag, "onError: " + e.message)
+//                Log.e(tag, "onError: " + e.message)
             }
 
             override fun onComplete() {
-                Log.d(tag, "onComplete")
+//                Log.d(tag, "onComplete")
             }
         }
     }

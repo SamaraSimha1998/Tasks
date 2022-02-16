@@ -19,15 +19,11 @@ import com.onegravity.contactpicker.contact.ContactDescription
 import com.onegravity.contactpicker.contact.ContactSortOrder
 import com.onegravity.contactpicker.core.ContactPickerActivity
 import com.onegravity.contactpicker.picture.ContactPictureType
-import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_send_message.*
-
-
-const val REQUEST_CONTACT = 2000
 
 class SendMessageActivity : AppCompatActivity() {
 
+    private val requestContact = 2000
     private val pickContactRequest = 1
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -91,7 +87,7 @@ class SendMessageActivity : AppCompatActivity() {
                     ContactPickerActivity.EXTRA_CONTACT_SORT_ORDER,
                     ContactSortOrder.AUTOMATIC.name
                 )
-            startActivityForResult(intent, REQUEST_CONTACT)
+            startActivityForResult(intent, requestContact)
             Toast.makeText(this, "Select contacts", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show()
@@ -116,7 +112,7 @@ class SendMessageActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CONTACT && resultCode == RESULT_OK && data != null && data.hasExtra(
+        if (requestCode == requestContact && resultCode == RESULT_OK && data != null && data.hasExtra(
                 ContactPickerActivity.RESULT_CONTACT_DATA
             )
         ) {
@@ -142,10 +138,10 @@ class SendMessageActivity : AppCompatActivity() {
     }
 
     private fun createContact() {
-        val i = Intent (Intent.ACTION_INSERT);
-        i.type = ContactsContract.Contacts.CONTENT_TYPE;
+        val i = Intent (Intent.ACTION_INSERT)
+        i.type = ContactsContract.Contacts.CONTENT_TYPE
         if (Integer.valueOf(Build.VERSION.SDK) > 14)
-            i.putExtra("finishActivityOnSaveCompleted", true); // Fix for 4.0.3 +
-        startActivityForResult(i, pickContactRequest);
+            i.putExtra("finishActivityOnSaveCompleted", true) // Fix for 4.0.3 +
+        startActivityForResult(i, pickContactRequest)
     }
 }

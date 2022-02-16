@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.tasks.R
 import com.example.tasks.contacts.ContactsActivity
-import com.example.tasks.contacts.REQUEST_CONTACT
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -26,22 +25,23 @@ import com.onegravity.contactpicker.picture.ContactPictureType
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.fragment_contacts.view.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class ContactsFragment : Fragment() {
+    
+    private val requestContact = 2000
+    private val argParam1 = "param1"
+    private val argParam2 = "param2"
     private var param1: String? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getString(argParam1)
+            param2 = it.getString(argParam2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         val view: View = inflater.inflate(R.layout.fragment_contacts, container, false)
         // Third party library to read contacts and send messages
@@ -96,7 +96,7 @@ class ContactsFragment : Fragment() {
                     ContactPickerActivity.EXTRA_CONTACT_SORT_ORDER,
                     ContactSortOrder.AUTOMATIC.name
                 )
-            startActivityForResult(intent, REQUEST_CONTACT)
+            startActivityForResult(intent, requestContact)
             Toast.makeText(activity, "Select contacts", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(activity, "Something went wrong!", Toast.LENGTH_SHORT).show()
@@ -140,8 +140,8 @@ class ContactsFragment : Fragment() {
         fun newInstance(param1: String, param2: String) =
             ContactsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(argParam1, param1)
+                    putString(argParam2, param2)
                 }
             }
     }

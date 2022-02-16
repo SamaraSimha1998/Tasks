@@ -15,10 +15,9 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_glide_image_cropper.*
 
-private const val REQUEST_CODE = 42
-
 class GlideImageCropper : AppCompatActivity() {
 
+    private val requestCode = 42
     private val tag: String = "AppDebug"
 
     @SuppressLint("QueryPermissionsNeeded")
@@ -31,7 +30,7 @@ class GlideImageCropper : AppCompatActivity() {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
             if (intent.resolveActivity(this.packageManager) != null){
-                startActivityForResult(intent, REQUEST_CODE)
+                startActivityForResult(intent, requestCode)
             }else{
                 Toast.makeText(this, "Unable to open camera",Toast.LENGTH_SHORT).show()
             }
@@ -52,7 +51,7 @@ class GlideImageCropper : AppCompatActivity() {
 
         when (requestCode) {
 
-            REQUEST_CODE -> {
+            resultCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.data?.let { uri ->
                         launchImageCrop(uri)
@@ -93,7 +92,7 @@ class GlideImageCropper : AppCompatActivity() {
         val mimeTypes = arrayOf("image/jpeg", "image/png", "image/jpg")
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        startActivityForResult(intent, REQUEST_CODE)
+        startActivityForResult(intent, requestCode)
 
     }
 }

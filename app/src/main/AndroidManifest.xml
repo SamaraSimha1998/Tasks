@@ -27,6 +27,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".sideNavMenu.MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".chatBox.ChatBoxActivity"
             android:exported="false" />
         <activity

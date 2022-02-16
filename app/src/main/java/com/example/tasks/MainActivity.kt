@@ -14,6 +14,7 @@ import com.example.tasks.nativeImageCompressor.NativeImageCompressorActivity
 import com.example.tasks.profile.ProfileLogActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
+import com.example.tasks.sideNavMenu.MenuActivity
 import com.example.tasks.tabProfile.TabProfileActivity
 import com.example.tasks.webretrofit.WebApiRetrofit
 import com.google.firebase.messaging.FirebaseMessaging
@@ -89,6 +90,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_chat_box.setOnClickListener {
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_menu_bar.setOnClickListener {
+            val intent = Intent(this@MainActivity, MenuActivity::class.java)
             startActivity(intent)
         }
     }

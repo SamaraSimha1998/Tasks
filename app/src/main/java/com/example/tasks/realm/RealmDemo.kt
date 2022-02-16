@@ -2,8 +2,8 @@ package com.example.tasks.realm
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import io.realm.Realm
@@ -69,11 +69,12 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
             realm!!.executeTransaction { realm -> realm.copyToRealm(dataModel) }
 
             clearFields()
-
-            Log.d("Status","Data Inserted !!!")
+            Toast.makeText(this, "Data Inserted !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Data Inserted !!!")
 
         }catch (e:Exception){
-            Log.d("Status","Something went Wrong !!!")
+            Toast.makeText(this, "Something went wrong !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Something went Wrong !!!")
         }
     }
 
@@ -92,11 +93,12 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
                 edt_name?.setText(dataModels[i].name)
                 edt_email?.setText(dataModels[i].email)
             }
-
-            Log.d("Status","Data Fetched !!!")
+            Toast.makeText(this, "Data Fetched !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Data Fetched !!!")
 
         } catch (e: Exception) {
-            Log.d("Status","Something went Wrong !!!")
+            Toast.makeText(this, "Something went wrong !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Something went Wrong !!!")
         }
     }
 
@@ -108,10 +110,11 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
             edt_name.setText(dataModel?.name)
             edt_email.setText(dataModel?.email)
-
-            Log.d("Status","Data Updated !!!")
+            Toast.makeText(this, "Data Updated !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Data Updated !!!")
         }catch (e:Exception){
-            Log.d("Status","Something went Wrong !!!")
+            Toast.makeText(this, "Something went wrong !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Something went Wrong !!!")
         }
     }
 
@@ -124,11 +127,12 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
                 dataModel?.deleteFromRealm()
             }
             clearFields()
-
-            Log.d("Status","Data deleted !!!")
+            Toast.makeText(this, "Data deleted !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Data deleted !!!")
 
         }catch (e:Exception){
-            Log.d("Status","Something went Wrong !!!")
+            Toast.makeText(this, "Something went wrong !!!", Toast.LENGTH_SHORT).show()
+//            Log.d("Status","Something went Wrong !!!")
         }
     }
 
