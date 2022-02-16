@@ -11,6 +11,11 @@
         tools:context=".MainActivity">
 
         <Button
+            android:id="@+id/btn_menu_bar"
+            style="@style/ButtonMainActivity"
+            android:text="@string/menu" />
+
+        <Button
             android:id="@+id/btn_chat_box"
             style="@style/ButtonMainActivity"
             android:text="@string/chat_box" />
