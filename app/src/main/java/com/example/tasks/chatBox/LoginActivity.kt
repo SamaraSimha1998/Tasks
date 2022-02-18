@@ -1,6 +1,8 @@
 package com.example.tasks.chatBox
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +13,15 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
+    private val sharedLoginFile = "loginDetails"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
+            Context.MODE_PRIVATE)
 
         supportActionBar?.hide()
 
@@ -30,6 +37,12 @@ class LoginActivity : AppCompatActivity() {
             val password = log_box_password_edit_text.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()){
+                val sharedEmail: String = email
+                val sharedPassword: String = password
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString("sharedEmail",sharedEmail)
+                editor.putString("sharedPassword",sharedPassword)
+                editor.apply()
                 login(email, password)
             }else{
                 Toast.makeText(this, "Please enter login details", Toast.LENGTH_SHORT).show()

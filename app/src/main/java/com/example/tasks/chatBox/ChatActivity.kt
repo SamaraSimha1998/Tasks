@@ -1,7 +1,9 @@
 package com.example.tasks.chatBox
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -18,6 +20,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var adapter: ChatBoxAdapter
     private lateinit var mAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private val sharedLoginFile = "loginDetails"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +65,11 @@ class ChatActivity : AppCompatActivity() {
         if(item.itemId == R.id.logout){
             // Write login for Logout
                 mAuth.signOut()
+            val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
+                Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
             val intent = Intent(this@ChatActivity, LoginActivity::class.java)
             finish()
             startActivity(intent)

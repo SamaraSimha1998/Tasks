@@ -1,7 +1,9 @@
 package com.example.tasks.chatBox
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -24,10 +26,14 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var baseImage: String
     private val requestImageCapture = 1
+    private val sharedLoginFile = "loginDetails"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
+            Context.MODE_PRIVATE)
 
         supportActionBar?.hide()
 
@@ -40,6 +46,13 @@ class SignUpActivity : AppCompatActivity() {
             val email = chat_box_email_edit_text.text.toString()
             val password = chat_box_password_edit_text.text.toString()
             val profileImage = baseImage
+
+            val sharedEmail: String = email
+            val sharedPassword: String = password
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("sharedEmail",sharedEmail)
+            editor.putString("sharedPassword",sharedPassword)
+            editor.apply()
 
             signUp(name, email, password, profileImage)
         }
