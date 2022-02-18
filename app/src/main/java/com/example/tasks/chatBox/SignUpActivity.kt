@@ -49,6 +49,8 @@ class SignUpActivity : AppCompatActivity() {
 
             val sharedEmail: String = email
             val sharedPassword: String = password
+
+            // Feeds data into sharedPreference file from signUp page
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putString("sharedEmail",sharedEmail)
             editor.putString("sharedPassword",sharedPassword)
@@ -75,6 +77,7 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 
+    // Adds data to user database
     private fun addUserToDatabase(name: String, email: String, uid: String, profile: String){
         val chatUser = ChatBoxUser(name, email, uid, profile)
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")

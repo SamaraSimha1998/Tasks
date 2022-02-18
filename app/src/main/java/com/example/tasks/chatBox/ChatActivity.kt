@@ -65,11 +65,14 @@ class ChatActivity : AppCompatActivity() {
         if(item.itemId == R.id.logout){
             // Write login for Logout
                 mAuth.signOut()
+
+            // Clearing data in sharedPreferences
             val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
                 Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.clear()
             editor.apply()
+
             val intent = Intent(this@ChatActivity, LoginActivity::class.java)
             finish()
             startActivity(intent)

@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity() {
         btn_chat_box.setOnClickListener {
             val sharedEmail = sharedPreferences.getString("sharedEmail",null)
             val sharedPassword = sharedPreferences.getString("sharedPassword",null)
+
+            // Checks is there any login data saved or not in sharedPreference file
             if(sharedEmail == null && sharedPassword == null) {
                 // Login page
                 val intent = Intent(this@MainActivity, LoginActivity::class.java)

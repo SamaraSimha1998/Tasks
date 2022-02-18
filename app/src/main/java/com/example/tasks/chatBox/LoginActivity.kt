@@ -39,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()){
                 val sharedEmail: String = email
                 val sharedPassword: String = password
+
+                // Feeds data into sharedPreference file from login page
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString("sharedEmail",sharedEmail)
                 editor.putString("sharedPassword",sharedPassword)
