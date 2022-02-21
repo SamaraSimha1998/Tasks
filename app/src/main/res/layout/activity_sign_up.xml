@@ -51,10 +51,27 @@
         tools:ignore="RtlSymmetry" />
 
     <EditText
-        android:id="@+id/chat_box_password_edit_text"
+        android:id="@+id/chat_box_number_edit_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/chat_box_email_edit_text"
+        android:layout_marginTop="10dp"
+        android:paddingStart="14dp"
+        android:hint="@string/phone_no"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:autofillHints="no"
+        android:inputType="phone"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/chat_box_password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/chat_box_number_edit_text"
         android:layout_marginTop="10dp"
         android:paddingStart="14dp"
         android:hint="@string/prompt_password"

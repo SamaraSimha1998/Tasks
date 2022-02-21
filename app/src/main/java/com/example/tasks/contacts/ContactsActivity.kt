@@ -81,7 +81,7 @@ class ContactsActivity : AppCompatActivity() {
                                         cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                                     builder.append("Contact: ").append(name).append(", Phone Number: ").append(
                                         phoneNumValue).append("\n\n")
-                                    Log.e("Name ===>",phoneNumValue)
+//                                    Log.e("Name ===>",phoneNumValue)
                                 }
                             }
                         }

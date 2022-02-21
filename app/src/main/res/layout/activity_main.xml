@@ -10,10 +10,10 @@
         android:padding="8dp"
         tools:context=".MainActivity">
 
-        <Button
-            android:id="@+id/btn_menu_bar"
-            style="@style/ButtonMainActivity"
-            android:text="@string/menu" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_menu_bar"-->
+<!--            style="@style/ButtonMainActivity"-->
+<!--            android:text="@string/menu" />-->
 
         <Button
             android:id="@+id/btn_chat_box"

@@ -44,6 +44,7 @@ class SignUpActivity : AppCompatActivity() {
         btn_sign_up.setOnClickListener {
             val name = chat_box_name_edit_text.text.toString()
             val email = chat_box_email_edit_text.text.toString()
+            val phone = chat_box_number_edit_text.text.toString()
             val password = chat_box_password_edit_text.text.toString()
             val profileImage = baseImage
 
@@ -56,11 +57,11 @@ class SignUpActivity : AppCompatActivity() {
             editor.putString("sharedPassword",sharedPassword)
             editor.apply()
 
-            signUp(name, email, password, profileImage)
+            signUp(name, email, password, profileImage, phone)
         }
     }
 
-    private fun signUp(name: String, email: String, password: String, profile: String){
+    private fun signUp(name: String, email: String, password: String, profile: String, phone: String){
         // logic of creating user
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -69,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
                     val intent = Intent(this@SignUpActivity, ChatActivity::class.java)
                     finish()
                     startActivity(intent)
-                    addUserToDatabase(name, email, mAuth.currentUser!!.uid, profile)
+                    addUserToDatabase(name, email, mAuth.currentUser!!.uid, profile, phone)
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(this@SignUpActivity, "Sign-up Failed", Toast.LENGTH_SHORT).show()
@@ -78,8 +79,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     // Adds data to user database
-    private fun addUserToDatabase(name: String, email: String, uid: String, profile: String){
-        val chatUser = ChatBoxUser(name, email, uid, profile)
+    private fun addUserToDatabase(name: String, email: String, uid: String, profile: String, phone: String){
+        val chatUser = ChatBoxUser(name, email, uid, profile, phone)
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")
         database.child(uid).setValue(chatUser)
     }
