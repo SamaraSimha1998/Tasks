@@ -2,12 +2,14 @@ package com.example.tasks.chatBox
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasks.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_chat_box.*
+
 
 class ChatBoxActivity : AppCompatActivity() {
 
@@ -19,6 +21,7 @@ class ChatBoxActivity : AppCompatActivity() {
     private var receiverRoom: String? = null
     private var senderRoom: String? = null
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_box)
@@ -52,6 +55,11 @@ class ChatBoxActivity : AppCompatActivity() {
                         messageList.add(message!!)
                     }
                     messageAdapter.notifyDataSetChanged()
+                    if(messageList.size == 0){
+                        // skip
+                    }else{
+                        chat_box_recycler_view.smoothScrollToPosition(messageList.size - 1)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -66,12 +74,20 @@ class ChatBoxActivity : AppCompatActivity() {
             val messageObject = Message(message, senderUid)
 
             // push() creates unique node every time it calls
-            database.child(senderRoom!!).child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
-                    database.child(receiverRoom!!).child("messages").push()
-                        .setValue(messageObject)
-                }
-            chat_message_box.setText("")
+            if (message != "") {
+                database.child(senderRoom!!).child("messages").push()
+                    .setValue(messageObject).addOnSuccessListener {
+                        database.child(receiverRoom!!).child("messages").push()
+                            .setValue(messageObject)
+                    }
+                notification()
+                chat_message_box.setText("")
+            }else {
+                Toast.makeText(this,"Empty message",Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    // Notification manager
+    private fun notification() {}
 }

@@ -1,5 +1,6 @@
 package com.example.tasks.chatBox
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -24,6 +25,7 @@ class ChatBoxAdapter(val context: Context, private val userList: ArrayList<ChatB
         return ChatBoxViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ChatBoxViewHolder, position: Int) {
         val currentUser = userList[position]
@@ -36,6 +38,11 @@ class ChatBoxAdapter(val context: Context, private val userList: ArrayList<ChatB
             intent.putExtra("uid", currentUser.uid )
             intent.putExtra("profile", currentUser.profile)
             context.startActivity(intent)
+
+            // sets used item to first position
+            val removedItem: ChatBoxUser = userList.removeAt(position)
+            userList.add(0, removedItem)
+            notifyDataSetChanged()
         }
     }
 
