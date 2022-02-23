@@ -10,12 +10,12 @@ import android.os.Bundle
 import android.provider.BaseColumns
 import android.provider.ContactsContract
 import android.provider.ContactsContract.PhoneLookup
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tasks.MainActivity
 import com.example.tasks.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -29,7 +29,6 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private val sharedLoginFile = "loginDetails"
-    private val tag = "number"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +59,6 @@ class ChatActivity : AppCompatActivity() {
                     // Adds user by checking saved contacts from mobile
                     if(mAuth.currentUser?.uid != currentUser?.uid){
                         val name = checkContact(currentUser?.phone)
-                        Log.d(tag, name.toString())
                         if (name != null) {
                             userList.add(currentUser!!)
                         }
@@ -102,7 +100,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
