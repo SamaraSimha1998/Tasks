@@ -75,7 +75,9 @@
             android:exported="false" />
         <activity
             android:name=".contacts.ContactsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:hardwareAccelerated="false"
+            android:largeHeap="true"/>
         <activity
             android:name=".glide.GlideCrop"
             android:exported="false" />
