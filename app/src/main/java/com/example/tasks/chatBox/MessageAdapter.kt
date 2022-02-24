@@ -22,7 +22,7 @@ class MessageAdapter(val context: Context, private val messageList: ArrayList<Me
 
     private val itemReceive = 1
     private val itemSend = 2
-    private val channelId = "com.example.tasks"
+    private val channelId = "com.example.code"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if(viewType == 1){
@@ -50,7 +50,7 @@ class MessageAdapter(val context: Context, private val messageList: ArrayList<Me
             holder.receiveMessage.text = currentMessage.message
             if(position == messageList.size-1){
                 for(i in range(0,1)){
-                    notification(currentMessage.message)
+                    notification(currentMessage.message,FirebaseAuth.getInstance().currentUser!!.email.toString())
                 }
             }
         }
@@ -79,10 +79,10 @@ class MessageAdapter(val context: Context, private val messageList: ArrayList<Me
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("WrongConstant", "UnspecifiedImmutableFlag")
-    private fun notification(message: String?){
+    private fun notification(message: String?,sender: String?){
         val manager = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_message)
-            .setContentTitle(FirebaseAuth.getInstance().currentUser.toString())
+            .setContentTitle(sender)
             .setContentText(message)
             .setAutoCancel(true)
             .build()
