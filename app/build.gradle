@@ -104,4 +104,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.firebaseui:firebase-ui-database:6.3.0'
     implementation "androidx.security:security-crypto:1.1.0-alpha03"
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }
