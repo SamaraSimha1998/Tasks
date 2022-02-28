@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="4dp"
     tools:context=".tabProfile.ViewFragment"
     tools:ignore="MissingDefaultResource">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -15,45 +17,53 @@
 
         <ImageView
             android:id="@+id/image_holder"
-            android:layout_marginTop="40dp"
             android:layout_width="240dp"
             android:layout_height="228dp"
+            android:contentDescription="@string/image"
             android:src="@drawable/aapoon_logo"
-            android:contentDescription="@string/image" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout14"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_holder">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:id="@+id/first_name_holder"
-                android:text="@string/first_name"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="#000"/>
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:id="@+id/last_name_holder"
-                android:text="@string/last_name"
+                android:text="@string/first_name"
+                android:textColor="#000"
                 android:textSize="25sp"
-                android:textColor="#000"/>
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/last_name_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/last_name"
+                android:textColor="#000"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/phone_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/phone_holder"
             android:text="@string/candidate_phone"
+            android:textColor="#000"
             android:textSize="25sp"
-            android:textColor="#000"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

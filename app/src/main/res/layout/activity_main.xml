@@ -1,86 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp"
         tools:context=".MainActivity">
 
-<!--        <Button-->
-<!--            android:id="@+id/btn_menu_bar"-->
-<!--            style="@style/ButtonMainActivity"-->
-<!--            android:text="@string/menu" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_menu_bar"-->
+        <!--            style="@style/ButtonMainActivity"-->
+        <!--            android:text="@string/menu" />-->
 
         <Button
             android:id="@+id/btn_chat_box"
             style="@style/ButtonMainActivity"
-            android:text="@string/chat_box" />
+            android:text="@string/chat_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_multi_threading"
             style="@style/ButtonMainActivity"
-            android:text="@string/multi_threading_sample" />
+            android:text="@string/multi_threading_sample"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_chat_box" />
 
         <Button
             android:id="@+id/btn_image_compressor"
             style="@style/ButtonMainActivity"
-            android:text="@string/image_compressor" />
+            android:text="@string/image_compressor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_multi_threading" />
 
         <Button
             android:id="@+id/btn_native_image_compressor"
             style="@style/ButtonMainActivity"
-            android:text="@string/native_image_compressor" />
+            android:text="@string/native_image_compressor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_image_compressor" />
 
         <Button
             android:id="@+id/btn_tab_view_profile"
             style="@style/ButtonMainActivity"
-            android:text="@string/profile_data_cards" />
+            android:text="@string/profile_data_cards"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_native_image_compressor" />
 
         <Button
             android:id="@+id/btn_profile"
             style="@style/ButtonMainActivity"
-            android:text="@string/profile" />
+            android:text="@string/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_tab_view_profile" />
 
         <Button
             android:id="@+id/btn_sms"
             style="@style/ButtonMainActivity"
-            android:text="@string/sms_contacts" />
+            android:text="@string/sms_contacts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_profile" />
 
         <Button
             android:id="@+id/btn_web_api"
             style="@style/ButtonMainActivity"
-            android:text="@string/web_api_retrofit" />
+            android:text="@string/web_api_retrofit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sms" />
 
         <Button
             android:id="@+id/btn_shared_data"
             style="@style/ButtonMainActivity"
-            android:text="@string/shared_data_demo" />
+            android:text="@string/shared_data_demo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_web_api" />
 
         <Button
             android:id="@+id/btn_realm_data"
             style="@style/ButtonMainActivity"
-            android:text="@string/realm_demo" />
+            android:text="@string/realm_demo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_shared_data" />
 
         <Button
             android:id="@+id/btn_job_scheduler"
             style="@style/ButtonMainActivity"
-            android:text="@string/job_scheduler" />
+            android:text="@string/job_scheduler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_realm_data" />
 
         <Button
             android:id="@+id/btn_glide"
             style="@style/ButtonMainActivity"
-            android:text="@string/crop_and_glide" />
+            android:text="@string/crop_and_glide"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_job_scheduler" />
 
         <Button
             android:id="@+id/btn_media_player"
             style="@style/ButtonMainActivity"
-            android:text="@string/media_player" />
+            android:text="@string/media_player"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_glide" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

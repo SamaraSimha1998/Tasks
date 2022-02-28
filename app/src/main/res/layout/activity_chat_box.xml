@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,40 +12,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/chat_linear_layout"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <LinearLayout
         android:id="@+id/chat_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:weightSum="100"
-        android:background="@color/black"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="@+id/chat_box_recycler_view">
 
         <EditText
             android:id="@+id/chat_message_box"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:paddingStart="10dp"
-            android:hint="@string/type_a_message"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
             android:layout_weight="85"
             android:autofillHints="no"
-            android:inputType="text"
             android:background="@drawable/message_box_background"
+            android:hint="@string/type_a_message"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             tools:ignore="RtlSymmetry" />
 
         <ImageView
             android:id="@+id/send_image_view"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_send"
             android:layout_weight="15"
-            android:contentDescription="@string/send" />
+            android:contentDescription="@string/send"
+            android:src="@drawable/ic_send" />
 
     </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

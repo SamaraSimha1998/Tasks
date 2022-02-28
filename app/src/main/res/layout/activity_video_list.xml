@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/video_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
+    android:padding="2dp"
     android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="1dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/play_image"
@@ -44,4 +47,4 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

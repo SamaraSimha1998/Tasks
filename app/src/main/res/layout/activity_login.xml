@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,16 +21,18 @@
         android:id="@+id/log_box_email_edit_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:paddingStart="14dp"
+        android:layout_marginTop="296dp"
+        android:autofillHints="no"
+        android:background="@drawable/edit_text_background"
         android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="14dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints="no"
-        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
 
     <EditText
@@ -37,16 +40,18 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/log_box_email_edit_text"
-        android:layout_marginTop="10dp"
-        android:paddingStart="14dp"
-        android:hint="@string/prompt_password"
+        android:layout_marginTop="28dp"
+        android:autofillHints="no"
         android:background="@drawable/edit_text_background"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:paddingStart="14dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:autofillHints="no"
-        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/log_box_email_edit_text"
         tools:ignore="RtlSymmetry" />
 
     <Button
@@ -55,11 +60,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/log_box_password_edit_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/btn_background"
+        android:text="@string/log_in"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:background="@drawable/btn_background"
-        android:text="@string/log_in" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/log_box_password_edit_text" />
 
     <Button
         android:id="@+id/btn_log_sign_up"
@@ -67,10 +76,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_log_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/btn_background"
+        android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:background="@drawable/btn_background"
-        android:text="@string/sign_up" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_log_login" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

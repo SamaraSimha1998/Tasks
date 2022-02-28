@@ -8,10 +8,9 @@
     android:layout_margin="10dp"
     app:cardElevation="6dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="5dp"
         tools:ignore="UseCompoundDrawables">
 
@@ -19,14 +18,22 @@
             android:id="@+id/card_profile_image_view"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:contentDescription="@string/profile"
             android:src="@drawable/aapoon_logo"
-            android:contentDescription="@string/profile" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout13"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:padding="8dp"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card_profile_image_view"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,8 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/first_name"
                     android:gravity="center"
+                    android:text="@string/first_name"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -57,8 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/last_name"
                     android:gravity="center"
+                    android:text="@string/last_name"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -83,14 +90,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@string/phone_no"
                     android:gravity="center"
+                    android:text="@string/phone_no"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

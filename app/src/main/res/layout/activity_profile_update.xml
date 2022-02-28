@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".profile.ProfileUpdateActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_margin="8dp"
+        android:padding="8dp"
         tools:ignore="UseCompoundDrawables">
 
         <ProgressBar
-            android:visibility="invisible"
             android:id="@+id/progress_bar_pic"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/profile_update_image_view"
@@ -27,6 +32,9 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/profile_image"
             android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar_pic"
             tools:ignore="ImageContrastCheck"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -39,6 +47,9 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_update_image_view"
             tools:ignore="LabelFor" />
 
         <EditText
@@ -50,55 +61,69 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_name_update_edit_text"
             tools:ignore="LabelFor" />
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gender"
             android:layout_margin="8dp"
-            android:textSize="18sp"/>
+            android:text="@string/gender"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/last_name_update_edit_text" />
 
         <RadioGroup
             android:id="@+id/radio_group_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <RadioButton
                 android:id="@+id/radio_male"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/male" />
+                android:checked="true"
+                android:text="@string/male"
+                android:textSize="14sp" />
 
             <RadioButton
                 android:id="@+id/radio_female"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:checked="false"
                 android:layout_weight="1"
-                android:textSize="14sp"
-                android:text="@string/female" />
+                android:checked="false"
+                android:text="@string/female"
+                android:textSize="14sp" />
 
         </RadioGroup>
 
         <LinearLayout
+            android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="9"
             android:layout_margin="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group_update">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:textSize="20sp"
-                android:text="@string/date_of_birth"/>
+                android:text="@string/date_of_birth"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/dob_update_edit_text"
@@ -114,37 +139,41 @@
                 android:id="@+id/calender_update_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_calendar"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/calender" />
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/calender"
+                android:src="@drawable/ic_calendar" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_phone"
-                android:contentDescription="@string/phone_no" />
+                android:layout_margin="8dp"
+                android:contentDescription="@string/phone_no"
+                android:src="@drawable/ic_phone" />
 
             <EditText
                 android:id="@+id/phone_update_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:autofillHints="no"
+                android:digits="0123456789"
                 android:hint="@string/phone_no"
                 android:inputType="number"
-                android:digits="0123456789"
                 android:maxLength="10"
-                android:autofillHints="no"
                 tools:ignore="TextFields" />
 
         </LinearLayout>
@@ -154,7 +183,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/update" />
+            android:text="@string/update"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
