@@ -9,11 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_box_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_above="@id/chat_linear_layout"
         android:layout_alignParentTop="true"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/chat_linear_layout"
@@ -23,7 +25,9 @@
         android:background="@color/black"
         android:orientation="horizontal"
         android:weightSum="100"
-        app:layout_constraintBottom_toBottomOf="@+id/chat_box_recycler_view">
+        app:layout_constraintBottom_toBottomOf="@+id/chat_box_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/chat_message_box"
