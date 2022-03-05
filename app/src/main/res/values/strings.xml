@@ -145,4 +145,7 @@
     <string name="enter_otp_here">Enter OTP here</string>
     <string name="verify_and_signin">Verify and Signin</string>
     <string name="aapoon_login_ui">Aapoon Login UI</string>
+    <string name="app_logo">app logo</string>
+    <string name="i_m_a_business_user">I\'m a Business User</string>
+    <string name="i_m_an_individual_user">I\'m an Individual User</string>
 </resources>
