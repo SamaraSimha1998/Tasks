@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_user_categories.*
 
 class UserCategories : AppCompatActivity() {
 
-    private lateinit var radioButton: String
+    private var radioButton: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +29,8 @@ class UserCategories : AppCompatActivity() {
                     val intent = Intent(this,TabProfileActivity::class.java)
                     startActivity(intent)
                 }
-                else -> {
-                    Toast.makeText(this,"Please select any option",Toast.LENGTH_SHORT).show()
+                null -> {
+                    Toast.makeText(this,"Please select an option",Toast.LENGTH_SHORT).show()
                 }
             }
         }
