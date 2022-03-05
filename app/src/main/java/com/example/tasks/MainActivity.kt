@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.aapoonLoginPage.PhoneNumberVerification
 import com.example.tasks.chatBox.ChatActivity
 import com.example.tasks.chatBox.LoginActivity
 import com.example.tasks.contacts.SendMessageActivity
@@ -115,6 +116,11 @@ class MainActivity : AppCompatActivity() {
             } else if (sharedEmail != null && sharedPassword != null) {
                     login(sharedEmail,sharedPassword)
             }
+        }
+
+        btn_aapoon_login.setOnClickListener {
+            val intent = Intent(this@MainActivity, PhoneNumberVerification::class.java)
+            startActivity(intent)
         }
     }
 

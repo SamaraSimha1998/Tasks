@@ -28,6 +28,15 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.UserCategories"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.ManageOtp"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.PhoneNumberVerification"
+            android:exported="false" />
+        <activity
             android:name=".sideNavMenu.MenuActivity"
             android:exported="false" />
         <activity
@@ -77,7 +86,7 @@
             android:name=".contacts.ContactsActivity"
             android:exported="false"
             android:hardwareAccelerated="false"
-            android:largeHeap="true"/>
+            android:largeHeap="true" />
         <activity
             android:name=".glide.GlideCrop"
             android:exported="false" />

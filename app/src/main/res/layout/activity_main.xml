@@ -19,12 +19,20 @@
         <!--            android:text="@string/menu" />-->
 
         <Button
+            android:id="@+id/btn_aapoon_login"
+            style="@style/ButtonMainActivity"
+            android:text="@string/aapoon_login_ui"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/btn_chat_box"
             style="@style/ButtonMainActivity"
             android:text="@string/chat_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_aapoon_login" />
 
         <Button
             android:id="@+id/btn_multi_threading"

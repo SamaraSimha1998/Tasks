@@ -141,4 +141,8 @@
     <string name="exit">exit</string>
     <string name="sort">sort</string>
     <string name="unsort">Unsort</string>
+    <string name="get_otp">Get OTP</string>
+    <string name="enter_otp_here">Enter OTP here</string>
+    <string name="verify_and_signin">Verify and Signin</string>
+    <string name="aapoon_login_ui">Aapoon Login UI</string>
 </resources>
