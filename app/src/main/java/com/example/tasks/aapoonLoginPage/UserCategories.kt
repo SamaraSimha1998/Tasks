@@ -22,11 +22,11 @@ class UserCategories : AppCompatActivity() {
         btn_continue.setOnClickListener {
             when (radioButton) {
                 "btn_business_user_radio" -> {
-                    val intent = Intent(this,ProfileLogActivity::class.java)
+                    val intent = Intent(this,TabProfileActivity::class.java)
                     startActivity(intent)
                 }
                 "btn_individual_user_radio" -> {
-                    val intent = Intent(this,TabProfileActivity::class.java)
+                    val intent = Intent(this,ProfileLogActivity::class.java)
                     startActivity(intent)
                 }
                 null -> {
