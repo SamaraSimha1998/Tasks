@@ -148,4 +148,7 @@
     <string name="app_logo">app logo</string>
     <string name="i_m_a_business_user">I\'m a Business User</string>
     <string name="i_m_an_individual_user">I\'m an Individual User</string>
+    <string name="btn_continue">continue</string>
+    <string name="upload_profile">Upload Profile</string>
+    <string name="completed">Completed, Thank You !</string>
 </resources>

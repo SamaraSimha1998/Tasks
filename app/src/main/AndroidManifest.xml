@@ -28,6 +28,12 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.AppProfileViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.FillProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.UserCategories"
             android:exported="false" />
         <activity

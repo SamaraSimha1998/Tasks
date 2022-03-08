@@ -7,8 +7,6 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import com.example.tasks.profile.ProfileLogActivity
-import com.example.tasks.tabProfile.TabProfileActivity
 import kotlinx.android.synthetic.main.activity_user_categories.*
 
 class UserCategories : AppCompatActivity() {
@@ -22,11 +20,11 @@ class UserCategories : AppCompatActivity() {
         btn_continue.setOnClickListener {
             when (radioButton) {
                 "btn_business_user_radio" -> {
-                    val intent = Intent(this,TabProfileActivity::class.java)
+                    val intent = Intent(this,FillProfileActivity::class.java)
                     startActivity(intent)
                 }
                 "btn_individual_user_radio" -> {
-                    val intent = Intent(this,ProfileLogActivity::class.java)
+                    val intent = Intent(this,FillProfileActivity::class.java)
                     startActivity(intent)
                 }
                 null -> {
@@ -53,5 +51,9 @@ class UserCategories : AppCompatActivity() {
                     }
             }
         }
+    }
+
+    fun onBack() {
+
     }
 }

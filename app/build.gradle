@@ -114,4 +114,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     // Country Codes for Phone number
     implementation 'com.hbb20:ccp:2.4.0'
+
+    // Step view dependencies
+    implementation 'com.anton46:stepsview:0.0.2'
 }
