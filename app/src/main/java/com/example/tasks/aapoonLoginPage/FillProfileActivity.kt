@@ -27,6 +27,7 @@ class FillProfileActivity : AppCompatActivity() {
 
     private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
+    private lateinit var phoneNumber: String
     private var emailId: String = ""
     private var logProgress: Array<String> = arrayOf("Details","ProfilePic","Completed")
     private var currentState = 0
@@ -34,6 +35,8 @@ class FillProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fill_profile)
+
+        phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
         steps_view.setLabels(logProgress)
             .setBarColorIndicator(Color.WHITE)
@@ -59,6 +62,7 @@ class FillProfileActivity : AppCompatActivity() {
 //            startActivity(intent)
 
             val intent = Intent(this, DashBoardActivity::class.java)
+            intent.putExtra("phoneNumber",phoneNumber)
             startActivity(intent)
 
             Toast.makeText(this,"Successfully Completed", Toast.LENGTH_SHORT).show()
@@ -134,16 +138,15 @@ class FillProfileActivity : AppCompatActivity() {
             "Female"
         }
         val dob = app_dob_edit_text.text.toString()
-        val phone = app_phone_edit_text.text.toString()
+        val phone = phoneNumber
         val email = app_email_edit_text.text.toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Profiles")
+        database = FirebaseDatabase.getInstance().getReference("AppProfiles")
 
         val profile = Profile(firstName, lastName, gender, dob, phone, email, null)
-        val userEmail = email.replace(".",",")
 
         try {
-            database.child(userEmail).setValue(profile)
+            database.child(phone).setValue(profile)
             progress()
             visibilityImage()
             Toast.makeText(this,"Saved Successfully!", Toast.LENGTH_SHORT).show()
@@ -201,16 +204,15 @@ class FillProfileActivity : AppCompatActivity() {
             "Female"
         }
         val dob = app_dob_edit_text.text.toString()
-        val phone = app_phone_edit_text.text.toString()
+        val phone = phoneNumber
         val email = app_email_edit_text.text.toString()
 
-        database = FirebaseDatabase.getInstance().getReference("Profiles")
+        database = FirebaseDatabase.getInstance().getReference("AppProfiles")
 
         val profile = Profile(firstName, lastName, gender, dob, phone, email, image)
-        val userEmail = email.replace(".",",")
 
         try {
-            database.child(userEmail).setValue(profile)
+            database.child(phone).setValue(profile)
             progress()
             visibilityCompleted()
             Toast.makeText(this,"Saved Successfully!", Toast.LENGTH_SHORT).show()
@@ -224,5 +226,6 @@ class FillProfileActivity : AppCompatActivity() {
         Toast.makeText(this,"Signin Failed!!",Toast.LENGTH_SHORT).show()
         val intent = Intent(this, PhoneNumberVerification::class.java)
         startActivity(intent)
+        finish()
     }
 }

@@ -12,19 +12,24 @@ import kotlinx.android.synthetic.main.activity_user_categories.*
 class UserCategories : AppCompatActivity() {
 
     private var radioButton: String? = null
+    private lateinit var phoneNumber: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_categories)
 
+        phoneNumber = intent.getStringExtra("phoneNumber").toString()
+
         btn_continue.setOnClickListener {
             when (radioButton) {
                 "btn_business_user_radio" -> {
                     val intent = Intent(this,FillProfileActivity::class.java)
+                    intent.putExtra("phoneNumber", phoneNumber)
                     startActivity(intent)
                 }
                 "btn_individual_user_radio" -> {
                     val intent = Intent(this,FillProfileActivity::class.java)
+                    intent.putExtra("phoneNumber", phoneNumber)
                     startActivity(intent)
                 }
                 null -> {

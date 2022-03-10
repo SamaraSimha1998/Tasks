@@ -1,31 +1,68 @@
 package com.example.tasks.aapoonLoginPage.menuView
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.MainActivity
 import com.example.tasks.R
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.math.MathUtils
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_profile_menu.*
+import java.util.*
 import kotlin.math.roundToInt
 
 class DashBoardActivity : AppCompatActivity() {
 
-    private var bottomSheetBehavior: BottomSheetBehavior<NavigationView>? = null
+    private lateinit var database : DatabaseReference
+    private lateinit var userName : String
+    private lateinit var baseImage : String
 
+    private var bottomSheetBehavior: BottomSheetBehavior<NavigationView>? = null
+    private lateinit var phoneNumber: String
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
 
+        phoneNumber = intent.getStringExtra("phoneNumber").toString()
+        Log.d("phoneNum",phoneNumber)
+
         initComponent()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initComponent() {
+
+        database = FirebaseDatabase.getInstance().getReference("AppProfiles")
+        database.child(phoneNumber).get().addOnSuccessListener {
+            when {
+                it.exists() -> {
+                    baseImage = it.child("image").value.toString()
+                    val firstName = it.child("firstName").value.toString()
+                    userName = firstName
+                    Log.d("baseImage",baseImage)
+                    Log.d("userName" ,userName)
+                    app_user_profile_image_view.setImageBitmap(base64ToBitmap(baseImage))
+                    app_user_profile_name_text_view.text = userName
+                }
+            }
+        }
+
         val scrim = findViewById<FrameLayout>(R.id.scrim)
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         setSupportActionBar(bottomAppBar)
@@ -43,11 +80,7 @@ class DashBoardActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             (bottomSheetBehavior as BottomSheetBehavior<*>).state = BottomSheetBehavior.STATE_HIDDEN
-            Toast.makeText(
-                applicationContext,
-                menuItem.title.toString() + " Selected",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(applicationContext, menuItem.title.toString() + " Selected", Toast.LENGTH_SHORT).show()
             true
         }
         scrim.setOnClickListener { (bottomSheetBehavior as BottomSheetBehavior<*>).setState(BottomSheetBehavior.STATE_HIDDEN) }
@@ -73,4 +106,16 @@ class DashBoardActivity : AppCompatActivity() {
         })
     }
 
+    // converts bitmap image to normal image
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun base64ToBitmap(b64: String): Bitmap? {
+        val imageAsBytes: ByteArray = Base64.getDecoder().decode(b64)
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

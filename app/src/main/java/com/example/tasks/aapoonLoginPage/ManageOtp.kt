@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit
 class ManageOtp : AppCompatActivity() {
 
     private lateinit var phoneNumber: String
-    private lateinit var mobileNumber: String
     private lateinit var otpId: String
     private var auth = FirebaseAuth.getInstance()
     private lateinit var database: DatabaseReference
@@ -31,7 +30,6 @@ class ManageOtp : AppCompatActivity() {
         setContentView(R.layout.activity_manage_otp)
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
-        mobileNumber = intent.getStringExtra("mobileNumber").toString()
 
         initiateOtp()
 
@@ -78,29 +76,34 @@ class ManageOtp : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
 
-                    database = FirebaseDatabase.getInstance().getReference("Profiles")
-                    database.orderByChild("phone").equalTo(mobileNumber)
-                    val eventListener: ValueEventListener = object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if (!dataSnapshot.exists()) {
-                                //create new user
-                                val intent = Intent(this@ManageOtp, UserCategories::class.java)
-                                startActivity(intent)
-                            }
-                            else {
+                    database = FirebaseDatabase.getInstance().getReference("AppProfiles")
+                    database.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (snapshot.hasChild(phoneNumber)) {
                                 val intent = Intent(this@ManageOtp, DashBoardActivity::class.java)
+                                intent.putExtra("phoneNumber", phoneNumber)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this@ManageOtp, UserCategories::class.java)
+                                intent.putExtra("phoneNumber", phoneNumber)
                                 startActivity(intent)
                             }
                         }
 
-                        override fun onCancelled(databaseError: DatabaseError) {}
-                    }
-                    database.addListenerForSingleValueEvent(eventListener)
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
+                        }
+                    })
                     Toast.makeText(applicationContext, "OTP verified", Toast.LENGTH_LONG).show()
-                    finish()
                 } else {
                     Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, PhoneNumberVerification::class.java)
+        startActivity(intent)
+        finish()
     }
 }
