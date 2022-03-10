@@ -28,6 +28,12 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.menuView.ProfileMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.menuView.DashBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.AppProfileViewActivity"
             android:exported="false" />
         <activity

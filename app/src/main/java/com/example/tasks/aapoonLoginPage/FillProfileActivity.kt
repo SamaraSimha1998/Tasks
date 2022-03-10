@@ -15,8 +15,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
+import com.example.tasks.aapoonLoginPage.menuView.DashBoardActivity
 import com.example.tasks.profile.Profile
-import com.example.tasks.profile.ProfileViewActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_fill_profile.*
@@ -37,9 +37,9 @@ class FillProfileActivity : AppCompatActivity() {
 
         steps_view.setLabels(logProgress)
             .setBarColorIndicator(Color.WHITE)
-            .setProgressColorIndicator(resources.getColor(R.color.colorAccent))
-            .setLabelColorIndicator(resources.getColor(R.color.colorAccent))
-            .setCompletedPosition(0)
+            .setProgressColorIndicator(R.color.start_received)
+            .setLabelColorIndicator(R.color.start_received)
+            .setCompletedPosition(currentState)
             .drawView()
 
         steps_view.completedPosition = currentState
@@ -57,6 +57,9 @@ class FillProfileActivity : AppCompatActivity() {
         btn_completed_proifle_details.setOnClickListener {
 //            val intent = Intent(this, AppProfileViewActivity::class.java)
 //            startActivity(intent)
+
+            val intent = Intent(this, DashBoardActivity::class.java)
+            startActivity(intent)
 
             Toast.makeText(this,"Successfully Completed", Toast.LENGTH_SHORT).show()
         }
@@ -125,8 +128,7 @@ class FillProfileActivity : AppCompatActivity() {
     private fun addProfile(){
         val firstName =  app_first_name_edit_text.text.toString()
         val lastName = app_last_name_edit_text.text.toString()
-
-        val gender : String = if (app_radio_group.checkedRadioButtonId == 2131231307) {
+        val gender : String = if (app_radio_male.isChecked) {
             "Male"
         }else{
             "Female"
@@ -182,7 +184,7 @@ class FillProfileActivity : AppCompatActivity() {
     private fun visibilityCompleted() {
         app_profile_image_view.visibility = View.INVISIBLE
         btn_app_save_profile_pic.visibility = View.INVISIBLE
-        completed_image_view.visibility = View.INVISIBLE
+        completed_image_view.visibility = View.VISIBLE
         completed_text_view.visibility = View.VISIBLE
         btn_completed_proifle_details.visibility = View.VISIBLE
     }
@@ -216,5 +218,11 @@ class FillProfileActivity : AppCompatActivity() {
             Toast.makeText(this,"Failed to save!!", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    override fun onBackPressed() {
+        Toast.makeText(this,"Signin Failed!!",Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, PhoneNumberVerification::class.java)
+        startActivity(intent)
     }
 }

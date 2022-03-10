@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/my_profile"
+        android:title="@string/my_profile"
+        android:icon="@drawable/ic_person" />
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"/>
+    <item
+        android:id="@+id/refer_friends"
+        android:title="@string/refer_friends"
+        android:icon="@drawable/ic_person_refer"/>
+    <item
+        android:id="@+id/update_phone_number"
+        android:title="@string/update_phone_number"
+        android:icon="@drawable/ic_phone"/>
+    <item
+        android:id="@+id/support"
+        android:title="@string/support"
+        android:icon="@drawable/ic_support"/>
+    <item
+        android:id="@+id/privacy_policy"
+        android:title="@string/privacy_policy"
+        android:icon="@drawable/ic_terms_conditions"/>
+</menu>

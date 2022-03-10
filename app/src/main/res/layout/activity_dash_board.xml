@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/scrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/aapoon_menu_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            app:behavior_hideable="true"
+            app:itemIconTint="@color/grey_60"
+            app:itemTextColor="@color/grey_90"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:headerLayout="@layout/activity_profile_menu"
+            app:menu="@menu/aapoon_menu">
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:navigationIcon="@drawable/ic_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

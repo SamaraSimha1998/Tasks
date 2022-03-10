@@ -2,7 +2,9 @@ package com.example.tasks.aapoonLoginPage
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.MainActivity
 import com.example.tasks.R
 import kotlinx.android.synthetic.main.activity_phone_number_verification.*
 
@@ -16,7 +18,13 @@ class PhoneNumberVerification : AppCompatActivity() {
         btn_get_otp.setOnClickListener {
             val intent = Intent(this,ManageOtp::class.java)
             intent.putExtra("phoneNumber",country_code_picker.fullNumberWithPlus.replace(" ",""))
+            intent.putExtra("mobileNumber",phone_number_edit_text.toString())
             startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

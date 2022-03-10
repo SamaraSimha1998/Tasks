@@ -6,28 +6,32 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
+import com.example.tasks.aapoonLoginPage.menuView.DashBoardActivity
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_manage_otp.*
 import java.util.concurrent.TimeUnit
 
 
 class ManageOtp : AppCompatActivity() {
 
-    private lateinit var phoneNumber : String
+    private lateinit var phoneNumber: String
+    private lateinit var mobileNumber: String
     private lateinit var otpId: String
     private var auth = FirebaseAuth.getInstance()
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_otp)
 
-        phoneNumber= intent.getStringExtra("phoneNumber").toString()
-        Log.d("phoneNumber", phoneNumber)
+        phoneNumber = intent.getStringExtra("phoneNumber").toString()
+        mobileNumber = intent.getStringExtra("mobileNumber").toString()
 
         initiateOtp()
 
@@ -69,16 +73,34 @@ class ManageOtp : AppCompatActivity() {
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        Log.d("creden", credential.toString())
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+
+                    database = FirebaseDatabase.getInstance().getReference("Profiles")
+                    database.orderByChild("phone").equalTo(mobileNumber)
+                    val eventListener: ValueEventListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (!dataSnapshot.exists()) {
+                                //create new user
+                                val intent = Intent(this@ManageOtp, UserCategories::class.java)
+                                startActivity(intent)
+                            }
+                            else {
+                                val intent = Intent(this@ManageOtp, DashBoardActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    }
+                    database.addListenerForSingleValueEvent(eventListener)
                     Toast.makeText(applicationContext, "OTP verified", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, UserCategories::class.java))
                     finish()
                 } else {
                     Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
                 }
             }
     }
-
 }
