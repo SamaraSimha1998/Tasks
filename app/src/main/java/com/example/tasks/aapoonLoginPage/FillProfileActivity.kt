@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -132,7 +133,7 @@ class FillProfileActivity : AppCompatActivity() {
     private fun addProfile(){
         val firstName =  app_first_name_edit_text.text.toString()
         val lastName = app_last_name_edit_text.text.toString()
-        val gender : String = if (app_radio_male.isChecked) {
+        val gender : String = if (app_radio_group.checkedRadioButtonId == app_radio_male.id) {
             "Male"
         }else{
             "Female"
@@ -198,7 +199,8 @@ class FillProfileActivity : AppCompatActivity() {
         val firstName =  app_first_name_edit_text.text.toString()
         val lastName = app_last_name_edit_text.text.toString()
 
-        val gender : String = if (app_radio_group.checkedRadioButtonId == 2131231307) {
+        val gender : String = if (app_radio_group.checkedRadioButtonId == app_radio_male.id) {
+            Log.d("radioMale",app_radio_male.id.toString())
             "Male"
         }else{
             "Female"
