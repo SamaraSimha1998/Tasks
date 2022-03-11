@@ -96,6 +96,8 @@ class DashBoardActivity : AppCompatActivity() {
                 }
                 "Update Phone Number" -> {
                     // update phone number
+                    val intent = Intent(this, UpdateNumberActivity::class.java)
+                    startActivity(intent)
                 }
                 "Support" -> {
                     // support

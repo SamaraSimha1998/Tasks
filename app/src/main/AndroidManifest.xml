@@ -28,6 +28,12 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.menuView.VerifyNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.menuView.UpdateNumberActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.menuView.SupportTeamActivity"
             android:exported="false" />
         <activity
