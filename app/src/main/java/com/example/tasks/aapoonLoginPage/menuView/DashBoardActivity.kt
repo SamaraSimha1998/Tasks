@@ -9,14 +9,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.MainActivity
 import com.example.tasks.R
+import com.example.tasks.aapoonLoginPage.PhoneNumberVerification
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.math.MathUtils
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_profile_menu.*
@@ -78,6 +81,7 @@ class DashBoardActivity : AppCompatActivity() {
 //            Toast.makeText(applicationContext, menuItem.title.toString() + " Selected", Toast.LENGTH_SHORT).show()
             when (menuItem.title) {
                 "My Profile" -> {
+                    // views profile details
                     val intent = Intent(this, AppProfileViewActivity::class.java)
                     intent.putExtra("phoneNumber",phoneNumber)
                     startActivity(intent)
@@ -87,15 +91,27 @@ class DashBoardActivity : AppCompatActivity() {
                 }
                 "Refer Friends" -> {
                     // refer friends
+                    val intent = Intent(this, ReferralActivity::class.java)
+                    startActivity(intent)
                 }
                 "Update Phone Number" -> {
                     // update phone number
                 }
                 "Support" -> {
                     // support
+                    val intent = Intent(this, SupportTeamActivity::class.java)
+                    startActivity(intent)
                 }
                 "Privacy Policy" -> {
                     // terms and conditions / privacy policies
+                    showAlert()
+                }
+                "Logout" -> {
+                    // logout
+                    val intent = Intent(this, PhoneNumberVerification::class.java)
+                    startActivity(intent)
+                    FirebaseAuth.getInstance().signOut()
+                    finish()
                 }
             }
             true
@@ -121,6 +137,19 @@ class DashBoardActivity : AppCompatActivity() {
                 scrim.setBackgroundColor(color)
             }
         })
+    }
+
+    private fun showAlert() {
+        // setup the alert builder
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Terms and Conditions")
+        val terms = R.string.terms
+        builder.setMessage(terms)
+        // add a button
+        builder.setPositiveButton("OK", null)
+        // create and show the alert dialog
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
     // converts bitmap image to normal image

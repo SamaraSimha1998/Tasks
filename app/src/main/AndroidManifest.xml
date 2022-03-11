@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.tasks" >
+    package="com.example.tasks">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +26,13 @@
         android:theme="@style/Theme.Tasks"
         android:usesCleartextTraffic="true"
         tools:ignore="DataExtractionRules"
-        tools:targetApi="s" >
+        tools:targetApi="s">
+        <activity
+            android:name=".aapoonLoginPage.menuView.SupportTeamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.menuView.ReferralActivity"
+            android:exported="false" />
         <activity
             android:name=".aapoonLoginPage.menuView.AppProfileViewActivity"
             android:exported="false" />
@@ -116,7 +122,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -138,7 +144,7 @@
         <activity
             android:name="com.onegravity.contactpicker.core.ContactPickerActivity"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -151,14 +157,14 @@
             tools:ignore="Instantiatable" />
         <service
             android:name=".fcm.MyFirebaseMessagingService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
             android:name=".fcm.FirebaseMessagingServiceApi"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
