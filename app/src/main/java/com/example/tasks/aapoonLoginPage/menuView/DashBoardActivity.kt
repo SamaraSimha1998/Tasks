@@ -6,10 +6,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.MainActivity
@@ -40,7 +38,6 @@ class DashBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dash_board)
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
-        Log.d("phoneNum",phoneNumber)
 
         initComponent()
     }
@@ -55,8 +52,6 @@ class DashBoardActivity : AppCompatActivity() {
                     baseImage = it.child("image").value.toString()
                     val firstName = it.child("firstName").value.toString()
                     userName = firstName
-                    Log.d("baseImage",baseImage)
-                    Log.d("userName" ,userName)
                     app_user_profile_image_view.setImageBitmap(base64ToBitmap(baseImage))
                     app_user_profile_name_text_view.text = userName
                 }
@@ -80,7 +75,29 @@ class DashBoardActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             (bottomSheetBehavior as BottomSheetBehavior<*>).state = BottomSheetBehavior.STATE_HIDDEN
-            Toast.makeText(applicationContext, menuItem.title.toString() + " Selected", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(applicationContext, menuItem.title.toString() + " Selected", Toast.LENGTH_SHORT).show()
+            when (menuItem.title) {
+                "My Profile" -> {
+                    val intent = Intent(this, AppProfileViewActivity::class.java)
+                    intent.putExtra("phoneNumber",phoneNumber)
+                    startActivity(intent)
+                }
+                "Settings" -> {
+                    // settings
+                }
+                "Refer Friends" -> {
+                    // refer friends
+                }
+                "Update Phone Number" -> {
+                    // update phone number
+                }
+                "Support" -> {
+                    // support
+                }
+                "Privacy Policy" -> {
+                    // terms and conditions / privacy policies
+                }
+            }
             true
         }
         scrim.setOnClickListener { (bottomSheetBehavior as BottomSheetBehavior<*>).setState(BottomSheetBehavior.STATE_HIDDEN) }
@@ -116,6 +133,5 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()
     }
 }

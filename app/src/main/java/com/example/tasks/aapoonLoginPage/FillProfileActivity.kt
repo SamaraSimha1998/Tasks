@@ -200,7 +200,6 @@ class FillProfileActivity : AppCompatActivity() {
         val lastName = app_last_name_edit_text.text.toString()
 
         val gender : String = if (app_radio_group.checkedRadioButtonId == app_radio_male.id) {
-            Log.d("radioMale",app_radio_male.id.toString())
             "Male"
         }else{
             "Female"

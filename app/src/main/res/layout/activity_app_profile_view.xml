@@ -5,7 +5,7 @@
     android:id="@+id/app_profile_menu_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sideNavMenu.MenuActivity">
+    tools:context=".aapoonLoginPage.menuView.AppProfileViewActivity">
 
     <ScrollView
         android:layout_width="match_parent"
