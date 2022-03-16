@@ -1,0 +1,34 @@
+package com.example.tasks.aapoonLoginPage.dashboard
+
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+
+class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, fragmentLifecycle) {
+    override fun getItemCount(): Int {
+        return 4
+    }
+
+    // Adapter for Tabs
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> {
+                ChatFragment()
+            }
+            1 -> {
+                CirclesFragment()
+            }
+            2 -> {
+                ConnectFragment()
+            }
+            3 -> {
+                CallsFragment()
+            }
+            else -> {
+                Fragment()
+            }
+        }
+    }
+}

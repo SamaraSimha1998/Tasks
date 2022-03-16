@@ -1,6 +1,8 @@
 package com.example.tasks.aapoonLoginPage.dashboard
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -23,9 +25,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.math.MathUtils
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_dash_board.*
 import kotlinx.android.synthetic.main.activity_profile_menu.*
 import java.util.*
 import kotlin.math.roundToInt
@@ -35,7 +39,7 @@ class DashBoardActivity : AppCompatActivity() {
     private lateinit var database : DatabaseReference
     private lateinit var userName : String
     private lateinit var baseImage : String
-
+    private val sharedAppLoginNumber = "loginNumber"
     private var bottomSheetBehavior: BottomSheetBehavior<NavigationView>? = null
     private lateinit var phoneNumber: String
 
@@ -47,6 +51,8 @@ class DashBoardActivity : AppCompatActivity() {
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
         initComponent()
+
+        dashboardTabs()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -82,7 +88,6 @@ class DashBoardActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             (bottomSheetBehavior as BottomSheetBehavior<*>).state = BottomSheetBehavior.STATE_HIDDEN
-//            Toast.makeText(applicationContext, menuItem.title.toString() + " Selected", Toast.LENGTH_SHORT).show()
             when (menuItem.title) {
                 "My Profile" -> {
                     // views profile details
@@ -118,6 +123,13 @@ class DashBoardActivity : AppCompatActivity() {
                     startActivity(intent)
                     FirebaseAuth.getInstance().signOut()
                     finish()
+
+                    // clear sharedNumber in shared preferences
+                    val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedAppLoginNumber,
+                        Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.clear()
+                    editor.apply()
                 }
             }
             true
@@ -163,6 +175,28 @@ class DashBoardActivity : AppCompatActivity() {
     private fun base64ToBitmap(b64: String): Bitmap? {
         val imageAsBytes: ByteArray = Base64.getDecoder().decode(b64)
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size)
+    }
+
+    private fun dashboardTabs() {
+        dashboard_view_pager.adapter = DashboardViewPagerAdapter(supportFragmentManager, lifecycle)
+
+        // Makes title and position to every tab as below
+        TabLayoutMediator(dashboard_tab_layout, dashboard_view_pager){ tab,position ->
+            when (position) {
+                0 -> {
+                    tab.text = "CHAT"
+                }
+                1 -> {
+                    tab.text = "CIRCLES"
+                }
+                2 -> {
+                    tab.text = "CONNECT"
+                }
+                3 -> {
+                    tab.text = "CALLS"
+                }
+            }
+        }.attach()
     }
 
     override fun onBackPressed() {

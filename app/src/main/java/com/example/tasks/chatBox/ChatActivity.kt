@@ -26,7 +26,7 @@ class ChatActivity : AppCompatActivity() {
 
     private lateinit var userList: ArrayList<ChatBoxUser>
     private lateinit var adapter: ChatBoxAdapter
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private val sharedLoginFile = "loginDetails"
 
@@ -34,7 +34,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        mAuth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")
 
         userList = ArrayList()
@@ -52,12 +52,12 @@ class ChatActivity : AppCompatActivity() {
                     val currentUser = postSnapshot.getValue(ChatBoxUser::class.java)
 
                     // Adds user without checking saved contacts or not
-//                    if(mAuth.currentUser?.uid != currentUser?.uid){
+//                    if(auth.currentUser?.uid != currentUser?.uid){
 //                        userList.add(currentUser!!)
 //                    }
 
                     // Adds user by checking saved contacts from mobile
-                    if(mAuth.currentUser?.uid != currentUser?.uid){
+                    if(auth.currentUser?.uid != currentUser?.uid){
                         val name = checkContact(currentUser?.phone)
                         if (name != null) {
                             userList.add(currentUser!!)
@@ -82,7 +82,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.logout){
             // Logic for Logout
-                mAuth.signOut()
+                auth.signOut()
 
             // Clearing data in sharedPreferences
             val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
@@ -97,11 +97,6 @@ class ChatActivity : AppCompatActivity() {
             return true
         }
         return true
-    }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
     }
 
     @SuppressLint("Range")
@@ -127,5 +122,10 @@ class ChatActivity : AppCompatActivity() {
             contactLookup?.close()
         }
         return name
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

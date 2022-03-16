@@ -1,8 +1,9 @@
 package com.example.tasks.aapoonLoginPage
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
@@ -24,6 +25,7 @@ class ManageOtp : AppCompatActivity() {
     private lateinit var otpId: String
     private var auth = FirebaseAuth.getInstance()
     private lateinit var database: DatabaseReference
+    private val sharedAppLoginNumber = "loginNumber"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,34 +73,43 @@ class ManageOtp : AppCompatActivity() {
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        Log.d("creden", credential.toString())
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedAppLoginNumber, Context.MODE_PRIVATE)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    signIn()
+                    val sharedPhoneNumber: String = phoneNumber
 
-                    database = FirebaseDatabase.getInstance().getReference("AppProfiles")
-                    database.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.hasChild(phoneNumber)) {
-                                val intent = Intent(this@ManageOtp, DashBoardActivity::class.java)
-                                intent.putExtra("phoneNumber", phoneNumber)
-                                startActivity(intent)
-                            } else {
-                                val intent = Intent(this@ManageOtp, UserCategories::class.java)
-                                intent.putExtra("phoneNumber", phoneNumber)
-                                startActivity(intent)
-                            }
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
-                        }
-                    })
+                    // Feeds data into sharedPreference file from login page
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putString("sharedPhoneNumber",sharedPhoneNumber)
+                    editor.apply()
                     Toast.makeText(applicationContext, "OTP verified", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun signIn() {
+        database = FirebaseDatabase.getInstance().getReference("AppProfiles")
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.hasChild(phoneNumber)) {
+                    val intent = Intent(this@ManageOtp, DashBoardActivity::class.java)
+                    intent.putExtra("phoneNumber", phoneNumber)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this@ManageOtp, UserCategories::class.java)
+                    intent.putExtra("phoneNumber", phoneNumber)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, "Signin Code Error", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     override fun onBackPressed() {

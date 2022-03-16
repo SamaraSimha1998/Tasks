@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.aapoonLoginPage.PhoneNumberVerification
+import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
 import com.example.tasks.chatBox.ChatActivity
 import com.example.tasks.chatBox.LoginActivity
 import com.example.tasks.contacts.SendMessageActivity
@@ -21,13 +23,16 @@ import com.example.tasks.realm.SharedData
 import com.example.tasks.tabProfile.TabProfileActivity
 import com.example.tasks.webretrofit.WebApiRetrofit
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private val sharedLoginFile = "loginDetails"
+    private val sharedAppLoginNumber = "loginNumber"
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
             Context.MODE_PRIVATE)
-        mAuth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+        val sharedNumber: SharedPreferences = this.getSharedPreferences(sharedAppLoginNumber,
+            Context.MODE_PRIVATE)
 
         FirebaseMessaging.getInstance().subscribeToTopic("aapoon")
 
@@ -99,11 +107,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        btn_menu_bar.setOnClickListener {
-//            val intent = Intent(this@MainActivity, MenuActivity::class.java)
-//            startActivity(intent)
-//        }
-
         btn_chat_box.setOnClickListener {
             val sharedEmail = sharedPreferences.getString("sharedEmail",null)
             val sharedPassword = sharedPreferences.getString("sharedPassword",null)
@@ -119,14 +122,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_aapoon_login.setOnClickListener {
-            val intent = Intent(this@MainActivity, PhoneNumberVerification::class.java)
-            startActivity(intent)
+            val sharedPhoneNumber = sharedNumber.getString("sharedPhoneNumber", null)
+
+            // Checks weather user already verified number or not
+            if (sharedPhoneNumber == null) {
+                // Number Verification page
+                val intent = Intent(this@MainActivity, PhoneNumberVerification::class.java)
+                startActivity(intent)
+            } else {
+                // Direct to dashboard
+                signIn(sharedPhoneNumber)
+            }
         }
     }
 
     private fun login(email: String, password: String){
         // logic for login user
-        mAuth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -138,6 +150,23 @@ class MainActivity : AppCompatActivity() {
                     //Toast.makeText(this@MainActivity, "User does not exist", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun signIn(phoneNumber: String) {
+        database = FirebaseDatabase.getInstance().getReference("AppProfiles")
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.hasChild(phoneNumber)) {
+                    val intent = Intent(this@MainActivity, DashBoardActivity::class.java)
+                    intent.putExtra("phoneNumber", phoneNumber)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, "Signin Error", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     override fun onBackPressed() {
