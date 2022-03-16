@@ -10,13 +10,12 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import com.example.tasks.aapoonLoginPage.menuView.DashBoardActivity
+import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
 import com.example.tasks.profile.Profile
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

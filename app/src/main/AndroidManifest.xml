@@ -46,7 +46,7 @@
             android:name=".aapoonLoginPage.menuView.ProfileMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".aapoonLoginPage.menuView.DashBoardActivity"
+            android:name=".aapoonLoginPage.dashboard.DashBoardActivity"
             android:exported="false" />
         <activity
             android:name=".aapoonLoginPage.FillProfileActivity"

@@ -1,4 +1,4 @@
-package com.example.tasks.aapoonLoginPage.menuView
+package com.example.tasks.aapoonLoginPage.dashboard
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.MainActivity
 import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.PhoneNumberVerification
+import com.example.tasks.aapoonLoginPage.menuView.AppProfileViewActivity
+import com.example.tasks.aapoonLoginPage.menuView.ReferralActivity
+import com.example.tasks.aapoonLoginPage.menuView.SupportTeamActivity
+import com.example.tasks.aapoonLoginPage.menuView.UpdateNumberActivity
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
