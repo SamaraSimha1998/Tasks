@@ -66,7 +66,7 @@ class ProfileSaveFragment : Fragment() {
         val firstName =  tab_first_name_edit_text.text.toString()
         val lastName = tab_last_name_edit_text.text.toString()
 
-        val gender : String = if (tab_radio_group.checkedRadioButtonId == 2131231307) {
+        val gender : String = if (tab_radio_group.checkedRadioButtonId == tab_radio_male.id) {
             "Male"
         }else{
             "Female"

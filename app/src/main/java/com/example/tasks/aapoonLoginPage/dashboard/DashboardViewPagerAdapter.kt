@@ -4,6 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.tasks.aapoonLoginPage.dashboard.calls.CallsFragment
+import com.example.tasks.aapoonLoginPage.dashboard.chat.ChatFragment
+import com.example.tasks.aapoonLoginPage.dashboard.circles.CirclesFragment
+import com.example.tasks.aapoonLoginPage.dashboard.connect.ConnectFragment
 
 class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, fragmentLifecycle) {

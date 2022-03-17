@@ -103,7 +103,7 @@ class ProfileSaveActivity : AppCompatActivity() {
         val firstName =  first_name_edit_text.text.toString()
         val lastName = last_name_edit_text.text.toString()
 
-        val gender : String = if (radio_group.checkedRadioButtonId == 2131231307) {
+        val gender : String = if (radio_group_save.checkedRadioButtonId == radio_male_save.id) {
             "Male"
         }else{
             "Female"

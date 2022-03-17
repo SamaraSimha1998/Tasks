@@ -78,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/last_name_edit_text" />
 
         <RadioGroup
-            android:id="@+id/radio_group"
+            android:id="@+id/radio_group_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -88,7 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <RadioButton
-                android:id="@+id/radio_male"
+                android:id="@+id/radio_male_save"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -97,7 +97,7 @@
                 android:textSize="14sp" />
 
             <RadioButton
-                android:id="@+id/radio_female"
+                android:id="@+id/radio_female_save"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

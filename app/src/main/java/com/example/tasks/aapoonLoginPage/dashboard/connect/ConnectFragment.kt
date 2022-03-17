@@ -1,4 +1,4 @@
-package com.example.tasks.aapoonLoginPage.dashboard
+package com.example.tasks.aapoonLoginPage.dashboard.connect
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import com.example.tasks.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ChatFragment : Fragment() {
+class ConnectFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -27,14 +27,13 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        return inflater.inflate(R.layout.fragment_connect, container, false)
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ChatFragment().apply {
+            ConnectFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

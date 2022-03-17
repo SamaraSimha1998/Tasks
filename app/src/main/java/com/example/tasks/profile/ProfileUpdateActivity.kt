@@ -106,7 +106,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
         val firstName =  first_name_update_edit_text.text.toString()
         val lastName = last_name_update_edit_text.text.toString()
 
-        val gender : String = if (radio_group_update.checkedRadioButtonId == 2131231307) {
+        val gender : String = if (radio_group_update.checkedRadioButtonId == radio_male.id) {
             "Male"
         }else{
             "Female"
