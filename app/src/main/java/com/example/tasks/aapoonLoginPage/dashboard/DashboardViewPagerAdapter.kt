@@ -9,7 +9,7 @@ import com.example.tasks.aapoonLoginPage.dashboard.chat.ChatFragment
 import com.example.tasks.aapoonLoginPage.dashboard.circles.CirclesFragment
 import com.example.tasks.aapoonLoginPage.dashboard.connect.ConnectFragment
 
-class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle) :
+class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle, val phoneNumber: String) :
     FragmentStateAdapter(fragmentManager, fragmentLifecycle) {
     override fun getItemCount(): Int {
         return 4
@@ -19,7 +19,7 @@ class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecy
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
-                ChatFragment()
+                ChatFragment(phoneNumber)
             }
             1 -> {
                 CirclesFragment()

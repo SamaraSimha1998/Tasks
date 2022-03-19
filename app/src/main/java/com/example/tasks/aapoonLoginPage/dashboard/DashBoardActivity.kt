@@ -178,7 +178,7 @@ class DashBoardActivity : AppCompatActivity() {
     }
 
     private fun dashboardTabs() {
-        dashboard_view_pager.adapter = DashboardViewPagerAdapter(supportFragmentManager, lifecycle)
+        dashboard_view_pager.adapter = DashboardViewPagerAdapter(supportFragmentManager, lifecycle, phoneNumber)
 
         // Makes title and position to every tab as below
         TabLayoutMediator(dashboard_tab_layout, dashboard_view_pager){ tab,position ->
