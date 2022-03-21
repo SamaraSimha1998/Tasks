@@ -160,6 +160,10 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this@MainActivity, DashBoardActivity::class.java)
                     intent.putExtra("phoneNumber", phoneNumber)
                     startActivity(intent)
+                } else {
+                    // Open signup page.
+                    val intent = Intent(this@MainActivity, PhoneNumberVerification::class.java)
+                    startActivity(intent)
                 }
             }
 

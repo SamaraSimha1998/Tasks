@@ -11,14 +11,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasks.R
-import com.example.tasks.profile.Profile
+import com.example.tasks.aapoonLoginPage.AppProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 
 class ChatFragment(val phoneNumber: String): Fragment() {
 
-    private lateinit var userList: ArrayList<Profile>
+    private lateinit var userList: ArrayList<AppProfile>
     private lateinit var adapter: ChatAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -42,10 +42,10 @@ class ChatFragment(val phoneNumber: String): Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
                 for(postSnapshot in snapshot.children){
-                    val currentUser = postSnapshot.getValue(Profile::class.java)
+                    val currentUser = postSnapshot.getValue(AppProfile::class.java)
 
                     // Adds user without checking saved contacts or not
-                    if(phoneNumber != currentUser?.phone){
+                    if(auth.currentUser?.uid != currentUser?.uid){
                         Log.d("currentUser",phoneNumber)
                         userList.add(currentUser!!)
                     }

@@ -28,6 +28,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.dashboard.chat.ChattingActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.menuView.VerifyNumberActivity"
             android:exported="false" />
         <activity
@@ -74,8 +77,8 @@
             android:exported="false" />
         <activity
             android:name=".chatBox.ChatActivity"
-            android:theme="@style/Theme.Tasks.Chat"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Tasks.Chat" />
         <activity
             android:name=".imageCompressor.ImageCompressorActivity"
             android:exported="false"

@@ -63,9 +63,9 @@ class DashBoardActivity : AppCompatActivity() {
             when {
                 it.exists() -> {
                     baseImage = it.child("image").value.toString()
+                    app_user_profile_image_view.setImageBitmap(base64ToBitmap(baseImage))
                     val firstName = it.child("firstName").value.toString()
                     userName = firstName
-                    app_user_profile_image_view.setImageBitmap(base64ToBitmap(baseImage))
                     app_user_profile_name_text_view.text = userName
                 }
             }
@@ -170,7 +170,7 @@ class DashBoardActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    // converts bitmap image to normal image
+    // converts bitmap image value to normal image
     @RequiresApi(Build.VERSION_CODES.O)
     private fun base64ToBitmap(b64: String): Bitmap? {
         val imageAsBytes: ByteArray = Base64.getDecoder().decode(b64)

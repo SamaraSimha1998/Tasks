@@ -14,12 +14,11 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
-import com.example.tasks.chatBox.ChatBoxActivity
-import com.example.tasks.profile.Profile
+import com.example.tasks.aapoonLoginPage.AppProfile
 import java.util.*
 
 // Chat box user adapter
-class ChatAdapter(val context: Context, private val userList: ArrayList<Profile>):
+class ChatAdapter(val context: Context, private val userList: ArrayList<AppProfile>):
     RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
@@ -35,14 +34,14 @@ class ChatAdapter(val context: Context, private val userList: ArrayList<Profile>
         holder.profileImage.setImageBitmap(currentUser.image?.let { base64ToBitmap(it) })
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ChatBoxActivity::class.java)
+            val intent = Intent(context, ChattingActivity::class.java)
             intent.putExtra("name", currentUser.firstName)
-            intent.putExtra("phone", currentUser.phone )
+            intent.putExtra("uid", currentUser.uid)
             intent.putExtra("profile", currentUser.image)
             context.startActivity(intent)
 
             // sets used item to first position
-            val removedItem: Profile = userList.removeAt(position)
+            val removedItem: AppProfile = userList.removeAt(position)
             userList.add(0, removedItem)
             notifyDataSetChanged()
         }

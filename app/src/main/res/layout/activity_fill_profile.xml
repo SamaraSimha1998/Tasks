@@ -176,37 +176,37 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/app_linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/app_linearLayout4">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/app_linearLayout6"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:visibility="visible"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/app_linearLayout4">-->
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:contentDescription="@string/phone_no"
-                android:src="@drawable/ic_phone" />
+<!--            <ImageView-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:contentDescription="@string/phone_no"-->
+<!--                android:src="@drawable/ic_phone" />-->
 
-            <EditText
-                android:id="@+id/app_phone_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:autofillHints="no"
-                android:digits="0123456789"
-                android:hint="@string/phone_no"
-                android:inputType="number"
-                android:maxLength="10"
-                tools:ignore="TextFields" />
+<!--            <EditText-->
+<!--                android:id="@+id/app_phone_edit_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:autofillHints="no"-->
+<!--                android:digits="0123456789"-->
+<!--                android:hint="@string/phone_no"-->
+<!--                android:inputType="number"-->
+<!--                android:maxLength="10"-->
+<!--                tools:ignore="TextFields" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <Button
             android:id="@+id/btn_app_save_profile"
@@ -217,7 +217,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_linearLayout6" />
+            app:layout_constraintTop_toBottomOf="@+id/app_linearLayout4" />
 
         <ProgressBar
             android:id="@+id/progress_bar_pic1"

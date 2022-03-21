@@ -1,5 +1,6 @@
 package com.example.tasks.aapoonLoginPage
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
@@ -16,17 +17,19 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
-import com.example.tasks.profile.Profile
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_fill_profile.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
+
 class FillProfileActivity : AppCompatActivity() {
 
     private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
     private lateinit var phoneNumber: String
     private var emailId: String = ""
     private var logProgress: Array<String> = arrayOf("Details","ProfilePic","Completed")
@@ -35,6 +38,8 @@ class FillProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fill_profile)
+
+        auth = FirebaseAuth.getInstance()
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
@@ -58,8 +63,6 @@ class FillProfileActivity : AppCompatActivity() {
         btn_app_save_profile_pic.setOnClickListener { saveImage() }
 
         btn_completed_proifle_details.setOnClickListener {
-//            val intent = Intent(this, AppProfileViewActivity::class.java)
-//            startActivity(intent)
 
             val intent = Intent(this, DashBoardActivity::class.java)
             intent.putExtra("phoneNumber",phoneNumber)
@@ -140,10 +143,11 @@ class FillProfileActivity : AppCompatActivity() {
         val dob = app_dob_edit_text.text.toString()
         val phone = phoneNumber
         val email = app_email_edit_text.text.toString()
+        val uid = auth.currentUser!!.uid
 
         database = FirebaseDatabase.getInstance().getReference("AppProfiles")
 
-        val profile = Profile(firstName, lastName, gender, dob, phone, email, null)
+        val profile = AppProfile(firstName, lastName, gender, dob, phone, email, null, uid)
 
         try {
             database.child(phone).setValue(profile)
@@ -178,7 +182,7 @@ class FillProfileActivity : AppCompatActivity() {
         app_radio_group.visibility = View.INVISIBLE
         app_linearLayout5.visibility = View.INVISIBLE
         app_linearLayout4.visibility = View.INVISIBLE
-        app_linearLayout6.visibility = View.INVISIBLE
+//        app_linearLayout6.visibility = View.INVISIBLE
         btn_app_save_profile.visibility = View.INVISIBLE
         app_profile_image_view.visibility = View.VISIBLE
         btn_app_save_profile_pic.visibility = View.VISIBLE
@@ -194,7 +198,6 @@ class FillProfileActivity : AppCompatActivity() {
 
     private fun saveImage() {
         val image = baseImage
-
         val firstName =  app_first_name_edit_text.text.toString()
         val lastName = app_last_name_edit_text.text.toString()
 
@@ -206,10 +209,12 @@ class FillProfileActivity : AppCompatActivity() {
         val dob = app_dob_edit_text.text.toString()
         val phone = phoneNumber
         val email = app_email_edit_text.text.toString()
+        val uid = auth.currentUser!!.uid
 
         database = FirebaseDatabase.getInstance().getReference("AppProfiles")
 
-        val profile = Profile(firstName, lastName, gender, dob, phone, email, image)
+        val profile = AppProfile(firstName, lastName, gender, dob, phone, email, image, uid)
+        database.child(phone).setValue(profile)
 
         try {
             database.child(phone).setValue(profile)
