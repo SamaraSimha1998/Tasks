@@ -180,4 +180,6 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="circles">Circles</string>
     <string name="connect">Connect</string>
     <string name="calls">Calls</string>
+    <string name="we_are_coming_soon">We are coming soon!</string>
+    <string name="call_your_friends_family_or_your_team_members_with_new_aapoon_calls">Call your friends, family or your team members with new aapoon calls.</string>
 </resources>
