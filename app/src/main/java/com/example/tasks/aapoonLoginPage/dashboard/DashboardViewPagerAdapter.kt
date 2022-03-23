@@ -8,9 +8,13 @@ import com.example.tasks.aapoonLoginPage.dashboard.calls.CallsFragment
 import com.example.tasks.aapoonLoginPage.dashboard.chat.ChatFragment
 import com.example.tasks.aapoonLoginPage.dashboard.circles.CirclesFragment
 import com.example.tasks.aapoonLoginPage.dashboard.connect.ConnectFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecycle: Lifecycle, val phoneNumber: String) :
     FragmentStateAdapter(fragmentManager, fragmentLifecycle) {
+
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
     override fun getItemCount(): Int {
         return 4
     }
@@ -25,7 +29,7 @@ class DashboardViewPagerAdapter(fragmentManager: FragmentManager, fragmentLifecy
                 CirclesFragment()
             }
             2 -> {
-                ConnectFragment()
+                ConnectFragment(auth.currentUser!!.uid)
             }
             3 -> {
                 CallsFragment()

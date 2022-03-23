@@ -28,6 +28,15 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".aapoonLoginPage.dashboard.connect.PrivateChannelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.dashboard.connect.GroupChannelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".aapoonLoginPage.dashboard.connect.ChannelListActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.dashboard.chat.ChattingActivity"
             android:exported="false" />
         <activity
