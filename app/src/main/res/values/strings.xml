@@ -189,4 +189,6 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="accounts_list">Accounts List</string>
     <string name="create_a_group_here_and_it_will_display_in_this_frame">Create a group here and it will display in this frame</string>
     <string name="create_a_private_channel_here_and_it_will_display_in_this_frame">Create a private channel here and it will display in this frame</string>
+    <string name="join_in_circles_to_show_here">Join in Circles to show here</string>
+    <string name="add_circle">Add circle</string>
 </resources>
