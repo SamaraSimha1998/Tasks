@@ -256,14 +256,11 @@ class DetailsActivity : AppCompatActivity() {
                 string += encodedLastName[i]
             }
         }
-        when {
-            string.length >= 3 -> {
-                string
-            }
-            string.length == 2 -> {
+        when (string.length) {
+            2 -> {
                 string = "0$string"
             }
-            string.length == 1 -> {
+            1 -> {
                 string = "00$string"
             }
         }
@@ -465,222 +462,222 @@ class DetailsActivity : AppCompatActivity() {
     // gives first name first letter value
     private fun checkFirstName(letter: Char): Int {
 
-        val A = 0
-        val H = 320
-        val O = 640
-        val V = 860
-        val B = 60
-        val I = 400
-        val P = 660
-        val W = 880
-        val C = 100
-        val J = 420
-        val Q = 700
-        val X = 940
-        val D = 160
-        val K = 500
-        val R = 720
-        val Y = 960
-        val E = 200
-        val L = 520
-        val S = 780
-        val Z = 980
-        val F = 240
-        val M = 540
-        val T = 800
-        val G = 280
-        val N = 620
-        val U = 840
+        val a = 0
+        val h = 320
+        val o = 640
+        val v = 860
+        val b = 60
+        val i = 400
+        val p = 660
+        val w = 880
+        val c = 100
+        val j = 420
+        val q = 700
+        val x = 940
+        val d = 160
+        val k = 500
+        val r = 720
+        val y = 960
+        val e = 200
+        val l = 520
+        val s = 780
+        val z = 980
+        val f = 240
+        val m = 540
+        val t = 800
+        val g = 280
+        val n = 620
+        val u = 840
 
         return when (letter) {
             'A', 'a' -> {
-                A
+                a
             }
             'B', 'b' -> {
-                B
+                b
             }
             'C', 'c' -> {
-                C
+                c
             }
             'D', 'd' -> {
-                D
+                d
             }
             'E', 'e' -> {
-                E
+                e
             }
             'F', 'f' -> {
-                F
+                f
             }
             'G', 'g' -> {
-                G
+                g
             }
             'H', 'h' -> {
-                H
+                h
             }
             'I', 'i' -> {
-                I
+                i
             }
             'J', 'j' -> {
-                J
+                j
             }
             'K', 'k' -> {
-                K
+                k
             }
             'L', 'l' -> {
-                L
+                l
             }
             'M', 'm' -> {
-                M
+                m
             }
             'N', 'n' -> {
-                N
+                n
             }
             'O', 'o' -> {
-                O
+                o
             }
             'P', 'p' -> {
-                P
+                p
             }
             'Q', 'q' -> {
-                Q
+                q
             }
             'R', 'r' -> {
-                R
+                r
             }
             'S', 's' -> {
-                S
+                s
             }
             'T', 't' -> {
-                T
+                t
             }
             'U', 'u' -> {
-                U
+                u
             }
             'V', 'v' -> {
-                V
+                v
             }
             'W', 'w' -> {
-                W
+                w
             }
             'X', 'x' -> {
-                X
+                x
             }
             'Y', 'y' -> {
-                Y
+                y
             }
             else -> {
-                Z
+                z
             }
         }
     }
 
     // gives middle name first letter value
     private fun checkMiddleName(letter: Char): Int {
-        val A = 1
-        val H = 8
-        val O = 14
-        val V = 18
-        val B = 2
-        val I = 9
-        val P = 15
-        val W = 19
-        val C = 3
-        val J = 10
-        val Q = 15
-        val X = 19
-        val D = 4
-        val K = 11
-        val R = 16
-        val Y = 19
-        val E = 5
-        val L = 12
-        val S = 17
-        val Z = 19
-        val F = 6
-        val M = 13
-        val T = 18
-        val G = 7
-        val N = 14
-        val U = 18
+        val a = 1
+        val h = 8
+        val o = 14
+        val v = 18
+        val b = 2
+        val i = 9
+        val p = 15
+        val w = 19
+        val c = 3
+        val j = 10
+        val q = 15
+        val x = 19
+        val d = 4
+        val k = 11
+        val r = 16
+        val y = 19
+        val e = 5
+        val l = 12
+        val s = 17
+        val z = 19
+        val f = 6
+        val m = 13
+        val t = 18
+        val g = 7
+        val n = 14
+        val u = 18
 
         return when (letter) {
             'A', 'a' -> {
-                A
+                a
             }
             'B', 'b' -> {
-                B
+                b
             }
             'C', 'c' -> {
-                C
+                c
             }
             'D', 'd' -> {
-                D
+                d
             }
             'E', 'e' -> {
-                E
+                e
             }
             'F', 'f' -> {
-                F
+                f
             }
             'G', 'g' -> {
-                G
+                g
             }
             'H', 'h' -> {
-                H
+                h
             }
             'I', 'i' -> {
-                I
+                i
             }
             'J', 'j' -> {
-                J
+                j
             }
             'K', 'k' -> {
-                K
+                k
             }
             'L', 'l' -> {
-                L
+                l
             }
             'M', 'm' -> {
-                M
+                m
             }
             'N', 'n' -> {
-                N
+                n
             }
             'O', 'o' -> {
-                O
+                o
             }
             'P', 'p' -> {
-                P
+                p
             }
             'Q', 'q' -> {
-                Q
+                q
             }
             'R', 'r' -> {
-                R
+                r
             }
             'S', 's' -> {
-                S
+                s
             }
             'T', 't' -> {
-                T
+                t
             }
             'U', 'u' -> {
-                U
+                u
             }
             'V', 'v' -> {
-                V
+                v
             }
             'W', 'w' -> {
-                W
+                w
             }
             'X', 'x' -> {
-                X
+                x
             }
             'Y', 'y' -> {
-                Y
+                y
             }
             else -> {
-                Z
+                z
             }
         }
     }
