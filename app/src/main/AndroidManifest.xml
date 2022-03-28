@@ -28,6 +28,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".validatingUSADLN.DetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".aapoonLoginPage.dashboard.connect.PrivateChannelActivity"
             android:exported="false" />
         <activity

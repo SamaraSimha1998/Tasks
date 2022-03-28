@@ -21,6 +21,7 @@ import com.example.tasks.profile.ProfileLogActivity
 import com.example.tasks.realm.RealmDemo
 import com.example.tasks.realm.SharedData
 import com.example.tasks.tabProfile.TabProfileActivity
+import com.example.tasks.validatingUSADLN.DetailsActivity
 import com.example.tasks.webretrofit.WebApiRetrofit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -133,6 +134,11 @@ class MainActivity : AppCompatActivity() {
                 // Direct to dashboard
                 signIn(sharedPhoneNumber)
             }
+        }
+
+        btn_dln_details.setOnClickListener {
+            val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+            startActivity(intent)
         }
     }
 

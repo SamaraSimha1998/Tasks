@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".validatingUSADLN.DetailsActivity">
+
+    <TextView
+        android:id="@+id/dln_details_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dln_details"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/details_first_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="no"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text"
+        android:hint="@string/first_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dln_details_text_view" />
+
+    <EditText
+        android:id="@+id/details_middle_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="no"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text"
+        android:hint="@string/middle_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_first_name_edit_text" />
+
+    <EditText
+        android:id="@+id/details_last_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="no"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text"
+        android:hint="@string/last_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_middle_name_edit_text" />
+
+
+    <RadioGroup
+        android:id="@+id/gender_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_last_name_edit_text">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/male_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/female_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/female" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gender_radio_group">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_of_birth"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/details_date_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/dd"
+            android:ems="2"
+            android:maxLength="2"
+            android:gravity="center"
+            android:autofillHints="no"
+            android:inputType="number"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/details_month_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:maxLength="2"
+            android:gravity="center"
+            android:hint="@string/mm"
+            android:autofillHints="no"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/details_year_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="4"
+            android:maxLength="4"
+            android:gravity="center"
+            android:hint="@string/yyyy"
+            android:autofillHints="no"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/dln_number_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:autofillHints="no"
+        android:ems="10"
+        android:hint="@string/dln_number"
+        android:gravity="center"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:id="@+id/btn_details_validate"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/validate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -191,4 +191,13 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="create_a_private_channel_here_and_it_will_display_in_this_frame">Create a private channel here and it will display in this frame</string>
     <string name="join_in_circles_to_show_here">Join in Circles to show here</string>
     <string name="add_circle">Add circle</string>
+    <string name="dln_details">DLN details</string>
+    <string name="middle_name">Middle Name</string>
+    <string name="date">Date</string>
+    <string name="dln_number">DLN number</string>
+    <string name="validate">Validate</string>
+    <string name="dd">DD</string>
+    <string name="mm">MM</string>
+    <string name="yyyy">YYYY</string>
+    <string name="dln_verification">DLN Verification</string>
 </resources>

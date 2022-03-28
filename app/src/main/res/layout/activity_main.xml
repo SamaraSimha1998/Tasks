@@ -19,12 +19,20 @@
         <!--            android:text="@string/menu" />-->
 
         <Button
+            android:id="@+id/btn_dln_details"
+            style="@style/ButtonMainActivity"
+            android:text="@string/dln_verification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/btn_aapoon_login"
             style="@style/ButtonMainActivity"
             android:text="@string/aapoon_login_ui"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_dln_details" />
 
         <Button
             android:id="@+id/btn_chat_box"
@@ -101,8 +109,10 @@
         <Button
             android:id="@+id/btn_realm_data"
             style="@style/ButtonMainActivity"
+            android:layout_marginTop="4dp"
             android:text="@string/realm_demo"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_shared_data" />
 
