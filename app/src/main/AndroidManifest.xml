@@ -28,6 +28,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".fcm.BatteryIndicatorNotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".validatingUSADLN.DetailsActivity"
             android:exported="false" />
         <activity

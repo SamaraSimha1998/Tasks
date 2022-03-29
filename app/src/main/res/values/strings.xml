@@ -200,4 +200,8 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="mm">MM</string>
     <string name="yyyy">YYYY</string>
     <string name="dln_verification">DLN Verification</string>
+    <string name="_100">100</string>
+    <string name="stop_ringtone">Stop Ringtone</string>
+    <string name="_0">0</string>
+    <string name="battery_status">Battery Status</string>
 </resources>

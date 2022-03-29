@@ -11,6 +11,7 @@ import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
 import com.example.tasks.chatBox.ChatActivity
 import com.example.tasks.chatBox.LoginActivity
 import com.example.tasks.contacts.SendMessageActivity
+import com.example.tasks.fcm.BatteryIndicatorNotificationActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.imageCompressor.ImageCompressorActivity
 import com.example.tasks.jobscheduler.JobScheduler
@@ -138,6 +139,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_dln_details.setOnClickListener {
             val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_battery_indicator.setOnClickListener {
+            val intent = Intent(this@MainActivity, BatteryIndicatorNotificationActivity::class.java)
             startActivity(intent)
         }
     }
