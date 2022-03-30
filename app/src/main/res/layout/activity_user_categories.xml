@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="@string/i_m_a_business_user"
+            android:checked="true"
             android:textSize="20sp"
             android:onClick="onRadioButtonClicked"
             tools:ignore="OnClick,UsingOnClickInXml" />

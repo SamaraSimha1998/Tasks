@@ -57,8 +57,4 @@ class UserCategories : AppCompatActivity() {
             }
         }
     }
-
-    fun onBack() {
-
-    }
 }
