@@ -204,4 +204,6 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="stop_ringtone">Stop Ringtone</string>
     <string name="_0">0</string>
     <string name="battery_status">Battery Status</string>
+    <string name="dagger_di">Dagger DI</string>
+    <string name="dagger_demo">Dagger Demo</string>
 </resources>

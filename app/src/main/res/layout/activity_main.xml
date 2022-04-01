@@ -19,12 +19,20 @@
         <!--            android:text="@string/menu" />-->
 
         <Button
+            android:id="@+id/btn_dagger_di"
+            style="@style/ButtonMainActivity"
+            android:text="@string/dagger_di"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/btn_battery_indicator"
             style="@style/ButtonMainActivity"
             android:text="@string/battery_status"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_dagger_di" />
 
         <Button
             android:id="@+id/btn_dln_details"

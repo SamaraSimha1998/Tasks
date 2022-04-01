@@ -28,6 +28,9 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".dependencyInjection.dagger.DaggerActivity"
+            android:exported="false" />
+        <activity
             android:name=".fcm.BatteryIndicatorNotificationActivity"
             android:exported="false" />
         <activity
