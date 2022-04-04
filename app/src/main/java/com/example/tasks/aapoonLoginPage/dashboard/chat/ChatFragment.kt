@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.AppProfile
+import com.example.tasks.databinding.FragmentChatBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_chat.view.*
 
 class ChatFragment(val phoneNumber: String): Fragment() {
 
@@ -22,6 +21,8 @@ class ChatFragment(val phoneNumber: String): Fragment() {
     private lateinit var adapter: ChatAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private var _binding: FragmentChatBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +33,9 @@ class ChatFragment(val phoneNumber: String): Fragment() {
         database = FirebaseDatabase.getInstance().getReference("AppProfiles")
         userList = ArrayList()
         adapter = ChatAdapter(requireContext(), userList)
-        val view: View = inflater.inflate(R.layout.fragment_chat, container, false)
-        view.chat_user_recycler_view.layoutManager = LinearLayoutManager(context)
-        view.chat_user_recycler_view.adapter = adapter
+        _binding = FragmentChatBinding.inflate(inflater, container, false)
+        binding.chatUserRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.chatUserRecyclerView.adapter = adapter
 
         database.addValueEventListener(object: ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -58,6 +59,11 @@ class ChatFragment(val phoneNumber: String): Fragment() {
             }
 
         })
-        return view
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

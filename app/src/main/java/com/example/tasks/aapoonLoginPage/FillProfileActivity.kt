@@ -1,6 +1,5 @@
 package com.example.tasks.aapoonLoginPage
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
@@ -17,13 +16,12 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
+import com.example.tasks.databinding.ActivityFillProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_fill_profile.*
 import java.io.ByteArrayOutputStream
 import java.util.*
-
 
 class FillProfileActivity : AppCompatActivity() {
 
@@ -34,35 +32,37 @@ class FillProfileActivity : AppCompatActivity() {
     private var emailId: String = ""
     private var logProgress: Array<String> = arrayOf("Details","ProfilePic","Completed")
     private var currentState = 0
+    private lateinit var binding: ActivityFillProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fill_profile)
+        binding = ActivityFillProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
-        steps_view.setLabels(logProgress)
+        binding.stepsView.setLabels(logProgress)
             .setBarColorIndicator(Color.WHITE)
             .setProgressColorIndicator(R.color.start_received)
             .setLabelColorIndicator(R.color.start_received)
             .setCompletedPosition(currentState)
             .drawView()
 
-        steps_view.completedPosition = currentState
+        binding.stepsView.completedPosition = currentState
 
-        app_calender_image_view.setOnClickListener { selectDate() }
+        binding.appCalenderImageView.setOnClickListener { selectDate() }
 
-        app_dob_edit_text.setOnClickListener { selectDate() }
+        binding.appDobEditText.setOnClickListener { selectDate() }
 
-        btn_app_save_profile.setOnClickListener { checkRequirements() }
+        binding.btnAppSaveProfile.setOnClickListener { checkRequirements() }
 
-        app_profile_image_view.setOnClickListener { takePictureIntent() }
+        binding.appProfileImageView.setOnClickListener { takePictureIntent() }
 
-        btn_app_save_profile_pic.setOnClickListener { saveImage() }
+        binding.btnAppSaveProfilePic.setOnClickListener { saveImage() }
 
-        btn_completed_proifle_details.setOnClickListener {
+        binding.btnCompletedProifleDetails.setOnClickListener {
 
             val intent = Intent(this, DashBoardActivity::class.java)
             intent.putExtra("phoneNumber",phoneNumber)
@@ -95,7 +95,7 @@ class FillProfileActivity : AppCompatActivity() {
     // Picks date from calender
     private val pickerListener =
         DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
-            app_dob_edit_text.setText(
+            binding.appDobEditText.setText(
                 StringBuilder().append(selectedDay)
                     .append("/").append(selectedMonth + 1).append("/").append(selectedYear)
                     .append(" ")
@@ -119,30 +119,30 @@ class FillProfileActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            app_profile_image_view.setImageBitmap(imageBitmap)
+            binding.appProfileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
             val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            app_profile_image_view.setImageBitmap(imageBitmap)
+            binding.appProfileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }
     }
 
     private fun addProfile(){
-        val firstName =  app_first_name_edit_text.text.toString()
-        val lastName = app_last_name_edit_text.text.toString()
-        val gender : String = if (app_radio_group.checkedRadioButtonId == app_radio_male.id) {
+        val firstName =  binding.appFirstNameEditText.text.toString()
+        val lastName = binding.appLastNameEditText.text.toString()
+        val gender : String = if (binding.appRadioGroup.checkedRadioButtonId == binding.appRadioMale.id) {
             "Male"
         }else{
             "Female"
         }
-        val dob = app_dob_edit_text.text.toString()
+        val dob = binding.appDobEditText.text.toString()
         val phone = phoneNumber
-        val email = app_email_edit_text.text.toString()
+        val email = binding.appEmailEditText.text.toString()
         val uid = auth.currentUser!!.uid
 
         database = FirebaseDatabase.getInstance().getReference("AppProfiles")
@@ -160,7 +160,7 @@ class FillProfileActivity : AppCompatActivity() {
     }
 
     private fun checkRequirements(){
-        emailId = app_email_edit_text.text.toString()
+        emailId = binding.appEmailEditText.text.toString()
         if( emailId == ""){
             Toast.makeText(this,"please enter email id", Toast.LENGTH_SHORT).show()
         }else {
@@ -171,44 +171,44 @@ class FillProfileActivity : AppCompatActivity() {
     private fun progress() {
         if(currentState < logProgress.size - 1) {
             currentState += 1
-            steps_view.setCompletedPosition(currentState).drawView()
+            binding.stepsView.setCompletedPosition(currentState).drawView()
         }
     }
 
     private fun visibilityImage() {
-        app_first_name_edit_text.visibility = View.INVISIBLE
-        app_last_name_edit_text.visibility = View.INVISIBLE
-        app_textView.visibility = View.INVISIBLE
-        app_radio_group.visibility = View.INVISIBLE
-        app_linearLayout5.visibility = View.INVISIBLE
-        app_linearLayout4.visibility = View.INVISIBLE
+        binding.appFirstNameEditText.visibility = View.INVISIBLE
+        binding.appLastNameEditText.visibility = View.INVISIBLE
+        binding.appTextView.visibility = View.INVISIBLE
+        binding.appRadioGroup.visibility = View.INVISIBLE
+        binding.appLinearLayout5.visibility = View.INVISIBLE
+        binding.appLinearLayout4.visibility = View.INVISIBLE
 //        app_linearLayout6.visibility = View.INVISIBLE
-        btn_app_save_profile.visibility = View.INVISIBLE
-        app_profile_image_view.visibility = View.VISIBLE
-        btn_app_save_profile_pic.visibility = View.VISIBLE
+        binding.btnAppSaveProfile.visibility = View.INVISIBLE
+        binding.appProfileImageView.visibility = View.VISIBLE
+        binding.btnAppSaveProfilePic.visibility = View.VISIBLE
     }
 
     private fun visibilityCompleted() {
-        app_profile_image_view.visibility = View.INVISIBLE
-        btn_app_save_profile_pic.visibility = View.INVISIBLE
-        completed_image_view.visibility = View.VISIBLE
-        completed_text_view.visibility = View.VISIBLE
-        btn_completed_proifle_details.visibility = View.VISIBLE
+        binding.appProfileImageView.visibility = View.INVISIBLE
+        binding.btnAppSaveProfilePic.visibility = View.INVISIBLE
+        binding.completedImageView.visibility = View.VISIBLE
+        binding.completedTextView.visibility = View.VISIBLE
+        binding.btnCompletedProifleDetails.visibility = View.VISIBLE
     }
 
     private fun saveImage() {
         val image = baseImage
-        val firstName =  app_first_name_edit_text.text.toString()
-        val lastName = app_last_name_edit_text.text.toString()
+        val firstName =  binding.appFirstNameEditText.text.toString()
+        val lastName = binding.appLastNameEditText.text.toString()
 
-        val gender : String = if (app_radio_group.checkedRadioButtonId == app_radio_male.id) {
+        val gender : String = if (binding.appRadioGroup.checkedRadioButtonId == binding.appRadioMale.id) {
             "Male"
         }else{
             "Female"
         }
-        val dob = app_dob_edit_text.text.toString()
+        val dob = binding.appDobEditText.text.toString()
         val phone = phoneNumber
-        val email = app_email_edit_text.text.toString()
+        val email = binding.appEmailEditText.text.toString()
         val uid = auth.currentUser!!.uid
 
         database = FirebaseDatabase.getInstance().getReference("AppProfiles")

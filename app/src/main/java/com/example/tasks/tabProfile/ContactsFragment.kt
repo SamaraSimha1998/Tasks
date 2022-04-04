@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.tasks.R
 import com.example.tasks.contacts.ContactsActivity
+import com.example.tasks.databinding.FragmentContactsBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -22,8 +22,6 @@ import com.onegravity.contactpicker.contact.ContactDescription
 import com.onegravity.contactpicker.contact.ContactSortOrder
 import com.onegravity.contactpicker.core.ContactPickerActivity
 import com.onegravity.contactpicker.picture.ContactPictureType
-import kotlinx.android.synthetic.main.fragment_contacts.*
-import kotlinx.android.synthetic.main.fragment_contacts.view.*
 
 class ContactsFragment : Fragment() {
     
@@ -32,6 +30,8 @@ class ContactsFragment : Fragment() {
     private val argParam2 = "param2"
     private var param1: String? = null
     private var param2: String? = null
+    private var _binding: FragmentContactsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class ContactsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        val view: View = inflater.inflate(R.layout.fragment_contacts, container, false)
+        _binding = FragmentContactsBinding.inflate(inflater, container, false)
         // Third party library to read contacts and send messages
         Dexter.withContext(activity)
             .withPermissions(
@@ -60,19 +60,19 @@ class ContactsFragment : Fragment() {
                 }
             }).check()
 
-        view.btn_fragment_contacts_viewer.setOnClickListener {
+        binding.btnFragmentContactsViewer.setOnClickListener {
             val intent = Intent(activity, ContactsActivity::class.java)
             startActivity(intent)
         }
 
-        view.btn_fragment_send_message.setOnClickListener {
+        binding.btnFragmentSendMessage.setOnClickListener {
             myMessage()
         }
 
-        view.btn_fragment_add_contacts.setOnClickListener {
+        binding.btnFragmentAddContacts.setOnClickListener {
             addContacts()
         }
-        return view
+        return binding.root
     }
 
     // Read contacts from storage and add contacts to the recycler view
@@ -118,8 +118,8 @@ class ContactsFragment : Fragment() {
 
     // Sends message to given contacts
     private fun myMessage() {
-        val myNumber: String = fragment_contacts_edit_text.text.toString().trim()
-        val myMsg: String = fragment_message_edit_text.text.toString().trim()
+        val myNumber: String = binding.fragmentContactsEditText.text.toString().trim()
+        val myMsg: String = binding.fragmentMessageEditText.text.toString().trim()
         if (myNumber == "" || myMsg == "") {
             Toast.makeText(activity, "Field cannot be empty", Toast.LENGTH_SHORT).show()
         } else {
@@ -127,8 +127,8 @@ class ContactsFragment : Fragment() {
                 val smsManager: SmsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(myNumber, null, myMsg, null, null)
                 Toast.makeText(activity, "Message Sent", Toast.LENGTH_SHORT).show()
-                fragment_contacts_edit_text.setText("")
-                fragment_message_edit_text.setText("")
+                binding.fragmentContactsEditText.setText("")
+                binding.fragmentMessageEditText.setText("")
             } else {
                 Toast.makeText(activity, "Please enter the correct number", Toast.LENGTH_SHORT).show()
             }
@@ -144,5 +144,10 @@ class ContactsFragment : Fragment() {
                     putString(argParam2, param2)
                 }
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

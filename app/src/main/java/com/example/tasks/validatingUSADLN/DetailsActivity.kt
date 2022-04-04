@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_details.*
+import com.example.tasks.databinding.ActivityDetailsBinding
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -13,15 +12,17 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var ssss: String
     private lateinit var fff: String
     private lateinit var dlnValue: String
+    private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_details_validate.setOnClickListener {
+        binding.btnDetailsValidate.setOnClickListener {
             // validate DLN number.
             checkRequiredFields()
-            val givenDLN = dln_number_edit_text.text.toString().substring(0,12).uppercase()
+            val givenDLN = binding.dlnNumberEditText.text.toString().substring(0,12).uppercase()
             Log.d("dlnGiven", givenDLN)
             if (givenDLN == dlnValue) {
                 Toast.makeText(this, "DLN verified successfully", Toast.LENGTH_SHORT).show()
@@ -34,13 +35,13 @@ class DetailsActivity : AppCompatActivity() {
     // checks fields of details empty or not
     private fun checkRequiredFields() {
         // Checks required fields filled or not and proceeds validation.
-        val firstName = details_first_name_edit_text.text.toString()
-        val middleName = details_middle_name_edit_text.text.toString()
-        val lastName = details_last_name_edit_text.text.toString()
-        val date = details_date_edit_text.text.toString()
-        val month = details_month_edit_text.text.toString()
-        val year = details_year_edit_text.text.toString()
-        val dln = dln_number_edit_text.text.toString()
+        val firstName = binding.detailsFirstNameEditText.text.toString()
+        val middleName = binding.detailsMiddleNameEditText.text.toString()
+        val lastName = binding.detailsLastNameEditText.text.toString()
+        val date = binding.detailsDateEditText.text.toString()
+        val month = binding.detailsMonthEditText.text.toString()
+        val year = binding.detailsYearEditText.text.toString()
+        val dln = binding.dlnNumberEditText.text.toString()
 
         when {
             firstName == "" -> {
@@ -73,14 +74,14 @@ class DetailsActivity : AppCompatActivity() {
     // validates DLN for Florida state
     private fun florida() : String{
         // Pattern
-        val lastName = details_last_name_edit_text.text.toString()
+        val lastName = binding.detailsLastNameEditText.text.toString()
 
         val lastNameFirstLetter: Char = lastName[0]
 
-        val date = Integer.parseInt(details_date_edit_text.text.toString())
-        val month = Integer.parseInt(details_month_edit_text.text.toString())
-        val year = details_year_edit_text.text.toString()
-        val gender: String = if (gender_radio_group.checkedRadioButtonId == male_radio_button.id) {
+        val date = Integer.parseInt(binding.detailsDateEditText.text.toString())
+        val month = Integer.parseInt(binding.detailsMonthEditText.text.toString())
+        val year = binding.detailsYearEditText.text.toString()
+        val gender: String = if (binding.genderRadioGroup.checkedRadioButtonId == binding.maleRadioButton.id) {
             "Male"
         } else {
             "Female"
@@ -269,7 +270,7 @@ class DetailsActivity : AppCompatActivity() {
 
     // SSSS value
     private fun ssssCode() {
-        val lastName = details_last_name_edit_text.text.toString()
+        val lastName = binding.detailsLastNameEditText.text.toString()
         val lastNameFirstLetter: Char = lastName[0]
         val requiredLastName = removeLettersFromLastName(lastName)
         if (requiredLastName == "") {
@@ -695,8 +696,8 @@ class DetailsActivity : AppCompatActivity() {
 
     // FFF value
     private fun fffCode() {
-        val firstName = details_first_name_edit_text.text.toString()
-        val middleName = details_middle_name_edit_text.text.toString()
+        val firstName = binding.detailsFirstNameEditText.text.toString()
+        val middleName = binding.detailsMiddleNameEditText.text.toString()
 
         val firstNameFirstLetter: Char = firstName[0]
         val firstNameLetterValue = checkFirstName(firstNameFirstLetter)

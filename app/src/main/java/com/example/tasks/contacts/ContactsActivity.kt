@@ -13,9 +13,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_contacts.*
+import com.example.tasks.databinding.ActivityContactsBinding
 
 class ContactsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityContactsBinding
 
     companion object {
         const val PERMISSIONS_REQUEST_READ_CONTACTS = 100
@@ -23,7 +25,9 @@ class ContactsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contacts)
+        binding = ActivityContactsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val resolver: ContentResolver = contentResolver
         val cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null,
             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC")
@@ -40,7 +44,7 @@ class ContactsActivity : AppCompatActivity() {
                 PERMISSIONS_REQUEST_READ_CONTACTS)
         } else {
             builder = getContacts(cursors)
-            list_contacts.text = builder.toString()
+            binding.listContacts.text = builder.toString()
         }
     }
 

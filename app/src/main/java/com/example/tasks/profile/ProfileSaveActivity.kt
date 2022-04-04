@@ -14,11 +14,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_profile_save.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 import android.graphics.BitmapFactory
 import com.example.tasks.R
+import com.example.tasks.databinding.ActivityProfileSaveBinding
 
 
 class ProfileSaveActivity : AppCompatActivity() {
@@ -26,18 +26,20 @@ class ProfileSaveActivity : AppCompatActivity() {
     private lateinit var baseImage: String
     private lateinit var database: DatabaseReference
     private var emailId: String = ""
+    private lateinit var binding: ActivityProfileSaveBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_save)
+        binding = ActivityProfileSaveBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        calender_image_view.setOnClickListener { selectDate() }
+        binding.calenderImageView.setOnClickListener { selectDate() }
 
-        dob_edit_text.setOnClickListener { selectDate() }
+        binding.dobEditText.setOnClickListener { selectDate() }
 
-        profile_image_view.setOnClickListener { takePictureIntent() }
+        binding.profileImageView.setOnClickListener { takePictureIntent() }
 
-        btn_save_profile.setOnClickListener { checkRequirements() }
+        binding.btnSaveProfile.setOnClickListener { checkRequirements() }
     }
 
     private val datePickerId = 2
@@ -62,7 +64,7 @@ class ProfileSaveActivity : AppCompatActivity() {
 
     // Picks date from calender
     private val pickerListener = OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
-            dob_edit_text.setText(
+            binding.dobEditText.setText(
                 StringBuilder().append(selectedDay)
                     .append("/").append(selectedMonth + 1).append("/").append(selectedYear)
                     .append(" ")
@@ -86,31 +88,31 @@ class ProfileSaveActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            profile_image_view.setImageBitmap(imageBitmap)
+            binding.profileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
             val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            profile_image_view.setImageBitmap(imageBitmap)
+            binding.profileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }
     }
 
     private fun addProfile(){
-        val firstName =  first_name_edit_text.text.toString()
-        val lastName = last_name_edit_text.text.toString()
+        val firstName =  binding.firstNameEditText.text.toString()
+        val lastName = binding.lastNameEditText.text.toString()
 
-        val gender : String = if (radio_group_save.checkedRadioButtonId == radio_male_save.id) {
+        val gender : String = if (binding.radioGroupSave.checkedRadioButtonId == binding.radioMaleSave.id) {
             "Male"
         }else{
             "Female"
         }
-        val dob = dob_edit_text.text.toString()
-        val phone = phone_edit_text.text.toString()
-        val email = email_edit_text.text.toString()
+        val dob = binding.dobEditText.text.toString()
+        val phone = binding.phoneEditText.text.toString()
+        val email = binding.emailEditText.text.toString()
         val image = baseImage
 
         database = FirebaseDatabase.getInstance().getReference("Profiles")
@@ -131,7 +133,7 @@ class ProfileSaveActivity : AppCompatActivity() {
     }
 
     private fun checkRequirements(){
-        emailId = email_edit_text.text.toString()
+        emailId = binding.emailEditText.text.toString()
         if( emailId == ""){
             Toast.makeText(this,"please enter email id",Toast.LENGTH_SHORT).show()
         }else {

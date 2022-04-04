@@ -3,30 +3,32 @@ package com.example.tasks.realm
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
+import com.example.tasks.databinding.ActivityRealmDemoBinding
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_realm_demo.*
-import kotlinx.android.synthetic.main.realm_data_input.*
 
 class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
     private var realm: Realm? = null
     private val dataModel = RealmDataModel()
+    private lateinit var binding: ActivityRealmDemoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_realm_demo)
+        binding = ActivityRealmDemoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Realm.init(this)
 
         realm = Realm.getDefaultInstance()
 
-        btn_insert_data.setOnClickListener(this)
-        btn_read_data.setOnClickListener(this)
-        btn_update_data.setOnClickListener(this)
-        btn_delete_data.setOnClickListener(this)
+        binding.btnInsertData.setOnClickListener(this)
+        binding.btnReadData.setOnClickListener(this)
+        binding.btnUpdateData.setOnClickListener(this)
+        binding.btnDeleteData.setOnClickListener(this)
 
     }
 
@@ -57,13 +59,13 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
         try {
 
-            dataModel.id = edt_id.text.toString().toInt()
-            dataModel.name = edt_name.text.toString()
-            dataModel.email = edt_email.text.toString()
+            dataModel.id = findViewById<EditText>(R.id.edt_id).text.toString().toInt()
+            dataModel.name = findViewById<EditText>(R.id.edt_name).text.toString()
+            dataModel.email = findViewById<EditText>(R.id.edt_email).text.toString()
 
-            edt_id.setText(""+dataModel.id)
-            edt_name.setText(dataModel.name)
-            edt_email.setText(dataModel.email)
+            findViewById<EditText>(R.id.edt_id).setText(""+dataModel.id)
+            findViewById<EditText>(R.id.edt_name).setText(dataModel.name)
+            findViewById<EditText>(R.id.edt_email).setText(dataModel.email)
 
             // Copies inserted data to data model
             realm!!.executeTransaction { realm -> realm.copyToRealm(dataModel) }
@@ -89,9 +91,9 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
             // Sets data of particular id to view
             for (i in dataModels.indices) {
-                edt_id?.setText("" + dataModels[i].id)
-                edt_name?.setText(dataModels[i].name)
-                edt_email?.setText(dataModels[i].email)
+                findViewById<EditText>(R.id.edt_id)?.setText("" + dataModels[i].id)
+                findViewById<EditText>(R.id.edt_name)?.setText(dataModels[i].name)
+                findViewById<EditText>(R.id.edt_email)?.setText(dataModels[i].email)
             }
             Toast.makeText(this, "Data Fetched !!!", Toast.LENGTH_SHORT).show()
 //            Log.d("Status","Data Fetched !!!")
@@ -105,11 +107,11 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
     private fun updateData() {
 
         try {
-            val id: Long = edt_id.text.toString().toLong()
+            val id: Long = findViewById<EditText>(R.id.edt_id).text.toString().toLong()
             val dataModel = realm!!.where(RealmDataModel::class.java).equalTo("id", id).findFirst()
 
-            edt_name.setText(dataModel?.name)
-            edt_email.setText(dataModel?.email)
+            findViewById<EditText>(R.id.edt_name).setText(dataModel?.name)
+            findViewById<EditText>(R.id.edt_email).setText(dataModel?.email)
             Toast.makeText(this, "Data Updated !!!", Toast.LENGTH_SHORT).show()
 //            Log.d("Status","Data Updated !!!")
         }catch (e:Exception){
@@ -121,7 +123,7 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
     private fun deleteData() {
 
         try {
-            val id: Long = edt_id.text.toString().toLong()
+            val id: Long = findViewById<EditText>(R.id.edt_id).text.toString().toLong()
             val dataModel = realm!!.where(RealmDataModel::class.java).equalTo("id", id).findFirst()
             realm!!.executeTransaction {
                 dataModel?.deleteFromRealm()
@@ -138,8 +140,8 @@ class RealmDemo : AppCompatActivity(), View.OnClickListener {
 
     private fun clearFields(){
 
-        edt_id.setText("")
-        edt_name.setText("")
-        edt_email.setText("")
+        findViewById<EditText>(R.id.edt_id).setText("")
+        findViewById<EditText>(R.id.edt_name).setText("")
+        findViewById<EditText>(R.id.edt_email).setText("")
     }
 }

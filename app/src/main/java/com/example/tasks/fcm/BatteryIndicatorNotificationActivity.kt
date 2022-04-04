@@ -14,16 +14,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_battery_indicator_notification.*
-
+import com.example.tasks.databinding.ActivityBatteryIndicatorNotificationBinding
 
 class BatteryIndicatorNotificationActivity : AppCompatActivity() {
 
     private val notificationId = 111
+    private lateinit var binding: ActivityBatteryIndicatorNotificationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_battery_indicator_notification)
+        binding = ActivityBatteryIndicatorNotificationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val intentFilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
 
@@ -35,7 +36,7 @@ class BatteryIndicatorNotificationActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val batteryPercentage = intent?.getIntExtra(BatteryManager.EXTRA_LEVEL,0)
 
-            indicator_text_view.text = batteryPercentage.toString() + "%"
+            binding.indicatorTextView.text = batteryPercentage.toString() + "%"
 
             if (batteryPercentage != null) {
                 alarm(batteryPercentage)

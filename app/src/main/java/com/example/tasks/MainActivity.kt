@@ -11,6 +11,7 @@ import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
 import com.example.tasks.chatBox.ChatActivity
 import com.example.tasks.chatBox.LoginActivity
 import com.example.tasks.contacts.SendMessageActivity
+import com.example.tasks.databinding.ActivityMainBinding
 import com.example.tasks.dependencyInjection.dagger.DaggerActivity
 import com.example.tasks.fcm.BatteryIndicatorNotificationActivity
 import com.example.tasks.glide.GlideImageCropper
@@ -28,7 +29,6 @@ import com.example.tasks.webretrofit.WebApiRetrofit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,10 +36,12 @@ class MainActivity : AppCompatActivity() {
     private val sharedLoginFile = "loginDetails"
     private val sharedAppLoginNumber = "loginNumber"
     private lateinit var database: DatabaseReference
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
             Context.MODE_PRIVATE)
@@ -50,67 +52,67 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseMessaging.getInstance().subscribeToTopic("aapoon")
 
-        btn_web_api.setOnClickListener {
+        binding.btnWebApi.setOnClickListener {
             val intent = Intent(this@MainActivity, WebApiRetrofit::class.java)
             startActivity(intent)
         }
 
-        btn_shared_data.setOnClickListener {
+        binding.btnSharedData.setOnClickListener {
             val intent = Intent(this@MainActivity, SharedData::class.java)
             startActivity(intent)
         }
 
-        btn_realm_data.setOnClickListener {
+        binding.btnRealmData.setOnClickListener {
             val intent = Intent(this@MainActivity, RealmDemo::class.java)
             startActivity(intent)
         }
 
-        btn_job_scheduler.setOnClickListener {
+        binding.btnJobScheduler.setOnClickListener {
             val intent = Intent(this@MainActivity, JobScheduler::class.java)
             startActivity(intent)
         }
 
-        btn_glide.setOnClickListener {
+        binding.btnGlide.setOnClickListener {
             val intent = Intent(this@MainActivity, GlideImageCropper::class.java)
             startActivity(intent)
         }
 
-        btn_media_player.setOnClickListener {
+        binding.btnMediaPlayer.setOnClickListener {
             val intent = Intent(this@MainActivity, VideoListActivity::class.java)
             startActivity(intent)
         }
 
-        btn_sms.setOnClickListener {
+        binding.btnSms.setOnClickListener {
             val intent = Intent(this@MainActivity, SendMessageActivity::class.java)
             startActivity(intent)
         }
 
-        btn_profile.setOnClickListener {
+        binding.btnProfile.setOnClickListener {
             val intent = Intent(this@MainActivity, ProfileLogActivity::class.java)
             startActivity(intent)
         }
 
-        btn_tab_view_profile.setOnClickListener {
+        binding.btnTabViewProfile.setOnClickListener {
             val intent = Intent(this@MainActivity, TabProfileActivity::class.java)
             startActivity(intent)
         }
 
-        btn_native_image_compressor.setOnClickListener {
+        binding.btnNativeImageCompressor.setOnClickListener {
             val intent = Intent(this@MainActivity, NativeImageCompressorActivity::class.java)
             startActivity(intent)
         }
 
-        btn_image_compressor.setOnClickListener {
+        binding.btnImageCompressor.setOnClickListener {
             val intent = Intent(this@MainActivity, ImageCompressorActivity::class.java)
             startActivity(intent)
         }
 
-        btn_multi_threading.setOnClickListener {
+        binding.btnMultiThreading.setOnClickListener {
             val intent = Intent(this@MainActivity, MultiThreading::class.java)
             startActivity(intent)
         }
 
-        btn_chat_box.setOnClickListener {
+        binding.btnChatBox.setOnClickListener {
             val sharedEmail = sharedPreferences.getString("sharedEmail",null)
             val sharedPassword = sharedPreferences.getString("sharedPassword",null)
 
@@ -124,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_aapoon_login.setOnClickListener {
+        binding.btnAapoonLogin.setOnClickListener {
             val sharedPhoneNumber = sharedNumber.getString("sharedPhoneNumber", null)
 
             // Checks weather user already verified number or not
@@ -138,17 +140,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btn_dln_details.setOnClickListener {
+        binding.btnDlnDetails.setOnClickListener {
             val intent = Intent(this@MainActivity, DetailsActivity::class.java)
             startActivity(intent)
         }
 
-        btn_battery_indicator.setOnClickListener {
+        binding.btnBatteryIndicator.setOnClickListener {
             val intent = Intent(this@MainActivity, BatteryIndicatorNotificationActivity::class.java)
             startActivity(intent)
         }
 
-        btn_dagger_di.setOnClickListener {
+        binding.btnDaggerDi.setOnClickListener {
             val intent = Intent(this@MainActivity, DaggerActivity::class.java)
             startActivity(intent)
         }

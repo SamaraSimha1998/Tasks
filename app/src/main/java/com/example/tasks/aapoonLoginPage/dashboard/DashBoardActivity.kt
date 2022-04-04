@@ -10,6 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ import com.example.tasks.aapoonLoginPage.menuView.AppProfileViewActivity
 import com.example.tasks.aapoonLoginPage.menuView.ReferralActivity
 import com.example.tasks.aapoonLoginPage.menuView.SupportTeamActivity
 import com.example.tasks.aapoonLoginPage.menuView.UpdateNumberActivity
+import com.example.tasks.databinding.ActivityDashBoardBinding
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
@@ -29,8 +32,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_dash_board.*
-import kotlinx.android.synthetic.main.activity_profile_menu.*
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -42,11 +43,13 @@ class DashBoardActivity : AppCompatActivity() {
     private val sharedAppLoginNumber = "loginNumber"
     private var bottomSheetBehavior: BottomSheetBehavior<NavigationView>? = null
     private lateinit var phoneNumber: String
+    private lateinit var binding: ActivityDashBoardBinding
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dash_board)
+        binding = ActivityDashBoardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
@@ -63,10 +66,10 @@ class DashBoardActivity : AppCompatActivity() {
             when {
                 it.exists() -> {
                     baseImage = it.child("image").value.toString()
-                    app_user_profile_image_view.setImageBitmap(base64ToBitmap(baseImage))
+                    findViewById<ImageView>(R.id.app_user_profile_image_view).setImageBitmap(base64ToBitmap(baseImage))
                     val firstName = it.child("firstName").value.toString()
                     userName = firstName
-                    app_user_profile_name_text_view.text = userName
+                    findViewById<TextView>(R.id.app_user_profile_name_text_view).text = userName
                 }
             }
         }
@@ -178,10 +181,10 @@ class DashBoardActivity : AppCompatActivity() {
     }
 
     private fun dashboardTabs() {
-        dashboard_view_pager.adapter = DashboardViewPagerAdapter(supportFragmentManager, lifecycle, phoneNumber)
+        binding.dashboardViewPager.adapter = DashboardViewPagerAdapter(supportFragmentManager, lifecycle, phoneNumber)
 
         // Makes title and position to every tab as below
-        TabLayoutMediator(dashboard_tab_layout, dashboard_view_pager){ tab,position ->
+        TabLayoutMediator(binding.dashboardTabLayout, binding.dashboardViewPager){ tab,position ->
             when (position) {
                 0 -> {
                     tab.text = "CHAT"

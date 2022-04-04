@@ -12,10 +12,9 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityProfileUpdateBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_profile_update.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -24,25 +23,27 @@ class ProfileUpdateActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var emailId : String
     private lateinit var pastImage: String
+    private lateinit var binding: ActivityProfileUpdateBinding
 
     @SuppressLint("SetTextI18n", "ResourceType")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_update)
+        binding = ActivityProfileUpdateBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         val bundle = intent.extras
         emailId = bundle!!.getString("emailId").toString()
         pastImage = bundle.getString("baseImage").toString()
 
-        calender_update_image_view.setOnClickListener { selectDate() }
+        binding.calenderUpdateImageView.setOnClickListener { selectDate() }
 
-        dob_update_edit_text.setOnClickListener { selectDate() }
+        binding.dobUpdateEditText.setOnClickListener { selectDate() }
 
-        profile_update_image_view.setOnClickListener { takePictureIntent() }
+        binding.profileUpdateImageView.setOnClickListener { takePictureIntent() }
 
-        btn_update_data.setOnClickListener { updateProfile() }
+        binding.btnUpdateData.setOnClickListener { updateProfile() }
     }
 
     private val datePickerId = 2
@@ -68,7 +69,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
     // Selects date from calender
     private val pickerListener =
         DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
-            dob_update_edit_text.setText(
+            binding.dobUpdateEditText.setText(
                 StringBuilder().append(selectedDay)
                     .append("/").append(selectedMonth + 1).append("/").append(selectedYear)
                     .append(" ")
@@ -92,7 +93,7 @@ class ProfileUpdateActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            profile_update_image_view.setImageBitmap(imageBitmap)
+            binding.profileUpdateImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
@@ -103,16 +104,16 @@ class ProfileUpdateActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateProfile(){
 
-        val firstName =  first_name_update_edit_text.text.toString()
-        val lastName = last_name_update_edit_text.text.toString()
+        val firstName =  binding.firstNameUpdateEditText.text.toString()
+        val lastName = binding.lastNameUpdateEditText.text.toString()
 
-        val gender : String = if (radio_group_update.checkedRadioButtonId == radio_male.id) {
+        val gender : String = if (binding.radioGroupUpdate.checkedRadioButtonId == binding.radioMale.id) {
             "Male"
         }else{
             "Female"
         }
-        val dob = dob_update_edit_text.text.toString()
-        val phone = phone_update_edit_text.text.toString()
+        val dob = binding.dobUpdateEditText.text.toString()
+        val phone = binding.phoneUpdateEditText.text.toString()
         val email = emailId
         val image = baseImage
 

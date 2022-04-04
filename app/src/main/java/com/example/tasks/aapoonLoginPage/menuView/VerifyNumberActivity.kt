@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
+import com.example.tasks.databinding.ActivityVerifyNumberBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_verify_number.*
 import java.util.concurrent.TimeUnit
 
 class VerifyNumberActivity : AppCompatActivity() {
@@ -21,25 +20,27 @@ class VerifyNumberActivity : AppCompatActivity() {
     private lateinit var otpId: String
     private var auth = FirebaseAuth.getInstance()
     private lateinit var database: DatabaseReference
+    private lateinit var binding: ActivityVerifyNumberBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manage_otp)
+        binding = ActivityVerifyNumberBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         phoneNumber = intent.getStringExtra("updatePhoneNumber").toString()
 
         initiateOtp()
 
-        btn_verify_otp.setOnClickListener {
+        binding.btnVerifyOtp.setOnClickListener {
             when {
-                verify_otp_edit_text.text.toString().isEmpty() -> {
+                binding.verifyOtpEditText.text.toString().isEmpty() -> {
                     Toast.makeText(this,"Please enter OTP!", Toast.LENGTH_SHORT).show()
                 }
-                verify_otp_edit_text.text.toString().length != 6 -> {
+                binding.verifyOtpEditText.text.toString().length != 6 -> {
                     Toast.makeText(this,"Please enter valid OTP!", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(otpId,verify_otp_edit_text.text.toString())
+                    val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(otpId,binding.verifyOtpEditText.text.toString())
                     signInWithPhoneAuthCredential(credential)
                 }
             }

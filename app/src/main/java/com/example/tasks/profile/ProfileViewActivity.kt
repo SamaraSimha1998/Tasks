@@ -11,25 +11,27 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_profile_view.*
+import com.example.tasks.databinding.ActivityProfileViewBinding
 import java.util.*
 
 class ProfileViewActivity : AppCompatActivity() {
 
     private lateinit var baseImage : String
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var binding: ActivityProfileViewBinding
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_view)
+        binding = ActivityProfileViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        toggle = ActionBarDrawerToggle(this, profile_menu_drawer_layout, R.string.open, R.string.close)
-        profile_menu_drawer_layout.addDrawerListener(toggle)
+        toggle = ActionBarDrawerToggle(this, binding.profileMenuDrawerLayout, R.string.open, R.string.close)
+        binding.profileMenuDrawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        profile_menu_nav_view.setOnNavigationItemSelectedListener {
+        binding.profileMenuNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.btn_edit_menu -> edit()
                 R.id.btn_exit_profile -> exitProfile()
@@ -38,15 +40,15 @@ class ProfileViewActivity : AppCompatActivity() {
         }
 
         val bundle = intent.extras
-        first_name_text_view.text = bundle!!.getString("firstName")
-        last_name_text_view.text = bundle.getString("lastName")
-        gender_text_view.text = bundle.getString("gender")
-        dob_text_view.text = bundle.getString("dob")
-        email_text_view.text = bundle.getString("email")
-        phone_text_view.text = bundle.getString("phone")
+        binding.firstNameTextView.text = bundle!!.getString("firstName")
+        binding.lastNameTextView.text = bundle.getString("lastName")
+        binding.genderTextView.text = bundle.getString("gender")
+        binding.dobTextView.text = bundle.getString("dob")
+        binding.emailTextView.text = bundle.getString("email")
+        binding.phoneTextView.text = bundle.getString("phone")
         baseImage = bundle.getString("image").toString()
 
-        user_image_view.setImageBitmap(base64ToBitmap(baseImage))
+        binding.userImageView.setImageBitmap(base64ToBitmap(baseImage))
 
         Toast.makeText(this, "Fetched Successfully!", Toast.LENGTH_SHORT).show()
     }
@@ -91,7 +93,7 @@ class ProfileViewActivity : AppCompatActivity() {
     private fun edit() {
         val intent = Intent(this, ProfileUpdateActivity::class.java)
         startActivity(intent)
-        val emailId = email_text_view.text.toString()
+        val emailId = binding.emailTextView.text.toString()
         val intentEmail = Intent(this@ProfileViewActivity, ProfileUpdateActivity::class.java)
         intentEmail.putExtra("emailId",emailId)
         intentEmail.putExtra("baseImage",baseImage)

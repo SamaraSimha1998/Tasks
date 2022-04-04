@@ -2,9 +2,9 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'realm-android'
+//    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -127,4 +127,8 @@ dependencies {
     // if you use the support libraries
     kapt 'com.google.dagger:dagger-android-processor:2.20'
     kapt 'com.google.dagger:dagger-compiler:2.20'
+
+    // Hilt Dependency Injection
+//    implementation 'com.google.dagger:hilt-android:2.38.1'
+//    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
 }

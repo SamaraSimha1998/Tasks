@@ -6,19 +6,19 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private val sharedLoginFile = "loginDetails"
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
             Context.MODE_PRIVATE)
@@ -27,14 +27,14 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        btn_log_sign_up.setOnClickListener {
+        binding.btnLogSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
 
-        btn_log_login.setOnClickListener {
-            val email = log_box_email_edit_text.text.toString()
-            val password = log_box_password_edit_text.text.toString()
+        binding.btnLogLogin.setOnClickListener {
+            val email = binding.logBoxEmailEditText.text.toString()
+            val password = binding.logBoxPasswordEditText.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()){
                 val sharedEmail: String = email

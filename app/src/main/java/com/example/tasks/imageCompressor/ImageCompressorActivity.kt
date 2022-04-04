@@ -15,27 +15,29 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityImageCompressorBinding
 import id.zelory.compressor.Compressor
-import kotlinx.android.synthetic.main.activity_image_compressor.*
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream
 
 class ImageCompressorActivity : AppCompatActivity() {
+
     private val pickImage = 100
     private lateinit var filepath: String
     private lateinit var originalImage: File
     private lateinit var compressedImage: File
     // This will save the processed images into given folder
     private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
+    private lateinit var binding: ActivityImageCompressorBinding
 
     @RequiresApi(Build.VERSION_CODES.ECLAIR)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_compressor)
+        binding = ActivityImageCompressorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         filepath = path.absolutePath
 
@@ -44,9 +46,9 @@ class ImageCompressorActivity : AppCompatActivity() {
         }
 
         // Reads seek bar value
-        seek_quality_value.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekQualityValue.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
-                seek_quality_value.max = 100
+                binding.seekQualityValue.max = 100
             }
 
             override fun onStartTrackingTouch(seek: SeekBar) {
@@ -56,12 +58,12 @@ class ImageCompressorActivity : AppCompatActivity() {
             }
         })
 
-        btn_select_image.setOnClickListener {
+        binding.btnSelectImage.setOnClickListener {
             openGallery()
         }
 
-        btn_compress_image.setOnClickListener {
-            val quality = seek_quality_value.progress
+        binding.btnCompressImage.setOnClickListener {
+            val quality = binding.seekQualityValue.progress
             // can change image width * height from here
             val width = 480
             val height = 800
@@ -80,8 +82,8 @@ class ImageCompressorActivity : AppCompatActivity() {
                 val finalFile = File(filepath, originalImage.name)
                 // calls bitmap factory to decode image file
                 val finalBitmap: Bitmap = BitmapFactory.decodeFile(finalFile.absolutePath)
-                compressed_image.setImageBitmap(finalBitmap)
-                compressed_size_text.text =
+                binding.compressedImage.setImageBitmap(finalBitmap)
+                binding.compressedSizeText.text =
                     "size: "+ Formatter.formatShortFileSize(this, finalFile.length())
 
             } catch (e: IOException){
@@ -101,15 +103,15 @@ class ImageCompressorActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK){
-            seek_quality_value.visibility = View.VISIBLE
-            btn_compress_image.visibility = View.VISIBLE
+            binding.seekQualityValue.visibility = View.VISIBLE
+            binding.btnCompressImage.visibility = View.VISIBLE
             val imageUri: Uri? = data?.data
             try {
                 val imageStream: InputStream? = imageUri?.let { contentResolver.openInputStream(it)}
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
-                selected_image.setImageBitmap(selectedImage)
+                binding.selectedImage.setImageBitmap(selectedImage)
                 originalImage = File(imageUri!!.path!!.replace("raw/",""))
-                original_size_text.text = "size: "+ Formatter.formatFileSize(this, originalImage.length())
+                binding.originalSizeText.text = "size: "+ Formatter.formatFileSize(this, originalImage.length())
 
             } catch (e: FileNotFoundException){
                 e.printStackTrace()

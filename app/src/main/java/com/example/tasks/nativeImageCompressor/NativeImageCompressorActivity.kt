@@ -13,8 +13,7 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_native_image_compressor.*
+import com.example.tasks.databinding.ActivityNativeImageCompressorBinding
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -27,11 +26,13 @@ class NativeImageCompressorActivity : AppCompatActivity() {
     private lateinit var originalImage: File
     private lateinit var compressedImage: File
     private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
+    private lateinit var binding: ActivityNativeImageCompressorBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_native_image_compressor)
+        binding = ActivityNativeImageCompressorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         filepath = path.absolutePath
 
@@ -40,9 +41,9 @@ class NativeImageCompressorActivity : AppCompatActivity() {
         }
 
         // Reads value from seekbar
-        seekQuality.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekQuality.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
-                seekQuality.max = 100
+                binding.seekQuality.max = 100
             }
 
             override fun onStartTrackingTouch(seek: SeekBar) {
@@ -52,12 +53,12 @@ class NativeImageCompressorActivity : AppCompatActivity() {
             }
         })
 
-        btn_select.setOnClickListener {
+        binding.btnSelect.setOnClickListener {
             openGallery()
         }
 
-        btn_compress.setOnClickListener {
-            val quality = seekQuality.progress
+        binding.btnCompress.setOnClickListener {
+            val quality = binding.seekQuality.progress
             val width = 480
             val height = 800
 
@@ -73,8 +74,8 @@ class NativeImageCompressorActivity : AppCompatActivity() {
 
                 val finalFile = File(filepath, originalImage.name)
                 val finalBitmap: Bitmap = BitmapFactory.decodeFile(finalFile.absolutePath)
-                compressed_image_view.setImageBitmap(finalBitmap)
-                compressed_size_text_view.text =
+                binding.compressedImageView.setImageBitmap(finalBitmap)
+                binding.compressedSizeTextView.text =
                     "size: "+ Formatter.formatShortFileSize(this, finalFile.length())
 
             } catch (e: IOException){
@@ -93,15 +94,15 @@ class NativeImageCompressorActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK){
-            seekQuality.visibility = View.VISIBLE
-            btn_compress.visibility = View.VISIBLE
+            binding.seekQuality.visibility = View.VISIBLE
+            binding.btnCompress.visibility = View.VISIBLE
             val imageUri: Uri? = data?.data
             try {
                 val imageStream: InputStream? = imageUri?.let { contentResolver.openInputStream(it)}
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
-                selected_image_view.setImageBitmap(selectedImage)
+                binding.selectedImageView.setImageBitmap(selectedImage)
                 originalImage = File(imageUri!!.path!!.replace("raw/",""))
-                original_size_text_view.text = "size: "+ Formatter.formatFileSize(this, originalImage.length())
+                binding.originalSizeTextView.text = "size: "+ Formatter.formatFileSize(this, originalImage.length())
 
             } catch (e: FileNotFoundException){
                 e.printStackTrace()

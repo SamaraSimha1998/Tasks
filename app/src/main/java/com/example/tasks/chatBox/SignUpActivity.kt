@@ -12,12 +12,11 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.MainActivity
 import com.example.tasks.R
+import com.example.tasks.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -28,10 +27,12 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var baseImage: String
     private val requestImageCapture = 1
     private val sharedLoginFile = "loginDetails"
+    private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedLoginFile,
             Context.MODE_PRIVATE)
@@ -40,13 +41,13 @@ class SignUpActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        chat_box_profile_image.setOnClickListener { takePictureIntent() }
+        binding.chatBoxProfileImage.setOnClickListener { takePictureIntent() }
 
-        btn_sign_up.setOnClickListener {
-            val name = chat_box_name_edit_text.text.toString()
-            val email = chat_box_email_edit_text.text.toString()
-            val phone = chat_box_number_edit_text.text.toString()
-            val password = chat_box_password_edit_text.text.toString()
+        binding.btnSignUp.setOnClickListener {
+            val name = binding.chatBoxNameEditText.text.toString()
+            val email = binding.chatBoxEmailEditText.text.toString()
+            val phone = binding.chatBoxNumberEditText.text.toString()
+            val password = binding.chatBoxPasswordEditText.text.toString()
             val profileImage = baseImage
 
             val sharedEmail: String = email
@@ -101,14 +102,14 @@ class SignUpActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            chat_box_profile_image.setImageBitmap(imageBitmap)
+            binding.chatBoxProfileImage.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
             val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            chat_box_profile_image.setImageBitmap(imageBitmap)
+            binding.chatBoxProfileImage.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }

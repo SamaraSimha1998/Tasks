@@ -3,53 +3,43 @@ package com.example.tasks.multiThreading
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_multi_threading.*
+import com.example.tasks.databinding.ActivityMultiThreadingBinding
 
 class MultiThreading : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMultiThreadingBinding
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_multi_threading)
+        binding = ActivityMultiThreadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         var bool
                 = false
-        btn_start.setOnClickListener{
+        binding.btnStart.setOnClickListener{
             bool = !bool
             if (!bool)
             {
-                thread_one.text = "Stopped1"
-                thread_two.text = "Stopped2"
-                thread_three.text = "Stopped3"
-                btn_start.text = "Start"
+                binding.threadOne.text = "Stopped1"
+                binding.threadTwo.text = "Stopped2"
+                binding.threadThree.text = "Stopped3"
+                binding.btnStart.text = "Start"
             }
             else
             {
-                btn_start.text = "Stop"
+                binding.btnStart.text = "Stop"
 
                 // This way we run different threads
                 Thread {
                     while (bool) {
 
                         runOnUiThread {
-                            thread_one.text = "Started1"
+                            binding.threadOne.text = "Started1"
                         }
                         Thread.sleep(1000)
                         runOnUiThread {
-                            thread_one.text = "Activity1"
-                        }
-                        Thread.sleep(1000)
-                    }
-                }.start()
-
-                Thread {
-                    while (bool) {
-                        runOnUiThread {
-                            thread_two.text = "Started2"
-                        }
-                        Thread.sleep(1000)
-                        runOnUiThread {
-                            thread_two.text = "Activity2"
+                            binding.threadOne.text = "Activity1"
                         }
                         Thread.sleep(1000)
                     }
@@ -58,11 +48,24 @@ class MultiThreading : AppCompatActivity() {
                 Thread {
                     while (bool) {
                         runOnUiThread {
-                            thread_three.text = "Started3"
+                            binding.threadTwo.text = "Started2"
                         }
                         Thread.sleep(1000)
                         runOnUiThread {
-                            thread_three.text = "Activity3"
+                            binding.threadTwo.text = "Activity2"
+                        }
+                        Thread.sleep(1000)
+                    }
+                }.start()
+
+                Thread {
+                    while (bool) {
+                        runOnUiThread {
+                            binding.threadThree.text = "Started3"
+                        }
+                        Thread.sleep(1000)
+                        runOnUiThread {
+                            binding.threadThree.text = "Activity3"
                         }
                         Thread.sleep(1000)
                     }

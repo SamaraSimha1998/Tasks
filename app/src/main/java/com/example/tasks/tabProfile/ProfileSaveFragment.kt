@@ -19,11 +19,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.tasks.R
+import com.example.tasks.databinding.FragmentProfileSaveBinding
 import com.example.tasks.profile.Profile
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_profile_save.*
-import kotlinx.android.synthetic.main.fragment_profile_save.view.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -33,24 +32,26 @@ class ProfileSaveFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private var emailId: String = ""
     private val sharedPrefFile = "profileSharedPreference"
+    private var _binding: FragmentProfileSaveBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        val view: View = inflater.inflate(R.layout.fragment_profile_save, container, false)
+        _binding = FragmentProfileSaveBinding.inflate(inflater, container, false)
 
-        view.tab_calender_image_view.setOnClickListener { selectDate() }
+        binding.tabCalenderImageView.setOnClickListener { selectDate() }
 
-        view.tab_dob_edit_text.setOnClickListener { selectDate() }
+        binding.tabDobEditText.setOnClickListener { selectDate() }
 
-        view.tab_profile_image_view.setOnClickListener { takePictureIntent() }
+        binding.tabProfileImageView.setOnClickListener { takePictureIntent() }
 
-        view.btn_tab_save_profile.setOnClickListener { checkRequirements() }
+        binding.btnTabSaveProfile.setOnClickListener { checkRequirements() }
 
-        return view
+        return binding.root
     }
 
     private fun checkRequirements(){
-        emailId = tab_email_edit_text.text.toString()
+        emailId = binding.tabEmailEditText.text.toString()
         if( emailId == ""){
             Toast.makeText(activity,"please enter email id", Toast.LENGTH_SHORT).show()
         }else {
@@ -63,17 +64,17 @@ class ProfileSaveFragment : Fragment() {
         val sharedPreferences: SharedPreferences? = activity?.getSharedPreferences(sharedPrefFile,
             Context.MODE_PRIVATE)
 
-        val firstName =  tab_first_name_edit_text.text.toString()
-        val lastName = tab_last_name_edit_text.text.toString()
+        val firstName =  binding.tabFirstNameEditText.text.toString()
+        val lastName = binding.tabLastNameEditText.text.toString()
 
-        val gender : String = if (tab_radio_group.checkedRadioButtonId == tab_radio_male.id) {
+        val gender : String = if (binding.tabRadioGroup.checkedRadioButtonId == binding.tabRadioMale.id) {
             "Male"
         }else{
             "Female"
         }
-        val dob = tab_dob_edit_text.text.toString()
-        val phone = tab_phone_edit_text.text.toString()
-        val email = tab_email_edit_text.text.toString()
+        val dob = binding.tabDobEditText.text.toString()
+        val phone = binding.tabPhoneEditText.text.toString()
+        val email = binding.tabEmailEditText.text.toString()
         val image = baseImage
 
         val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
@@ -95,11 +96,11 @@ class ProfileSaveFragment : Fragment() {
             // Adds new profile data to firebase database
             database.child(userEmail).setValue(profile)
             Toast.makeText(activity,"Saved Successfully!",Toast.LENGTH_SHORT).show()
-            tab_profile_image_view.setImageDrawable(null)
-            tab_email_edit_text.text = null
-            tab_first_name_edit_text.text = null
-            tab_last_name_edit_text.text = null
-            tab_phone_edit_text.text = null
+            binding.tabProfileImageView.setImageDrawable(null)
+            binding.tabEmailEditText.text = null
+            binding.tabFirstNameEditText.text = null
+            binding.tabLastNameEditText.text = null
+            binding.tabPhoneEditText.text = null
         }catch (e:Exception) {
             Toast.makeText(activity,"Failed to save!!",Toast.LENGTH_SHORT).show()
         }
@@ -126,7 +127,7 @@ class ProfileSaveFragment : Fragment() {
 
     private val pickerListener =
         DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
-            tab_dob_edit_text.setText(
+            binding.tabDobEditText.setText(
                 StringBuilder().append(selectedDay)
                     .append("/").append(selectedMonth + 1).append("/").append(selectedYear)
                     .append(" ")
@@ -148,7 +149,7 @@ class ProfileSaveFragment : Fragment() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            tab_profile_image_view.setImageBitmap(imageBitmap)
+            binding.tabProfileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }else {
@@ -156,9 +157,14 @@ class ProfileSaveFragment : Fragment() {
             val imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.aapoon_logo)
             val byteArrayOutputStream = ByteArrayOutputStream()
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            tab_profile_image_view.setImageBitmap(imageBitmap)
+            binding.tabProfileImageView.setImageBitmap(imageBitmap)
             val byte : ByteArray = byteArrayOutputStream.toByteArray()
             Base64.getEncoder().encodeToString(byte)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

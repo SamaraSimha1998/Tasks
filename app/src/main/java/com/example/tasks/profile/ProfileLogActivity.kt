@@ -5,30 +5,31 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityProfileLogBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_profile_log.*
 
 open class ProfileLogActivity : AppCompatActivity() {
 
     private lateinit var database : DatabaseReference
+    private lateinit var binding: ActivityProfileLogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_log)
+        binding = ActivityProfileLogBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_add_profile.setOnClickListener {
+        binding.btnAddProfile.setOnClickListener {
             val intent = Intent(this@ProfileLogActivity, ProfileSaveActivity::class.java)
             startActivity(intent)
         }
 
-        btn_get_profile.setOnClickListener {
-            val emailId : String = email_get_profile.text.toString()
+        binding.btnGetProfile.setOnClickListener {
+            val emailId : String = binding.emailGetProfile.text.toString()
             val userEmail = emailId.replace(".",",")
             if (emailId.isNotEmpty()) {
                 readData(userEmail)
-                email_get_profile.text.clear()
+                binding.emailGetProfile.text.clear()
             } else {
                 Toast.makeText(this,"Please enter valid email!",Toast.LENGTH_SHORT).show()
             }

@@ -7,11 +7,10 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
-import com.example.tasks.R
 import com.example.tasks.aapoonLoginPage.dashboard.DashBoardActivity
+import com.example.tasks.databinding.ActivityAppProfileViewBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_app_profile_view.*
 import java.util.*
 
 class AppProfileViewActivity : AppCompatActivity() {
@@ -19,11 +18,13 @@ class AppProfileViewActivity : AppCompatActivity() {
     private lateinit var phoneNumber : String
     private lateinit var database : DatabaseReference
     private lateinit var baseImage : String
+    private lateinit var binding: ActivityAppProfileViewBinding
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_app_profile_view)
+        binding = ActivityAppProfileViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
@@ -45,13 +46,13 @@ class AppProfileViewActivity : AppCompatActivity() {
                     val email = it.child("email").value.toString()
                     val phone = it.child("phone").value.toString()
 
-                    app_first_name_text_view.text = firstName
-                    app_last_name_text_view.text = lastName
-                    app_gender_text_view.text = gender
-                    app_dob_text_view.text = dob
-                    app_email_text_view.text = email
-                    app_phone_text_view.text = phone
-                    app_user_image_view.setImageBitmap(base64ToBitmap(baseImage))
+                    binding.appFirstNameTextView.text = firstName
+                    binding.appLastNameTextView.text = lastName
+                    binding.appGenderTextView.text = gender
+                    binding.appDobTextView.text = dob
+                    binding.appEmailTextView.text = email
+                    binding.appPhoneTextView.text = phone
+                    binding.appUserImageView.setImageBitmap(base64ToBitmap(baseImage))
                 }
             }
         }

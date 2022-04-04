@@ -30,6 +30,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
+    @SuppressLint("RemoteViewLayout")
     private fun getRemoteView(title: String, message: String): RemoteViews{
         val remoteView = RemoteViews("com.example.code", R.layout.notification)
 

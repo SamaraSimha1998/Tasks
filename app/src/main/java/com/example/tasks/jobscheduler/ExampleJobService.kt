@@ -1,10 +1,12 @@
 package com.example.tasks.jobscheduler
 
+import android.annotation.SuppressLint
 import android.app.job.JobParameters
 import android.app.job.JobService
 import android.util.Log
 import java.util.*
 
+@SuppressLint("SpecifyJobSchedulerIdRange")
 class ExampleJobService : JobService() {
     override fun onStartJob(params: JobParameters): Boolean {
         // We don't do any real 'work' in this sample app. All we'll

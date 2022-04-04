@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
+import com.example.tasks.databinding.ActivityWebApiRetrofitBinding
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_web_api_retrofit.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,19 +18,20 @@ class WebApiRetrofit : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: RecyclerAdapter
-//    private var tag = "WebApiRetrofit"
+    private lateinit var binding: ActivityWebApiRetrofitBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_api_retrofit)
+        binding = ActivityWebApiRetrofitBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Log.d("lifecycle", "onCreate invoked")
 
-        btn_rxjava.setOnClickListener{ startRStream() }
+        binding.btnRxjava.setOnClickListener{ startRStream() }
 
         recyclerView = findViewById(R.id.recycler_view)
         recyclerAdapter = RecyclerAdapter(this)
-        recycler_view.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = recyclerAdapter
 
         //we use this phase when ever we give url to BaseUrl in ApiInterface.kt

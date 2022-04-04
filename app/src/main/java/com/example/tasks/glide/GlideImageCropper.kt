@@ -10,22 +10,23 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityGlideImageCropperBinding
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.activity_glide_image_cropper.*
 
 class GlideImageCropper : AppCompatActivity() {
 
     private val requestCode = 42
     private val tag: String = "AppDebug"
+    private lateinit var binding: ActivityGlideImageCropperBinding
 
     @SuppressLint("QueryPermissionsNeeded")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_glide_image_cropper)
+        binding = ActivityGlideImageCropperBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_capture.setOnClickListener {
+        binding.btnCapture.setOnClickListener {
             // Permission to open camera to capture image
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
@@ -36,12 +37,12 @@ class GlideImageCropper : AppCompatActivity() {
             }
         }
 
-        btn_glide_crop.setOnClickListener {
+        binding.btnGlideCrop.setOnClickListener {
             val intent = Intent(this@GlideImageCropper, GlideCrop::class.java)
             startActivity(intent)
         }
 
-        update_textview.setOnClickListener {
+        binding.updateTextview.setOnClickListener {
             pickFromGallery()
         }
     }
@@ -75,7 +76,7 @@ class GlideImageCropper : AppCompatActivity() {
     private fun setImage(uri: Uri) {
         Glide.with(this)
             .load(uri)
-            .into(image_preview)
+            .into(binding.imagePreview)
     }
 
     private fun launchImageCrop(uri: Uri) {

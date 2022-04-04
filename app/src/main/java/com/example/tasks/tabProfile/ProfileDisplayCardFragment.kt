@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
+import com.example.tasks.databinding.FragmentProfileDisplayCardBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_profile_display_card.view.*
 import java.io.File
 import java.io.FileWriter
 
@@ -26,6 +26,8 @@ class ProfileDisplayCardFragment : Fragment() {
     private var adapter: Adapter? = null
     private var listAdapter: Array<Adapter?> = arrayOf(adapter)
     private lateinit var database : DatabaseReference
+    private var _binding: FragmentProfileDisplayCardBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +42,11 @@ class ProfileDisplayCardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_profile_display_card, container, false)
-        view.btn_save_to_text_file.setOnClickListener { download() }
-        view.btn_share.setOnClickListener { share() }
-        recyclerView = view.findViewById<View>(R.id.profile_card_recycler_view) as RecyclerView
+        _binding = FragmentProfileDisplayCardBinding.inflate(inflater, container, false)
+
+        binding.btnSaveToTextFile.setOnClickListener { download() }
+        binding.btnShare.setOnClickListener { share() }
+        recyclerView = view?.findViewById<View>(R.id.profile_card_recycler_view) as RecyclerView
         recyclerView!!.layoutManager = LinearLayoutManager(context)
         val options: FirebaseRecyclerOptions<Model> = FirebaseRecyclerOptions.Builder<Model>()
             .setQuery(FirebaseDatabase.getInstance().reference.child("Model"), Model::class.java)
@@ -68,7 +71,7 @@ class ProfileDisplayCardFragment : Fragment() {
             override fun onCancelled(databaseError: DatabaseError) {}
         })
         
-        view.profile_card_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.profileCardSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(position: String?): Boolean {
                 return false
             }
@@ -80,7 +83,7 @@ class ProfileDisplayCardFragment : Fragment() {
 
         })
 
-        return view
+        return binding.root
     }
 
     override fun onStart() {
@@ -193,6 +196,11 @@ class ProfileDisplayCardFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
 

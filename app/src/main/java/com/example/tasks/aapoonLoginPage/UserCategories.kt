@@ -3,11 +3,11 @@ package com.example.tasks.aapoonLoginPage
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_user_categories.*
 
 class UserCategories : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class UserCategories : AppCompatActivity() {
 
         phoneNumber = intent.getStringExtra("phoneNumber").toString()
 
-        btn_continue.setOnClickListener {
+        findViewById<Button>(R.id.btn_continue).setOnClickListener {
             when (radioButton) {
                 "btn_business_user_radio" -> {
                     val intent = Intent(this,FillProfileActivity::class.java)

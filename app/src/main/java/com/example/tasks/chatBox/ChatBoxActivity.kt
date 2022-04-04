@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tasks.R
+import com.example.tasks.databinding.ActivityChatBoxBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_chat_box.*
-
 
 class ChatBoxActivity : AppCompatActivity() {
 
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var database: DatabaseReference
+    private lateinit var binding: ActivityChatBoxBinding
 
     // Creates a unique room as for privacy
     private var receiverRoom: String? = null
@@ -24,7 +23,8 @@ class ChatBoxActivity : AppCompatActivity() {
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_box)
+        binding = ActivityChatBoxBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val name = intent.getStringExtra("name")
         val receiverUid = intent.getStringExtra("uid")
@@ -39,8 +39,8 @@ class ChatBoxActivity : AppCompatActivity() {
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
 
-        chat_box_recycler_view.layoutManager = LinearLayoutManager(this)
-        chat_box_recycler_view.adapter = messageAdapter
+        binding.chatBoxRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.chatBoxRecyclerView.adapter = messageAdapter
 
         // Logic for adding messages data to recycler view
         database.child(senderRoom!!).child("messages")
@@ -58,7 +58,7 @@ class ChatBoxActivity : AppCompatActivity() {
                     if(messageList.size == 0){
                         // skip
                     }else{
-                        chat_box_recycler_view.smoothScrollToPosition(messageList.size - 1)
+                        binding.chatBoxRecyclerView.smoothScrollToPosition(messageList.size - 1)
                     }
                 }
 
@@ -69,8 +69,8 @@ class ChatBoxActivity : AppCompatActivity() {
             })
 
         // Adding the message to database
-        send_image_view.setOnClickListener {
-            val message = chat_message_box.text.toString()
+        binding.sendImageView.setOnClickListener {
+            val message = binding.chatMessageBox.text.toString()
             val messageObject = Message(message, senderUid)
 
             // push() creates unique node every time it calls
@@ -81,7 +81,7 @@ class ChatBoxActivity : AppCompatActivity() {
                             .setValue(messageObject)
                     }
                 notification()
-                chat_message_box.setText("")
+                binding.chatMessageBox.setText("")
             }else {
                 Toast.makeText(this,"Empty message",Toast.LENGTH_SHORT).show()
             }

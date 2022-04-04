@@ -17,10 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasks.MainActivity
 import com.example.tasks.R
+import com.example.tasks.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_chat.*
-
 
 class ChatActivity : AppCompatActivity() {
 
@@ -29,10 +28,12 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private val sharedLoginFile = "loginDetails"
+    private lateinit var binding: ActivityChatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        binding = ActivityChatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")
@@ -40,8 +41,8 @@ class ChatActivity : AppCompatActivity() {
         userList = ArrayList()
         adapter = ChatBoxAdapter(this, userList)
 
-        chat_box_user_recycler_view.layoutManager = LinearLayoutManager(this)
-        chat_box_user_recycler_view.adapter = adapter
+        binding.chatBoxUserRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.chatBoxUserRecyclerView.adapter = adapter
 
         database.addValueEventListener(object: ValueEventListener{
             @RequiresApi(Build.VERSION_CODES.O)

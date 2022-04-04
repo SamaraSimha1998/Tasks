@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tasks.databinding.ActivitySendMessageBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -19,17 +20,18 @@ import com.onegravity.contactpicker.contact.ContactDescription
 import com.onegravity.contactpicker.contact.ContactSortOrder
 import com.onegravity.contactpicker.core.ContactPickerActivity
 import com.onegravity.contactpicker.picture.ContactPictureType
-import kotlinx.android.synthetic.main.activity_send_message.*
 
 class SendMessageActivity : AppCompatActivity() {
 
     private val requestContact = 2000
     private val pickContactRequest = 1
+    private lateinit var binding: ActivitySendMessageBinding
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.tasks.R.layout.activity_send_message)
+        binding = ActivitySendMessageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Third party library (Dexter) for contacts
         Dexter.withContext(this)
@@ -47,20 +49,20 @@ class SendMessageActivity : AppCompatActivity() {
                 }
             }).check()
 
-        btn_contacts_viewer.setOnClickListener {
+        binding.btnContactsViewer.setOnClickListener {
             val intent = Intent(this@SendMessageActivity, ContactsActivity::class.java)
             startActivity(intent)
         }
 
-        btn_send_message.setOnClickListener {
+        binding.btnSendMessage.setOnClickListener {
             myMessage()
         }
 
-        btn_add_contacts.setOnClickListener {
+        binding.btnAddContacts.setOnClickListener {
             addContacts()
         }
 
-        btn_create_new_contact.setOnClickListener {
+        binding.btnCreateNewContact.setOnClickListener {
             createContact()
         }
     }
@@ -95,8 +97,8 @@ class SendMessageActivity : AppCompatActivity() {
     }
 
     private fun myMessage() {
-        val myNumber: String = contacts_edit_text.text.toString().trim()
-        val myMsg: String = message_edit_text.text.toString().trim()
+        val myNumber: String = binding.contactsEditText.text.toString().trim()
+        val myMsg: String = binding.messageEditText.text.toString().trim()
         if (myNumber == "" || myMsg == "") {
             Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
         } else {

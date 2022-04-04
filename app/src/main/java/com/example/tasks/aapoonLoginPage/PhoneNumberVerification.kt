@@ -4,19 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.MainActivity
-import com.example.tasks.R
-import kotlinx.android.synthetic.main.activity_phone_number_verification.*
+import com.example.tasks.databinding.ActivityPhoneNumberVerificationBinding
 
 class PhoneNumberVerification : AppCompatActivity() {
+
+    private lateinit var binding: ActivityPhoneNumberVerificationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_phone_number_verification)
+        binding = ActivityPhoneNumberVerificationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        country_code_picker.registerCarrierNumberEditText(phone_number_edit_text)
+        binding.countryCodePicker.registerCarrierNumberEditText(binding.phoneNumberEditText)
 
-        btn_get_otp.setOnClickListener {
+        binding.btnGetOtp.setOnClickListener {
             val intent = Intent(this,ManageOtp::class.java)
-            intent.putExtra("phoneNumber",country_code_picker.fullNumberWithPlus.replace(" ",""))
+            intent.putExtra("phoneNumber",binding.countryCodePicker.fullNumberWithPlus.replace(" ",""))
             startActivity(intent)
         }
     }
