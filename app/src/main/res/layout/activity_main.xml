@@ -13,11 +13,6 @@
         android:padding="8dp"
         tools:context=".MainActivity">
 
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_menu_bar"-->
-        <!--            style="@style/ButtonMainActivity"-->
-        <!--            android:text="@string/menu" />-->
-
         <Button
             android:id="@+id/btn_dagger_di"
             style="@style/ButtonMainActivity"
@@ -43,20 +38,12 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_battery_indicator" />
 
         <Button
-            android:id="@+id/btn_aapoon_login"
-            style="@style/ButtonMainActivity"
-            android:text="@string/aapoon_login_ui"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_dln_details" />
-
-        <Button
             android:id="@+id/btn_chat_box"
             style="@style/ButtonMainActivity"
             android:text="@string/chat_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_aapoon_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_dln_details" />
 
         <Button
             android:id="@+id/btn_multi_threading"
@@ -83,20 +70,12 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_image_compressor" />
 
         <Button
-            android:id="@+id/btn_tab_view_profile"
-            style="@style/ButtonMainActivity"
-            android:text="@string/profile_data_cards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_native_image_compressor" />
-
-        <Button
             android:id="@+id/btn_profile"
             style="@style/ButtonMainActivity"
             android:text="@string/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_tab_view_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_native_image_compressor" />
 
         <Button
             android:id="@+id/btn_sms"
@@ -156,6 +135,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_glide" />
 
+        <Button
+            android:id="@+id/btn_tab_view_profile"
+            style="@style/ButtonMainActivity"
+            android:text="@string/profile_data_cards"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_media_player" />
+
+        <Button
+            android:id="@+id/btn_aapoon_login"
+            style="@style/ButtonMainActivity"
+            android:text="@string/aapoon_login_ui"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_tab_view_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
