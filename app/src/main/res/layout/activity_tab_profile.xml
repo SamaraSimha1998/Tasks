@@ -17,17 +17,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/capture_data_tab_item"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/capture_data"
             android:textAlignment="center"/>
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/display_data_tab_item"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/display_data"
+            android:textAlignment="center"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/contacts"
             android:textAlignment="center"/>
 
     </com.google.android.material.tabs.TabLayout>

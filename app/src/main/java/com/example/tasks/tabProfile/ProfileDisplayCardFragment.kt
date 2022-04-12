@@ -46,13 +46,13 @@ class ProfileDisplayCardFragment : Fragment() {
 
         binding.btnSaveToTextFile.setOnClickListener { download() }
         binding.btnShare.setOnClickListener { share() }
-        recyclerView = view?.findViewById<View>(R.id.profile_card_recycler_view) as RecyclerView
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        recyclerView = view?.findViewById<View>(R.id.profile_card_recycler_view) as? RecyclerView
+        recyclerView?.layoutManager = LinearLayoutManager(context)
         val options: FirebaseRecyclerOptions<Model> = FirebaseRecyclerOptions.Builder<Model>()
             .setQuery(FirebaseDatabase.getInstance().reference.child("Model"), Model::class.java)
             .build()
         adapter = Adapter(options)
-        recyclerView!!.adapter = adapter
+        recyclerView?.adapter = adapter
 
         database = FirebaseDatabase.getInstance().reference.child("Model")
 
