@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19537037037037036" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_pause.xml" value="0.21203703703703702" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_play.xml" value="0.21203703703703702" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/btn_background.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/edit_text_background.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/ic_play.xml" value="0.21203703703703702" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/ic_send.xml" value="0.1215" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/ic_sort_by_alpha.xml" value="0.1045" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/message_box_background.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/search.xml" value="0.2203125" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout-w1240dp/fragment_descfragment.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_app_profile_view.xml" value="0.18" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_battery_indicator_notification.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_channel_list.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chat.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chat_box.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chatting.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_contacts.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_dagger.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_dash_board.xml" value="0.20102564102564102" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_dashboard_tab.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_details.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_fill_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_glide_crop.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_glide_image_cropper.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_group_channel.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_image_compressor.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_job_scheduler.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_login.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_manage_otp.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_media.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_menu.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_multi_threading.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_native_image_compressor.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_phone_number_verification.xml" value="0.18" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_private_channel.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_log.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_save.xml" value="0.2084942084942085" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_update.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_profile_view.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_realm_demo.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_referral.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_send_message.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_sign_up.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_some.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_support_team.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_tab_profile.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_update_number.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_user_categories.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_verify_number.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_video.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_video_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_video_play.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_web_api_retrofit.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/card_view.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/channel_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/chat_box_layout.xml" value="0.18" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_calls.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_chat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_circles.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_connect.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_contacts.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_profile_display_card.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/fragment_profile_save.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/glide_types.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/include_header_navigation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/nav_header.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/notification.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/player_view.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/realm_data_input.xml" value="0.2" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/receive.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/recycler_view_adapter.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/send.xml" value="0.22" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/sent.xml" value="0.909375" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/shared_data.xml" value="0.12771739130434784" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/menu/aapoon_menu.xml" value="0.15092592592592594" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/menu/chat_menu.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/menu/contact_sort_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/menu/edit_menu_item.xml" value="0.25" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/menu/menu.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1287037037037037" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
