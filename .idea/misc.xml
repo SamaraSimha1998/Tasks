@@ -36,6 +36,7 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_manage_otp.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_media.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_meet.xml" value="0.1125" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_menu.xml" value="0.1" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_multi_threading.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_native_image_compressor.xml" value="0.20416666666666666" />
@@ -50,7 +51,9 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_realm_demo.xml" value="0.22" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_referral.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_send_message.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_sign_in.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_sign_up.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_sign_up2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_some.xml" value="0.12771739130434784" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_support_team.xml" value="0.22" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_tab_profile.xml" value="0.19010416666666666" />
