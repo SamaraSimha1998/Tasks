@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
 import java.util.*
 
+@Suppress("DEPRECATION")
 class FillProfileActivity : AppCompatActivity() {
 
     private lateinit var baseImage: String
@@ -80,6 +81,7 @@ class FillProfileActivity : AppCompatActivity() {
     }
 
     // Creates calender dialog box
+    @Deprecated("Deprecated in Java")
     override fun onCreateDialog(id: Int): Dialog? {
         val c: Calendar = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -112,6 +114,7 @@ class FillProfileActivity : AppCompatActivity() {
     }
 
     // Processes the taken picture into bitmap
+    @Deprecated("Deprecated in Java")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

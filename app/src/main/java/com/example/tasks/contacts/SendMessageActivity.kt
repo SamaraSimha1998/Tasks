@@ -21,6 +21,7 @@ import com.onegravity.contactpicker.contact.ContactSortOrder
 import com.onegravity.contactpicker.core.ContactPickerActivity
 import com.onegravity.contactpicker.picture.ContactPictureType
 
+@Suppress("DEPRECATION")
 class SendMessageActivity : AppCompatActivity() {
 
     private val requestContact = 2000
@@ -112,6 +113,7 @@ class SendMessageActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestContact && resultCode == RESULT_OK && data != null && data.hasExtra(

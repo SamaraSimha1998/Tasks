@@ -14,6 +14,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.*
 import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 class VerifyNumberActivity : AppCompatActivity() {
 
     private lateinit var phoneNumber: String

@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 import java.util.concurrent.TimeUnit
 
 
+@Suppress("DEPRECATION")
 class ManageOtp : AppCompatActivity() {
 
     private lateinit var phoneNumber: String
@@ -38,14 +39,14 @@ class ManageOtp : AppCompatActivity() {
 
         binding.btnVerifySignin.setOnClickListener {
             when {
-                binding.enterOtpEditText.text.toString().isEmpty() -> {
+                binding.enterOtpNumberEditText.text.toString().isEmpty() -> {
                     Toast.makeText(this,"Please enter OTP!",Toast.LENGTH_SHORT).show()
                 }
-                binding.enterOtpEditText.text.toString().length != 6 -> {
+                binding.enterOtpNumberEditText.text.toString().length != 6 -> {
                     Toast.makeText(this,"Please enter valid OTP!",Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(otpId,binding.enterOtpEditText.text.toString())
+                    val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(otpId,binding.enterOtpNumberEditText.text.toString())
                     signInWithPhoneAuthCredential(credential)
                 }
             }

@@ -14,6 +14,7 @@ import com.example.tasks.R
 import com.example.tasks.databinding.ActivityProfileViewBinding
 import java.util.*
 
+@Suppress("DEPRECATION")
 class ProfileViewActivity : AppCompatActivity() {
 
     private lateinit var baseImage : String

@@ -19,6 +19,7 @@ import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream
 
+@Suppress("DEPRECATION")
 class NativeImageCompressorActivity : AppCompatActivity() {
 
     private val pickImage = 100
@@ -90,6 +91,7 @@ class NativeImageCompressorActivity : AppCompatActivity() {
         startActivityForResult(gallery, pickImage)
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

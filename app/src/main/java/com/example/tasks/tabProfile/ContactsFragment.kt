@@ -23,6 +23,7 @@ import com.onegravity.contactpicker.contact.ContactSortOrder
 import com.onegravity.contactpicker.core.ContactPickerActivity
 import com.onegravity.contactpicker.picture.ContactPictureType
 
+@Suppress("DEPRECATION")
 class ContactsFragment : Fragment() {
     
     private val requestContact = 2000

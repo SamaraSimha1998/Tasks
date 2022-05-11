@@ -11,6 +11,7 @@ import android.net.Uri
 import android.widget.MediaController
 import android.widget.VideoView
 
+@Suppress("DEPRECATION")
 class VideoAdapter(var context: Context, private var videoArrayList: ArrayList<VideoModel>) :
     RecyclerView.Adapter<VideoAdapter.viewHolder>() {
     var onItemClickListener: Any? = null
@@ -51,7 +52,6 @@ class VideoAdapter(var context: Context, private var videoArrayList: ArrayList<V
 
 private fun Any?.onItemClick(pos: Int, v: View?) {
 
-//    TODO("Not yet implemented")
     val videoView = (com.example.tasks.R.id.videoView) as VideoView
     val mediaController = MediaController(this as Context?)
     mediaController.setAnchorView(videoView)

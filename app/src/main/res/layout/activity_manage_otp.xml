@@ -7,7 +7,7 @@
     tools:context=".aapoonLoginPage.ManageOtp">
 
     <EditText
-        android:id="@+id/enter_otp_edit_text"
+        android:id="@+id/enter_otp_number_edit_text"
         android:layout_width="271dp"
         android:layout_height="58dp"
         android:ems="10"

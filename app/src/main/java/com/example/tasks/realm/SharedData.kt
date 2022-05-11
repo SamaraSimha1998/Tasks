@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.tasks.realm
 
 import android.annotation.SuppressLint

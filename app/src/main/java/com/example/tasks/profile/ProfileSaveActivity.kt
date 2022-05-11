@@ -21,6 +21,7 @@ import com.example.tasks.R
 import com.example.tasks.databinding.ActivityProfileSaveBinding
 
 
+@Suppress("DEPRECATION")
 class ProfileSaveActivity : AppCompatActivity() {
 
     private lateinit var baseImage: String
@@ -50,6 +51,7 @@ class ProfileSaveActivity : AppCompatActivity() {
     }
 
     // Creates calender dialog box
+    @Deprecated("Deprecated in Java")
     override fun onCreateDialog(id: Int): Dialog? {
         val c: Calendar = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -81,6 +83,7 @@ class ProfileSaveActivity : AppCompatActivity() {
     }
 
     // Processes the taken picture into bitmap
+    @Deprecated("Deprecated in Java")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

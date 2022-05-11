@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMenuBinding
 
+@Suppress("DEPRECATION")
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var toggle: ActionBarDrawerToggle

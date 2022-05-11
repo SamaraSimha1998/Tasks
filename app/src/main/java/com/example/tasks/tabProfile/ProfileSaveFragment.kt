@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase
 import java.io.ByteArrayOutputStream
 import java.util.*
 
+@Suppress("DEPRECATION")
 class ProfileSaveFragment : Fragment() {
 
     private lateinit var baseImage: String
@@ -142,6 +143,7 @@ class ProfileSaveFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.tasks.R
 import com.example.tasks.mediaplayer.VideoListActivity.Companion.videoArrayList
 
+@Suppress("DEPRECATION")
 class VideoPlayActivity : AppCompatActivity() {
     var videoView: VideoView? = null
     private var prev: ImageView? = null
