@@ -93,7 +93,7 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
         // Uses default notification sound for message
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
-            .setSmallIcon(R.drawable.aapoon_logo)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(message)
             .setAutoCancel(true)
