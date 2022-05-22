@@ -67,7 +67,7 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
     override fun onDeletedMessages() {}
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    public fun sendNotification(title: String, message: String, click_action: String) {
+    fun sendNotification(title: String, message: String, click_action: String) {
         val intent: Intent
         when (click_action) {
 
@@ -100,6 +100,21 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
             .setOnlyAlertOnce(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(0, notificationBuilder.build())
+    }
+
+    fun sendMessageNotification(title: String, message: String) {
+
+        // Uses default notification sound for message
+        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+            .setSound(defaultSoundUri)
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(0, notificationBuilder.build())
     }

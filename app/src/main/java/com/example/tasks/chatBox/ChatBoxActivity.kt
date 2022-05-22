@@ -1,12 +1,16 @@
 package com.example.tasks.chatBox
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tasks.R
 import com.example.tasks.databinding.ActivityChatBoxBinding
-import com.example.tasks.fcm.FirebaseMessagingServiceApi
+import com.example.tasks.fcm.channelId
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -76,12 +80,12 @@ class ChatBoxActivity : AppCompatActivity() {
 
             // push() creates unique node every time it calls
             if (message != "") {
+                notification(message)
                 database.child(senderRoom!!).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
                         database.child(receiverRoom!!).child("messages").push()
                             .setValue(messageObject)
                     }
-                notification(message)
                 binding.chatMessageBox.setText("")
             }else {
                 Toast.makeText(this,"Empty message",Toast.LENGTH_SHORT).show()
@@ -91,6 +95,17 @@ class ChatBoxActivity : AppCompatActivity() {
 
     // Notification manager
     private fun notification(textContent: String) {
-        FirebaseMessagingServiceApi().sendNotification("Received message", textContent, "MainActivity")
+//        FirebaseMessagingServiceApi().sendMessageNotification("Received message", textContent)
+        // Uses default notification sound for message
+        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(textContent)
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+            .setSound(defaultSoundUri)
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(0, notificationBuilder.build())
     }
 }
