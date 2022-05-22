@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasks.databinding.ActivityChatBoxBinding
+import com.example.tasks.fcm.FirebaseMessagingServiceApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -80,7 +81,7 @@ class ChatBoxActivity : AppCompatActivity() {
                         database.child(receiverRoom!!).child("messages").push()
                             .setValue(messageObject)
                     }
-                notification()
+                notification(message)
                 binding.chatMessageBox.setText("")
             }else {
                 Toast.makeText(this,"Empty message",Toast.LENGTH_SHORT).show()
@@ -89,5 +90,7 @@ class ChatBoxActivity : AppCompatActivity() {
     }
 
     // Notification manager
-    private fun notification() {}
+    private fun notification(textContent: String) {
+        FirebaseMessagingServiceApi().sendNotification("Received message", textContent, "MainActivity")
+    }
 }

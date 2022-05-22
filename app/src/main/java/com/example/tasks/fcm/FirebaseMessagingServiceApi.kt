@@ -67,7 +67,7 @@ class FirebaseMessagingServiceApi : FirebaseMessagingService() {
     override fun onDeletedMessages() {}
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun sendNotification(title: String, message: String, click_action: String) {
+    public fun sendNotification(title: String, message: String, click_action: String) {
         val intent: Intent
         when (click_action) {
 
