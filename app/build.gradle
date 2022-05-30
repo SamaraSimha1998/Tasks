@@ -10,10 +10,14 @@ plugins {
 android {
     compileSdk 32
 
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
+
     defaultConfig {
         applicationId "com.example.tasks"
         minSdk 21
-        targetSdk 32
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -131,4 +135,8 @@ dependencies {
     // Hilt Dependency Injection
 //    implementation 'com.google.dagger:hilt-android:2.38.1'
 //    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
+
+    // For feedback mail
+    implementation 'com.sun.mail:android-mail:1.6.0'
+    implementation 'com.sun.mail:android-activation:1.6.0'
 }
