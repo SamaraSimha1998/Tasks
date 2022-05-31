@@ -28,9 +28,6 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
-            android:name=".videoPlayer.activities.VideoPlayerActivity"
-            android:exported="false" />
-        <activity
             android:name=".dependencyInjection.dagger.DaggerActivity"
             android:exported="false" />
         <activity

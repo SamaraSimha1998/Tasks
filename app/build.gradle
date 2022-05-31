@@ -6,24 +6,18 @@ plugins {
     id 'realm-android'
 //    id 'dagger.hilt.android.plugin'
 }
-
 android {
     compileSdk 32
-
-    packagingOptions {
-        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
-    }
 
     defaultConfig {
         applicationId "com.example.tasks"
         minSdk 21
-        targetSdk 29
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -44,31 +38,24 @@ android {
         viewBinding true
     }
 }
-
 dependencies {
-
     // RxJava dependencies...
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.14'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'androidx.core:core-ktx:1.7.0'
-
     // Retrofit dependencies...
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     // JobQueue dependencies...
     implementation 'com.birbit:android-priority-jobqueue:3.0.0'
-
     // Firebase FCM dependencies...
-    implementation platform('com.google.firebase:firebase-bom:29.0.2')
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
-
     // Image processing library (Glide) dependencies...
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation 'com.google.firebase:firebase-database:20.0.5'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
@@ -78,77 +65,52 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
     implementation 'androidx.preference:preference-ktx:1.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
     implementation "jp.co.cyberagent.android:gpuimage:2.1.0"
-
     //noinspection GradleDependency
     implementation "androidx.exifinterface:exifinterface:1.3.3"
-
     // Cropping Image Api...
-    def android_image_cropper_version = "2.8.+"
-    api "com.theartofdev.edmodo:android-image-cropper:$android_image_cropper_version"
-
+//    def android_image_cropper_version = "2.8.+"
+//    api 'com.theartofdev.edmodo:android-image-cropper:android_image_cropper_version'
     // SMS permission...
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.1gravity:android-contactpicker:1.3.2'
-
     //Compressing image...
-    implementation 'id.zelory:compressor:2.1.1'
-
+    implementation 'id.zelory:compressor:3.0.1'
     // Basic dependencies...
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.5'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.7.0-alpha02'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.firebaseui:firebase-ui-database:6.3.0'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.1'
     implementation "androidx.security:security-crypto:1.1.0-alpha03"
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
-
     // Phone Number Verification dependencies
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'
     // Country Codes for Phone number
     implementation 'com.hbb20:ccp:2.6.0'
-
     // Step view dependencies
     implementation 'com.anton46:stepsview:0.0.2'
-
     // Sendbird api for group and private channels
     implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.88'
-
     // Dagger-2 Dependency Injection
-    implementation 'com.google.dagger:dagger-android:2.35.1'
-    implementation 'com.google.dagger:dagger-android-support:2.20'
+    implementation 'com.google.dagger:dagger-android:2.42'
+    implementation 'com.google.dagger:dagger-android-support:2.42'
     // if you use the support libraries
-    kapt 'com.google.dagger:dagger-android-processor:2.20'
-    kapt 'com.google.dagger:dagger-compiler:2.38.1'
-
+    kapt 'com.google.dagger:dagger-android-processor:2.42'
+    kapt 'com.google.dagger:dagger-compiler:2.42'
     // Hilt Dependency Injection
 //    implementation 'com.google.dagger:hilt-android:2.38.1'
 //    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
-
-    // For feedback mail
-    implementation 'com.sun.mail:android-mail:1.6.0'
-    implementation 'com.sun.mail:android-activation:1.6.0'
-
-    // Multimedia player
-    implementation 'com.google.android.exoplayer:exoplayer-common:2.17.1'
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
-    implementation 'com.google.android.exoplayer:exoplayer:2.17.1' // 2.9.0 has min sdk 26
-    implementation "com.github.bumptech.glide:glide:4.13.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.17.1'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.17.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.17.1'
 }
