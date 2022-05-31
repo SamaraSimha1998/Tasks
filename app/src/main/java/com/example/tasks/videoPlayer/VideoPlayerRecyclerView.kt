@@ -2,7 +2,6 @@ package com.example.tasks.videoPlayer
 
 import android.content.Context
 import android.graphics.Point
-import android.net.Uri
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -15,26 +14,13 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import com.bumptech.glide.util.Util
 import com.example.tasks.R
 import com.example.tasks.videoPlayer.model.MediaObject
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.MediaSource.Factory
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelection
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.trackselection.TrackSelector
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.BandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util.getUserAgent
-import java.util.*
-import javax.sql.DataSource
-import kotlin.collections.ArrayList
 
 class VideoPlayerRecyclerView : RecyclerView {
     private enum class VolumeState {
@@ -79,13 +65,13 @@ class VideoPlayerRecyclerView : RecyclerView {
         videoSurfaceDefaultHeight = point.x
         screenDefaultHeight = point.y
         videoSurfaceView = this.context?.let { PlayerView(it) }
-        videoSurfaceView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM)
+        videoSurfaceView?.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
         val bandwidthMeter: BandwidthMeter = DefaultBandwidthMeter()
-        val videoTrackSelectionFactory: TrackSelection.Factory = Factory(bandwidthMeter)
-        val trackSelector: TrackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
+//        val videoTrackSelectionFactory: TrackSelection.Factory = Factory(bandwidthMeter)
+//        val trackSelector: TrackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
 
         // 2. Create the player
-        videoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector)
+//        videoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector)
         // Bind the player to the view.
         videoSurfaceView!!.useController = false
         videoSurfaceView!!.player = videoPlayer!!
@@ -121,48 +107,48 @@ class VideoPlayerRecyclerView : RecyclerView {
                 }
             }
         })
-        videoPlayer.addListener(object : EventListener() {
-            fun onTimelineChanged(timeline: Timeline?, manifest: Any?, reason: Int) {}
-            fun onTracksChanged(
-                trackGroups: TrackGroupArray?,
-                trackSelections: TrackSelectionArray?
-            ) {
-            }
-
-            fun onLoadingChanged(isLoading: Boolean) {}
-            fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-                when (playbackState) {
-                    Player.STATE_BUFFERING -> {
-                        Log.e(TAG, "onPlayerStateChanged: Buffering video.")
-                        if (progressBar != null) {
-                            progressBar!!.visibility = VISIBLE
-                        }
-                    }
-                    Player.STATE_ENDED -> {
-                        Log.d(TAG, "onPlayerStateChanged: Video ended.")
-                        videoPlayer!!.seekTo(0)
-                    }
-                    Player.STATE_IDLE -> {}
-                    Player.STATE_READY -> {
-                        Log.e(TAG, "onPlayerStateChanged: Ready to play.")
-                        if (progressBar != null) {
-                            progressBar!!.visibility = GONE
-                        }
-                        if (!isVideoViewAdded) {
-                            addVideoView()
-                        }
-                    }
-                    else -> {}
-                }
-            }
-
-            fun onRepeatModeChanged(repeatMode: Int) {}
-            fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {}
-            fun onPlayerError(error: ExoPlaybackException?) {}
-            fun onPositionDiscontinuity(reason: Int) {}
-            fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {}
-            fun onSeekProcessed() {}
-        })
+//        videoPlayer.addListener(object : EventListener() {
+//            fun onTimelineChanged(timeline: Timeline?, manifest: Any?, reason: Int) {}
+//            fun onTracksChanged(
+//                trackGroups: TrackGroupArray?,
+//                trackSelections: TrackSelectionArray?
+//            ) {
+//            }
+//
+//            fun onLoadingChanged(isLoading: Boolean) {}
+//            fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+//                when (playbackState) {
+//                    Player.STATE_BUFFERING -> {
+//                        Log.e(TAG, "onPlayerStateChanged: Buffering video.")
+//                        if (progressBar != null) {
+//                            progressBar!!.visibility = VISIBLE
+//                        }
+//                    }
+//                    Player.STATE_ENDED -> {
+//                        Log.d(TAG, "onPlayerStateChanged: Video ended.")
+//                        videoPlayer!!.seekTo(0)
+//                    }
+//                    Player.STATE_IDLE -> {}
+//                    Player.STATE_READY -> {
+//                        Log.e(TAG, "onPlayerStateChanged: Ready to play.")
+//                        if (progressBar != null) {
+//                            progressBar!!.visibility = GONE
+//                        }
+//                        if (!isVideoViewAdded) {
+//                            addVideoView()
+//                        }
+//                    }
+//                    else -> {}
+//                }
+//            }
+//
+//            fun onRepeatModeChanged(repeatMode: Int) {}
+//            fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {}
+//            fun onPlayerError(error: ExoPlaybackException?) {}
+//            fun onPositionDiscontinuity(reason: Int) {}
+//            fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {}
+//            fun onSeekProcessed() {}
+//        })
     }
 
     fun playVideo(isEndOfList: Boolean) {
@@ -229,16 +215,16 @@ class VideoPlayerRecyclerView : RecyclerView {
         frameLayout = holder.itemView.findViewById(R.id.media_container)
         videoPlayer?.let { videoSurfaceView!!.player = it }
         viewHolderParent!!.setOnClickListener(videoViewClickListener)
-        val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
-            context, Util.getUserAgent(context, "RecyclerView VideoPlayer")
-        )
-        val mediaUrl: String? = mediaObjects[targetPosition].media_url
-        if (mediaUrl != null) {
-            val videoSource: MediaSource = Factory(dataSourceFactory)
-                .createMediaSource(Uri.parse(mediaUrl))
-            videoPlayer.prepare(videoSource)
-            videoPlayer.setPlayWhenReady(true)
-        }
+//        val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
+//            context, Util.getUserAgent(context, "RecyclerView VideoPlayer")
+//        )
+//        val mediaUrl: String? = mediaObjects[targetPosition].media_url
+//        if (mediaUrl != null) {
+//            val videoSource: MediaSource = Factory(dataSourceFactory)
+//                .createMediaSource(Uri.parse(mediaUrl))
+//            videoPlayer.prepare(videoSource)
+//            videoPlayer.setPlayWhenReady(true)
+//        }
     }
 
     private val videoViewClickListener = OnClickListener { toggleVolume() }
@@ -262,7 +248,7 @@ class VideoPlayerRecyclerView : RecyclerView {
 
     // Remove the old player
     private fun removeVideoView(videoView: PlayerView?) {
-        val parent = videoView.getParent() as ViewGroup ?: return
+        val parent = videoView?.parent as ViewGroup
         val index = parent.indexOfChild(videoView)
         if (index >= 0) {
             parent.removeViewAt(index)
@@ -312,10 +298,10 @@ class VideoPlayerRecyclerView : RecyclerView {
     private fun setVolumeControl(state: VolumeState) {
         volumeState = state
         if (state == VolumeState.OFF) {
-            videoPlayer.setVolume(0f)
+            videoPlayer?.volume = 0f
             animateVolumeControl()
         } else if (state == VolumeState.ON) {
-            videoPlayer.setVolume(1f)
+            videoPlayer?.volume = 1f
             animateVolumeControl()
         }
     }

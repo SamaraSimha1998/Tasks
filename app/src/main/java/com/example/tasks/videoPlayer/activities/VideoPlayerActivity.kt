@@ -8,6 +8,9 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.example.tasks.R
 import com.example.tasks.databinding.ActivityVideoPlayerBinding
+import com.example.tasks.videoPlayer.adapter.VideoPlayerRecyclerAdapter
+import com.example.tasks.videoPlayer.model.MediaObject
+import com.example.tasks.videoPlayer.utils.VerticalSpacingItemDecorator
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -30,8 +33,8 @@ class VideoPlayerActivity : AppCompatActivity() {
         binding.videoPlayerRecyclerView.addItemDecoration(verticalItemDecor)
 
         val sourceVideos: ArrayList<MediaObject> = ArrayList(sampleVideoList())
-        binding.videoPlayerRecyclerView.setMediaObjects(sourceVideos)
-        val adapter = VideoPlayerRecyclerAdapter(sourceVideos, initGlide())
+//        binding.videoPlayerRecyclerView.MediaObject(sourceVideos)
+        val adapter = initGlide()?.let { VideoPlayerRecyclerAdapter(sourceVideos, it) }
         binding.videoPlayerRecyclerView.adapter = adapter
     }
 
