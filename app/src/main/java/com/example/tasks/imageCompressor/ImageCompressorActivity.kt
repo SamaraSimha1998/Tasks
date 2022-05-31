@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -13,10 +12,8 @@ import android.text.format.Formatter
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tasks.databinding.ActivityImageCompressorBinding
-import id.zelory.compressor.Compressor
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -33,7 +30,6 @@ class ImageCompressorActivity : AppCompatActivity() {
     private var path: File = File(Environment.getExternalStorageDirectory().absolutePath + "/Pictures")
     private lateinit var binding: ActivityImageCompressorBinding
 
-    @RequiresApi(Build.VERSION_CODES.ECLAIR)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +68,7 @@ class ImageCompressorActivity : AppCompatActivity() {
             try {
 
                 // Triggers image compressor from here
-                compressedImage = Compressor(this)
+                compressedImage = com.example.tasks.nativeImageCompressor.Compressor(this)
                     .setMaxWidth(width)
                     .setMaxHeight(height)
                     .setQuality(quality)

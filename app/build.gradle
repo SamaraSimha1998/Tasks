@@ -71,8 +71,8 @@ dependencies {
     //noinspection GradleDependency
     implementation "androidx.exifinterface:exifinterface:1.3.3"
     // Cropping Image Api...
-//    def android_image_cropper_version = "2.8.+"
-//    api 'com.theartofdev.edmodo:android-image-cropper:android_image_cropper_version'
+    def android_image_cropper_version = "2.8.+"
+    api "com.theartofdev.edmodo:android-image-cropper:$android_image_cropper_version"
     // SMS permission...
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.1gravity:android-contactpicker:1.3.2'
@@ -113,4 +113,10 @@ dependencies {
     // Hilt Dependency Injection
 //    implementation 'com.google.dagger:hilt-android:2.38.1'
 //    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
+
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    // For feedback mail
+    implementation 'com.sun.mail:android-mail:1.6.0'
+    implementation 'com.sun.mail:android-activation:1.6.0'
 }
