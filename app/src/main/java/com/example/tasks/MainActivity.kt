@@ -16,6 +16,7 @@ import com.example.tasks.dependencyInjection.dagger.DaggerActivity
 import com.example.tasks.fcm.BatteryIndicatorNotificationActivity
 import com.example.tasks.glide.GlideImageCropper
 import com.example.tasks.imageCompressor.ImageCompressorActivity
+import com.example.tasks.imageslider.ImageSliderActivity
 import com.example.tasks.jobscheduler.JobScheduler
 import com.example.tasks.mediaplayer.VideoListActivity
 import com.example.tasks.multiThreading.MultiThreading
@@ -51,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             Context.MODE_PRIVATE)
 
         FirebaseMessaging.getInstance().subscribeToTopic("aapoon")
+
+        binding.btnImageSlider.setOnClickListener {
+            val intent = Intent(this@MainActivity, ImageSliderActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnWebApi.setOnClickListener {
             val intent = Intent(this@MainActivity, WebApiRetrofit::class.java)
