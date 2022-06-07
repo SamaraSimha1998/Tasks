@@ -6,6 +6,7 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_pause.xml" value="0.21203703703703702" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-v24/ic_play.xml" value="0.21203703703703702" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable-xxxhdpi/sender_chat_drawable.xml" value="0.1235" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/btn_background.xml" value="0.1" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/edit_text_background.xml" value="0.1" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/drawable/ic_keyboard_backspace.xml" value="0.133" />
@@ -19,7 +20,7 @@
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_battery_indicator_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_channel_list.xml" value="0.1" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chat.xml" value="0.25" />
-        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chat_box.xml" value="0.1" />
+        <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chat_box.xml" value="0.22" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_chatting.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_contacts.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/samar/AndroidStudioProjects/Tasks/app/src/main/res/layout/activity_dagger.xml" value="0.20416666666666666" />

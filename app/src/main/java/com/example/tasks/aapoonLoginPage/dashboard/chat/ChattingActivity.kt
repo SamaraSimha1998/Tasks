@@ -9,19 +9,24 @@ import com.example.tasks.chatBox.Message
 import com.example.tasks.databinding.ActivityChattingBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChattingActivity : AppCompatActivity() {
 
     private lateinit var messageAdapter: ChatMessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var database: DatabaseReference
+    private var simpleDateFormat: SimpleDateFormat? = null
+    private var calendar: Calendar? = null
     private lateinit var binding: ActivityChattingBinding
 
     // Creates a unique room as for privacy
     private var receiverRoom: String? = null
     private var senderRoom: String? = null
 
-    @SuppressLint("UnspecifiedImmutableFlag")
+    @SuppressLint("UnspecifiedImmutableFlag", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChattingBinding.inflate(layoutInflater)
@@ -30,6 +35,8 @@ class ChattingActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val receiverUid = intent.getStringExtra("uid")
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
+        calendar = Calendar.getInstance()
+        simpleDateFormat = SimpleDateFormat("hh:mm a")
         database = FirebaseDatabase.getInstance().getReference("AapoonChats")
 
         senderRoom = receiverUid + senderUid
@@ -72,7 +79,9 @@ class ChattingActivity : AppCompatActivity() {
         // Adding the message to database
         binding.sendMessageImageView.setOnClickListener {
             val message = binding.chatMessage.text.toString()
-            val messageObject = Message(message, senderUid)
+            val date = Date()
+            val currentTime = simpleDateFormat!!.format(calendar!!.time)
+            val messageObject = Message(message, senderUid, date.time, currentTime)
 
             // push() creates unique node every time it calls
             when {

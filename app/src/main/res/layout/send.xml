@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="50dp"
+    android:padding="2dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/edit_text_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/sender_chat_drawable"
+        android:id="@+id/layout_for_message"
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/send_text_view"
+            android:id="@+id/sender_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingStart="7dp"
+            android:paddingTop="7dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="7dp"
             android:text="@string/this_is_sent_message"
-            android:textColor="@color/start_received"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_of_sent_message"
+            android:textSize="10sp"
+            android:layout_toEndOf="@id/sender_text_view"
+            android:layout_marginStart="-40dp"
+            android:layout_alignBottom="@id/sender_text_view"
+            android:text="@string/_20_09"
+            android:padding="7dp"
+            android:textColor="#434343"
+            tools:ignore="SmallSp" />
 
     </RelativeLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

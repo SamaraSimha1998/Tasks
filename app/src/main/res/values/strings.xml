@@ -210,4 +210,6 @@ Welcome to aapoon, Inc. (“Aapoon,”, “aapoon”, “Company”, “we”, �
     <string name="this_is_the_title">This is the title</string>
     <string name="volume_up">volume up</string>
     <string name="image_slider">Image Slider</string>
+    <string name="_20_09">20:09</string>
+    <string name="this_is_received_message">This is received message</string>
 </resources>

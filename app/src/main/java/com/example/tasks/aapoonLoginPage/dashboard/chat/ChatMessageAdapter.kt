@@ -44,11 +44,13 @@ class ChatMessageAdapter(val context: Context, private val messageList: ArrayLis
         if (holder.javaClass == SendViewHolder::class.java){
             // code for send viewHolder
             val viewHolder = holder as SendViewHolder
-            holder.sendMessage.text = currentMessage.message
+            viewHolder.sendMessage.text = currentMessage.message
+            viewHolder.timeOfSentMessage.text = currentMessage.currenttime
         }else{
             // code for receive viewHolder
             val viewHolder = holder as ReceiveViewHolder
-            holder.receiveMessage.text = currentMessage.message
+            viewHolder.receiveMessage.text = currentMessage.message
+            viewHolder.timeOfReceiverMessagge.text = currentMessage.currenttime
             if(position == messageList.size-1){
                 for(i in IntStream.range(0, 1)){
                     notification(currentMessage.message,FirebaseAuth.getInstance().currentUser!!.email.toString())
@@ -71,11 +73,13 @@ class ChatMessageAdapter(val context: Context, private val messageList: ArrayLis
     }
 
     class SendViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val sendMessage: TextView = itemView.findViewById(R.id.send_text_view)
+        val sendMessage: TextView = itemView.findViewById(R.id.sender_text_view)
+        val timeOfSentMessage: TextView = itemView.findViewById(R.id.time_of_sent_message)
     }
 
     class ReceiveViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val receiveMessage: TextView = itemView.findViewById(R.id.receive_text_view)
+        val receiveMessage: TextView = itemView.findViewById(R.id.receiver_text_view)
+        val timeOfReceiverMessagge: TextView = itemView.findViewById(R.id.time_of_receive_message)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
