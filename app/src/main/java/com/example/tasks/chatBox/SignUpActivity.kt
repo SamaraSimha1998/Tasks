@@ -83,7 +83,7 @@ class SignUpActivity : AppCompatActivity() {
 
     // Adds data to user database
     private fun addUserToDatabase(name: String, email: String, uid: String, profile: String, phone: String){
-        val chatUser = ChatBoxUser(name, email, uid, profile, phone)
+        val chatUser = ChatBoxUser(name, email, uid, profile, phone, status = "Online")
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")
         database.child(uid).setValue(chatUser)
     }

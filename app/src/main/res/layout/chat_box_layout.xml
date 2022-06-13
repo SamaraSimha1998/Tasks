@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/profile_linear_layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:id="@+id/chat_profile_image_view"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:contentDescription="@string/profile"
-            android:src="@color/black" />
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="-5dp">
 
         <TextView
             android:id="@+id/chat_box_name_text_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/user_name"
-            android:textColor="@color/white"
-            android:textSize="30sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/card_view_of_user"
+            android:text="@string/name_displays_here"
+            android:textColor="#0b0b0b"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_displays_here"
+            android:textSize="12sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@id/card_view_of_user"
+            android:id="@+id/status_of_user"
+            android:layout_below="@id/chat_box_name_text_view"
+            android:textColor="#6a6a6a"/>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/profile_linear_layout"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/profile_linear_layout"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/card_view_of_user"
+            app:cardCornerRadius="55dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/ic_launcher_background"
+                android:id="@+id/chat_profile_image_view"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/profile" />
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#a6a6a6"
+            android:background="#a6a6a6"
+            android:layout_below="@id/card_view_of_user"
+            android:layout_toEndOf="@id/card_view_of_user"
+            android:layout_marginTop="-5dp" />
+    </RelativeLayout>
+</RelativeLayout>

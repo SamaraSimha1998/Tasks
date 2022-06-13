@@ -31,6 +31,7 @@ class ChatBoxAdapter(val context: Context, private val userList: ArrayList<ChatB
         val currentUser = userList[position]
         holder.textName.text = currentUser.name
         holder.profileImage.setImageBitmap(currentUser.profile?.let { base64ToBitmap(it) })
+        holder.statusOfUser.text = currentUser.status
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,ChatBoxActivity::class.java)
@@ -53,6 +54,7 @@ class ChatBoxAdapter(val context: Context, private val userList: ArrayList<ChatB
     class ChatBoxViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val textName: TextView = itemView.findViewById(R.id.chat_box_name_text_view)
         val profileImage: ImageView = itemView.findViewById(R.id.chat_profile_image_view)
+        val statusOfUser: TextView = itemView.findViewById(R.id.status_of_user)
     }
 
     // converts bitmap image to normal image

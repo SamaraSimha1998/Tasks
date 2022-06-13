@@ -65,6 +65,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
     implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.1.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
     implementation "jp.co.cyberagent.android:gpuimage:2.1.0"

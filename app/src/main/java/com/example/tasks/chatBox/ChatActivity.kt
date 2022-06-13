@@ -12,6 +12,7 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.PhoneLookup
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,12 +21,14 @@ import com.example.tasks.R
 import com.example.tasks.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var userList: ArrayList<ChatBoxUser>
     private lateinit var adapter: ChatBoxAdapter
     private lateinit var auth: FirebaseAuth
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var database: DatabaseReference
     private val sharedLoginFile = "loginDetails"
     private lateinit var binding: ActivityChatBinding
@@ -37,6 +40,7 @@ class ChatActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().getReference("ChatUsers")
+        firebaseFirestore = FirebaseFirestore.getInstance()
 
         userList = ArrayList()
         adapter = ChatBoxAdapter(this, userList)
@@ -123,6 +127,34 @@ class ChatActivity : AppCompatActivity() {
             contactLookup?.close()
         }
         return name
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val documentReference = firebaseFirestore.collection("ChatUsers").document(
+            auth.uid!!
+        )
+        documentReference.update("status", "Offline").addOnSuccessListener {
+            Toast.makeText(
+                applicationContext,
+                "Now User is Offline",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val documentReference = firebaseFirestore.collection("ChatUsers").document(
+            auth.uid!!
+        )
+        documentReference.update("status", "Online").addOnSuccessListener {
+            Toast.makeText(
+                applicationContext,
+                "Now User is Online",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     override fun onBackPressed() {
